@@ -19,7 +19,7 @@ def analyze_process(pid):
     for row in out.strip().split('\n'):
         spans = row.split()
         if pid == int(spans[1]):
-            return int(spans[2]), out.strip()
+            return int(spans[2]), row.strip()
     raise Exception('Cannot find any process with pid [{}]'.format(pid))
 
 def find_all_containers():
@@ -32,12 +32,16 @@ def find_all_containers():
         return {s.split(' ')[0]: s.split(' ')[1] for s in out.split('\n') if s}
 
 def main():
+    try_count = 0
     lowest_pid = int(sys.argv[1])
     ppid, content = analyze_process(lowest_pid)
     container_info = find_all_containers()
     while ppid != 0:
         m = re.search('io\.containerd\.runtime\.v1\.linux\/moby\/(.+?)$', content.strip())
         if m is None:
+            print('{}**{}'.format('  ' * try_count, content.strip()))
+            print('{}||'.format('  ' * try_count))
+            try_count += 1
             ppid, content = analyze_process(ppid)
         else:
             cid = m.group(1)
@@ -48,6 +52,7 @@ def main():
             else:
                 cid = cid[:12]
             if cid in container_info:
+                print('{}**{}'.format('  ' * try_count, content.strip()))
                 print('Container [{}:{}] is using GPU!'.format(container_info[cid], cid))
             else:
                 print('Locate [{}] but did not find any match containers in docker ps list.'.format(cid))
