@@ -48,7 +48,8 @@ SOLID_TRAIN_SETTINGS = {
     '--label-smoothing': 0.1,
     '--no-progress-bar': True,
     '--log-interval': 1000,
-    '--keep-last-epochs': 10
+    '--keep-last-epochs': 10,
+    '--seed': 0
 }
 
 GENERATE_SETTINGS = {
@@ -57,7 +58,25 @@ GENERATE_SETTINGS = {
     '--lenpen': 1.0,
     '--remove-bpe': True
 }
-################# end of block #################
+################# end of configuration block #################
+
+import logging
+from logging import Formatter, StreamHandler, FileHandler
+
+if not os.path.isdir('logs'):
+    os.system('mkdir logs')
+
+logger = logging.getLogger()
+formatter = Formatter(fmt="[%(asctime)s] %(levelname)s %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+file_handler = FileHandler('logs/ibendao.log.{}'.format(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(formatter)
+stream_handler = StreamHandler(sys.stdout)
+stream_handler.setLevel(logging.INFO)
+stream_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
+logger.addHandler(stream_handler)
+logger.setLevel(logging.INFO)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -121,10 +140,7 @@ def main():
         train_cmd = concat_cmd(train_cmd, **TRAIN_SETTINGS)
         train_log_fn = os.path.join(log_output_dir, 'train.log.{}'.format(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
         train_cmd = '{} 2>&1 | tee {}'.format(train_cmd, train_log_fn)
-        print(train_cmd)
-        for i in range(5):
-            time.sleep(0.5)
-            print('.', end='')
+        logger.info(train_cmd)
 
         # start training
         train_start_at = time.time()
@@ -132,22 +148,22 @@ def main():
         train_end_at = time.time()
         train_period = train_end_at - train_start_at
         if rtn_code == 0:
-            print('Training is done in [{:.4f}] seconds'.format(train_period))
+            logger.info('Training is done in [{:.4f}] seconds'.format(train_period))
         else:
-            print('Training stopped for error.')
+            logger.error('Training stopped for error.')
             sys.exit(1)
 
     if 'generate' in steps:
         if DECODE_LAST_ENSEMBLE == -1:    # use checkpoint_best.pt as trained model
             model = os.path.join(model_output_dir, 'checkpoint_best.pt')
         else:
-            print('Generating last {} ensembles'.format(DECODE_LAST_ENSEMBLE))
+            logger.info('Generating last {} ensembles'.format(DECODE_LAST_ENSEMBLE))
             model = os.path.join(model_output_dir, 'checkpoint.ensemble{}.pt'.format(DECODE_LAST_ENSEMBLE))
             ensemble_cmd = 'python -u {}/scripts/average_checkpoints.py --inputs {} --output {} --num-epoch-checkpoints {}'\
                 .format(FAIRSEQ_NAME, model_output_dir, model, DECODE_LAST_ENSEMBLE)
             rtn_code = os.system(ensemble_cmd)
             if rtn_code != 0:
-                print('Failed to ensemble.')
+                logger.info('Failed to ensemble.')
                 sys.exit(1)
 
         # prepare for generating
@@ -163,9 +179,9 @@ def main():
         gen_end_at = time.time()
         gen_period = gen_end_at - gen_start_at
         if rtn_code == 0:
-            print('Generating is done in [{:.4f}] seconds'.format(gen_period))
+            logger.info('Generating is done in [{:.4f}] seconds'.format(gen_period))
         else:
-            print('Generation stopped for error.')
+            logger.error('Generation stopped for error.')
             sys.exit(1)
 
         os.system('tail -n 1 {} >> {}'.format(gen_log_fn, train_log_fn))
