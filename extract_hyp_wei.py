@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
+'''
+Extract all hypothesis rows in a generate log file produced by fairseq/generate.py
+NOTE: fairseq <= 0.8.0 may place a sum of log probabilities before the first token of the row. Remember to remove it
+if you need to calculate BLEU score later.
+'''
+
 import argparse
 import codecs
 import re

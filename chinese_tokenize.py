@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
+'''
+Tokenize Chinese corpus based on jieba tokenizer.
+'''
+
 import argparse
 import jieba
 import os

@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
+'''
+Counting sentence-bleu for every sentence between two files. Number of rows in two files should match.
+'''
+
 import argparse
 import codecs
 

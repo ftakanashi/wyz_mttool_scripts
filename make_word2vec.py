@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-'''
-基于
-'''
-
 import argparse
 import itertools
 import os

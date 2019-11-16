@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
+'''
+Split a whole bunch of text data into train/valid/test dataset.
+Outputing files like train.src|tgt valid.src|tgt test.src|tgt
+'''
+
 import argparse
 import codecs
 import os

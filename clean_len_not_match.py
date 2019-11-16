@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
+'''
+Clear the matched lines in both source and target file whose s/t ratio or t/s ratio is too big.
+Still being testing...
+'''
+
 import argparse
 import codecs
 
