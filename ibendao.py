@@ -5,7 +5,7 @@
 Still being testing...
 '''
 
-import os, sys, warnings, datetime, time
+import os, sys, warnings, datetime, time, subprocess, traceback
 
 ########################################################
 # In the following block, change basic settings of the experiment
@@ -21,6 +21,8 @@ TASK_NAME = 'iwslt14-de2en'
 MODEL_VAR = 'baseline'
 FAIRSEQ_NAME = 'fairseq'
 DECODE_LAST_ENSEMBLE = -1
+SEND_MAIL = False
+SEND_MAIL_TO = 'wyzypa@gmail.com'
 
 ## training settings
 TRAIN_SETTINGS = {
@@ -53,6 +55,7 @@ SOLID_TRAIN_SETTINGS = {
 }
 
 GENERATE_SETTINGS = {
+    '--task': 'translation',
     '--batch-size': 32,
     '--beam': 5,
     '--lenpen': 1.0,
@@ -96,6 +99,8 @@ if not os.path.isdir(os.path.join(BASE_DIR, FAIRSEQ_NAME)):
     sys.stderr.write('Cannot find [{}] at current directory.'.format(FAIRSEQ_NAME))
     sys.exit(1)
 
+start_of_main = time.time()
+
 def concat_cmd(root, **kwargs):
     params = []
     for k,v in kwargs.items():
@@ -106,8 +111,39 @@ def concat_cmd(root, **kwargs):
     cmd = '{} {}'.format(root.strip(), ' '.join(params))
     return cmd
 
-def main():
+def send_mail():
+    import smtplib
+    from email.mime.text import MIMEText
 
+    p = subprocess.Popen('hostname', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    out, err = p.communicate()
+    if err:
+        logger.error('Error During Getting Hostname: {}'.format(err))
+        host_name = 'Unknown'
+    else:
+        host_name = str(out.strip(), encoding='utf-8')
+
+    period = time.time() - start_of_main
+
+    text_msg = 'Your training process based on [{}] for task [{}] in container [{}] has finished.\n' \
+               '{:.4f} seconds are consumed.' \
+               'Please login and check for the results.'.format(MODEL_VAR, TASK_NAME, host_name, period)
+
+    msg = MIMEText(text_msg, 'plain', 'utf-8')
+    msg['Subject'] = 'Training Finished @ {}'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+    msg['From'] = 'publictakanashi@gmail.com'
+    msg['To'] = SEND_MAIL_TO
+    try:
+        smtp = smtplib.SMTP()
+        smtp.connect('smtp.gmail.com', 25)
+        smtp.starttls()
+        smtp.login('publictakanashi@gmail.com', 'Public@123')
+        smtp.sendmail('publictakanashi@gmail.com', SEND_MAIL_TO, msg.as_string())
+        smtp.close()
+    except Exception as e:
+        logger.error('Failed to send email:\n{}'.format(traceback.format_exc(e)))
+
+def main():
     steps = []
     try:
         step = sys.argv[1]
@@ -116,23 +152,23 @@ def main():
     else:
         steps.append(step)
 
-    if 'train' in steps:
-        input('You will train a [{}] for task [{}] with GPU [{}]. The fairseq components are [{}]. '
+    input('You will train a [{}] for task [{}] with GPU [{}]. The fairseq components are [{}]. '
               'Press Enter to continue...'.format(MODEL_VAR, TASK_NAME, CUDA_VISIBLE_DEVICES, FAIRSEQ_NAME))
 
-        # os.system('export CUDA_VISIBLE_DEVICES="{}"'.format(CUDA_VISIBLE_DEVICES))
-        os.environ.setdefault('CUDA_VISIBLE_DEVICES', CUDA_VISIBLE_DEVICES)
+    # os.system('export CUDA_VISIBLE_DEVICES="{}"'.format(CUDA_VISIBLE_DEVICES))
+    os.environ.setdefault('CUDA_VISIBLE_DEVICES', CUDA_VISIBLE_DEVICES)
 
-        model_output_dir = os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR, 'model')
-        log_output_dir = os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR, 'logs')
-        for d in (model_output_dir, log_output_dir):
-            if not os.path.isdir(d):
-                os.system('mkdir -p \'{}\''.format(d))
+    model_output_dir = os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR, 'model')
+    log_output_dir = os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR, 'logs')
+    for d in (model_output_dir, log_output_dir):
+        if not os.path.isdir(d):
+            os.system('mkdir -p \'{}\''.format(d))
 
-        data_bin_dir = os.path.join(BASE_DIR, 'data-bin') if 'data-bin' in os.listdir(BASE_DIR) else \
-            os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR, 'data-bin')
-        warnings.warn('Using data-bin @ [{}]'.format(data_bin_dir))
+    data_bin_dir = os.path.join(BASE_DIR, 'data-bin') if 'data-bin' in os.listdir(BASE_DIR) else \
+        os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR, 'data-bin')
+    warnings.warn('Using data-bin @ [{}]'.format(data_bin_dir))
 
+    if 'train' in steps:
         # prepare for training
         train_cmd = 'python -u {}/train.py {}'.format(FAIRSEQ_NAME, data_bin_dir)
         TRAIN_SETTINGS.update(SOLID_TRAIN_SETTINGS)
@@ -172,6 +208,7 @@ def main():
         generate_cmd = concat_cmd(generate_cmd, **GENERATE_SETTINGS)
         gen_log_fn = os.path.join(log_output_dir, 'generate.log.{}'.format(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
         generate_cmd = '{} 2>&1 | tee {}'.format(generate_cmd, gen_log_fn)
+        logger.info(generate_cmd)
 
         # start generating
         gen_start_at = time.time()
@@ -186,6 +223,13 @@ def main():
 
         os.system('tail -n 1 {} >> {}'.format(gen_log_fn, train_log_fn))
 
+    if 'train' in steps and SEND_MAIL:    # a simple generation will not trigger mail sending.
+        time_to_send_mail = time.time()
+        if time_to_send_mail - start_of_main < 60:
+            # if the whole process ends within one minute, there probably are some errors.
+            warnings.warn('I think the process ends too fast. So I won\'t send mail.')
+        else:
+            send_mail()
 
 if __name__ == '__main__':
     main()
