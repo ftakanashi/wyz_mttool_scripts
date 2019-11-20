@@ -2,42 +2,49 @@
 # -*- coding:utf-8 -*-
 
 '''
-Still being testing...
+A script that can automatically run train and generate (or respectively) commands based on fairseq components.
+The script should be placed in the directory where fairseq components are put.
+You may change the parameters/settings in the following CONFIGURATION BLOCK to change the behavior of the script.
+v0.0.1
 '''
 
 import os, sys, warnings, datetime, time, subprocess, traceback
 
-########################################################
-# In the following block, change basic settings of the experiment
-#######################################################
+#######################################################################
+###                                                                 ###
+### In the following block, change basic settings of the experiment ###
+###                                                                 ###
+#######################################################################
+
 ## extra environment variables
-EXTRA_EV = {
-    'TZ': 'Asia/Tokyo'    # default time zone in container is UTC+0, reset it to Japan.
-}
+# set extra environment in the dictionary as key-value pairs if your program need them.
+EXTRA_EV = {}
 for k,v in EXTRA_EV.items():
     os.environ.setdefault(k, v)
 
 ## basic settings
 CUDA_VISIBLE_DEVICES = '0,1'
-TASK_NAME = 'iwslt14-de2en'
+TASK_NAME = 'iwslt14-de2en'    # logs and checkpoints are saved at ./$TASK_NAME/$MODEL_VAR
 MODEL_VAR = 'baseline'
-FAIRSEQ_NAME = 'fairseq'
+FAIRSEQ_NAME = 'fairseq'    # decide which fairseq component to use to do all the work
 DECODE_LAST_ENSEMBLE = -1
-SEND_MAIL = False
+SEND_MAIL = False    # determine whether to send an e-mail when training (and generating) finish.
 SEND_MAIL_TO = 'wyzypa@gmail.com'
 
 ## training settings
 TRAIN_SETTINGS = {
+    # following training parameters are often changed for ablation study, so I put them at the top.
     '--arch': 'transformer',
     '--share-all-embeddings': True,
     '--lr': 3e-4,
     '--weight-decay': 0.001,
     '--max-tokens': 4096,
     '--update-freq': 1,
-    '--max-epoch': 20,    # change to max-updates if necessary
+    '--max-epoch': 20,    # todo change to max-updates if necessary
     '--fp16': True
 }
 SOLID_TRAIN_SETTINGS = {
+    # following training parameters usually don't change much, but you can modify them if necessary
     '--ddp-backend=no_c10d': True,
     '--optimizer': 'adam',
     '--adam-betas': '\'(0.9, 0.98)\'',
@@ -54,6 +61,7 @@ SOLID_TRAIN_SETTINGS = {
     '--keep-last-epochs': 10
 }
 
+## generation settings
 GENERATE_SETTINGS = {
     '--task': 'translation',
     '--batch-size': 32,
@@ -61,7 +69,9 @@ GENERATE_SETTINGS = {
     '--lenpen': 1.0,
     '--remove-bpe': True
 }
-################# end of configuration block #################
+##################################
+### end of configuration block ###
+##################################
 
 import logging
 from logging import Formatter, StreamHandler, FileHandler
@@ -104,14 +114,15 @@ start_of_main = time.time()
 def concat_cmd(root, **kwargs):
     params = []
     for k,v in kwargs.items():
-        if v is True:
-            params.append(k)
+        if type(v) is bool:
+            if v:
+                params.append(k)
         else:
             params.append('{} {}'.format(k, v))
     cmd = '{} {}'.format(root.strip(), ' '.join(params))
     return cmd
 
-def send_mail():
+def send_mail(final_res=None):
     import smtplib
     from email.mime.text import MIMEText
 
@@ -128,6 +139,9 @@ def send_mail():
     text_msg = 'Your training process based on [{}] for task [{}] in container [{}] has finished.\n' \
                '{:.4f} seconds are consumed.' \
                'Please login and check for the results.'.format(MODEL_VAR, TASK_NAME, host_name, period)
+
+    if final_res:
+        text_msg += '\nFinal result is [{}]'.format(final_res)
 
     msg = MIMEText(text_msg, 'plain', 'utf-8')
     msg['Subject'] = 'Training Finished @ {}'.format(os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR))
@@ -152,10 +166,15 @@ def main():
     else:
         steps.append(step)
 
-    input('You will train a [{}] for task [{}] with GPU [{}]. The fairseq components are [{}]. '
-              'Press Enter to continue...'.format(MODEL_VAR, TASK_NAME, CUDA_VISIBLE_DEVICES, FAIRSEQ_NAME))
+    input('You will train a [{}] for task [{}] with GPU [{}]. The fairseq components are [{}].'
+          'Logs and checkpoints are saved at [{}]. Press Enter to continue...'
+          .format(MODEL_VAR, TASK_NAME, CUDA_VISIBLE_DEVICES, FAIRSEQ_NAME,
+                  os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR)))
 
-    # os.system('export CUDA_VISIBLE_DEVICES="{}"'.format(CUDA_VISIBLE_DEVICES))
+    if os.getenv('TZ') is None:
+        input('Aware that TimeZone environment variable not set. If you want to get correct local time,'
+              'please set the variable by doing like: [export TZ="Asia/Tokyo"]\nPress enter to continue...')
+
     os.environ.setdefault('CUDA_VISIBLE_DEVICES', CUDA_VISIBLE_DEVICES)
 
     model_output_dir = os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR, 'model')
@@ -229,7 +248,14 @@ def main():
             # if the whole process ends within one minute, there probably are some errors.
             warnings.warn('I think the process ends too fast. So I won\'t send mail.')
         else:
-            send_mail()
+            if 'generate' not in steps:
+                final_res_row = 'Generate not in commands so there is no result...'
+            else:
+                p = subprocess.Popen('tail -n 1 {}'.format(train_log_fn), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                out, err = p.communicate()
+                final_res_row = 'Unknown' if err else out.strip()
+
+            send_mail(final_res_row)
 
 if __name__ == '__main__':
     main()
