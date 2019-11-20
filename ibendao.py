@@ -11,7 +11,9 @@ import os, sys, warnings, datetime, time, subprocess, traceback
 # In the following block, change basic settings of the experiment
 #######################################################
 ## extra environment variables
-EXTRA_EV = {}
+EXTRA_EV = {
+    'TZ': 'Asia/Tokyo'    # default time zone in container is UTC+0, reset it to Japan.
+}
 for k,v in EXTRA_EV.items():
     os.environ.setdefault(k, v)
 
@@ -32,8 +34,7 @@ TRAIN_SETTINGS = {
     '--weight-decay': 0.001,
     '--max-tokens': 4096,
     '--update-freq': 1,
-    '--max-epoch': 20,
-    # '--max-update': '100000',
+    '--max-epoch': 20,    # change to max-updates if necessary
     '--fp16': True
 }
 SOLID_TRAIN_SETTINGS = {
@@ -50,8 +51,7 @@ SOLID_TRAIN_SETTINGS = {
     '--label-smoothing': 0.1,
     '--no-progress-bar': True,
     '--log-interval': 1000,
-    '--keep-last-epochs': 10,
-    '--seed': 0
+    '--keep-last-epochs': 10
 }
 
 GENERATE_SETTINGS = {
@@ -130,7 +130,7 @@ def send_mail():
                'Please login and check for the results.'.format(MODEL_VAR, TASK_NAME, host_name, period)
 
     msg = MIMEText(text_msg, 'plain', 'utf-8')
-    msg['Subject'] = 'Training Finished @ {}'.format(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+    msg['Subject'] = 'Training Finished @ {}'.format(os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR))
     msg['From'] = 'publictakanashi@gmail.com'
     msg['To'] = SEND_MAIL_TO
     try:
