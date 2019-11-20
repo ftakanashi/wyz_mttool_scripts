@@ -30,6 +30,7 @@ FAIRSEQ_NAME = 'fairseq'    # decide which fairseq component to use to do all th
 DECODE_LAST_ENSEMBLE = -1
 SEND_MAIL = False    # determine whether to send an e-mail when training (and generating) finish.
 SEND_MAIL_TO = 'wyzypa@gmail.com'
+HOST_NAME = 'NOT_SET' # set the hostname of the current machine, which helps to identify the task.
 
 ## training settings
 TRAIN_SETTINGS = {
@@ -105,10 +106,6 @@ else:
         if flag != 'y':
             sys.exit(1)
 
-if not os.path.isdir(os.path.join(BASE_DIR, FAIRSEQ_NAME)):
-    sys.stderr.write('Cannot find [{}] at current directory.'.format(FAIRSEQ_NAME))
-    sys.exit(1)
-
 start_of_main = time.time()
 
 def concat_cmd(root, **kwargs):
@@ -122,29 +119,36 @@ def concat_cmd(root, **kwargs):
     cmd = '{} {}'.format(root.strip(), ' '.join(params))
     return cmd
 
-def send_mail(final_res=None):
-    import smtplib
-    from email.mime.text import MIMEText
-
+def get_container_id():
     p = subprocess.Popen('hostname', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = p.communicate()
     if err:
         logger.error('Error During Getting Hostname: {}'.format(err))
-        host_name = 'Unknown'
+        cid = 'Unknown'
     else:
-        host_name = str(out.strip(), encoding='utf-8')
+        cid = str(out.strip(), encoding='utf-8')
+
+    return cid
+
+def send_mail(final_res=None):
+    import smtplib
+    from email.mime.text import MIMEText
 
     period = time.time() - start_of_main
 
-    text_msg = 'Your training process based on [{}] for task [{}] in container [{}] has finished.\n' \
+    container_id = get_container_id()
+
+    global HOST_NAME
+
+    text_msg = 'Your training process based on [{}] for task [{}] in [{}:{}] has finished.\n' \
                '{:.4f} seconds are consumed.' \
-               'Please login and check for the results.'.format(MODEL_VAR, TASK_NAME, host_name, period)
+               'Please login and check for the results.'.format(MODEL_VAR, TASK_NAME, HOST_NAME, container_id, period)
 
     if final_res:
-        text_msg += '\nFinal result is [{}]'.format(final_res)
+        text_msg += '\nFinal result is [{}]'.format(str(final_res, encoding='utf-8'))
 
     msg = MIMEText(text_msg, 'plain', 'utf-8')
-    msg['Subject'] = 'Training Finished @ {}'.format(os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR))
+    msg['Subject'] = 'Training Finished @ {}:{}'.format(HOST_NAME, os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR))
     msg['From'] = 'publictakanashi@gmail.com'
     msg['To'] = SEND_MAIL_TO
     try:
@@ -166,14 +170,30 @@ def main():
     else:
         steps.append(step)
 
-    input('You will train a [{}] for task [{}] with GPU [{}]. The fairseq components are [{}].'
-          'Logs and checkpoints are saved at [{}]. Press Enter to continue...'
-          .format(MODEL_VAR, TASK_NAME, CUDA_VISIBLE_DEVICES, FAIRSEQ_NAME,
-                  os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR)))
+    try:
+        if os.getenv('TZ') is None:
+            input('Aware that TimeZone environment variable not set. If you want to get correct local time,'
+                  'please set the variable by doing like: [export TZ="Asia/Tokyo"]\n'
+                  'Press enter/Ctrl+C to continue/stop...\n')
 
-    if os.getenv('TZ') is None:
-        input('Aware that TimeZone environment variable not set. If you want to get correct local time,'
-              'please set the variable by doing like: [export TZ="Asia/Tokyo"]\nPress enter to continue...')
+        global HOST_NAME
+        if HOST_NAME == 'NOT_SET':
+            _hostname = input('Aware that you did not set the hostname for this task.\n'
+                              'It is better to set one (press enter to skip): ')
+            if _hostname.strip() != '':
+                HOST_NAME = _hostname.strip()
+
+        input('You will train a [{}] for task [{}] with GPU [{}:{}].\nThe fairseq components are [{}].\n'
+              'Logs and checkpoints are saved at [{}].\nPress enter/Ctrl+C to continue/stop...\n'
+              .format(MODEL_VAR, TASK_NAME, HOST_NAME, CUDA_VISIBLE_DEVICES, FAIRSEQ_NAME,
+                      os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR)))
+    except KeyboardInterrupt as e:
+        logger.error('User stopped process.')
+        sys.exit(1)
+
+    if not os.path.isdir(os.path.join(BASE_DIR, FAIRSEQ_NAME)):
+        sys.stderr.write('Cannot find [{}] at current directory.\n'.format(FAIRSEQ_NAME))
+        sys.exit(1)
 
     os.environ.setdefault('CUDA_VISIBLE_DEVICES', CUDA_VISIBLE_DEVICES)
 

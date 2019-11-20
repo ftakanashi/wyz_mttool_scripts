@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ibendao.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ibendao-fairseq.py" afterPath="$PROJECT_DIR$/ibendao-fairseq.py" />
     </list>
     <ignored path="wyz_mttool_scripts.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,9 +32,14 @@
       <file leaf-file-name="ibendao-fairseq.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ibendao-fairseq.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="10.44">
-              <caret line="261" column="0" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.6240506">
+              <caret line="152" column="28" selection-start-line="152" selection-start-column="28" selection-end-line="152" selection-end-column="28" />
+              <folding>
+                <element signature="e#46#364#1" expanded="false" />
+                <element signature="e#3898#4153#0" expanded="false" />
+                <element signature="e#4183#4487#0" expanded="false" />
+                <element signature="e#5685#11110#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -800,9 +805,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ibendao-fairseq.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="10.44">
-          <caret line="261" column="0" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.6240506">
+          <caret line="152" column="28" selection-start-line="152" selection-start-column="28" selection-end-line="152" selection-end-column="28" />
+          <folding>
+            <element signature="e#46#364#1" expanded="false" />
+            <element signature="e#3898#4153#0" expanded="false" />
+            <element signature="e#4183#4487#0" expanded="false" />
+            <element signature="e#5685#11110#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
