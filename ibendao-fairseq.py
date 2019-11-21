@@ -148,7 +148,7 @@ def send_mail(final_res=None):
         text_msg += '\nFinal result is [{}]'.format(str(final_res, encoding='utf-8'))
 
     msg = MIMEText(text_msg, 'plain', 'utf-8')
-    msg['Subject'] = 'Training Finished @ {}:{}'.format(HOST_NAME, os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR))
+    msg['Subject'] = 'Training Finished @ {}:{}'.format(HOST_NAME.upper(), os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR))
     msg['From'] = 'publictakanashi@gmail.com'
     msg['To'] = SEND_MAIL_TO
     try:
@@ -202,6 +202,9 @@ def main():
     for d in (model_output_dir, log_output_dir):
         if not os.path.isdir(d):
             os.system('mkdir -p \'{}\''.format(d))
+
+    the_script = os.path.abspath(__file__)
+    os.system('cp {} {}'.format(the_script, os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR)))    # copy the script to target dir
 
     data_bin_dir = os.path.join(BASE_DIR, 'data-bin') if 'data-bin' in os.listdir(BASE_DIR) else \
         os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR, 'data-bin')
