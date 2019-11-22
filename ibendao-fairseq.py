@@ -82,7 +82,9 @@ if not os.path.isdir('logs'):
 
 logger = logging.getLogger()
 formatter = Formatter(fmt="[%(asctime)s] %(levelname)s %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
-file_handler = FileHandler('logs/ibendao.log.{}'.format(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
+# file_handler = FileHandler('logs/ibendao.log.{}'.format(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
+file_handler = FileHandler('logs/ibendao.log.{}.{}.{}'.
+                           format(TASK_NAME, MODEL_VAR, FAIRSEQ_NAME))
 file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(formatter)
 stream_handler = StreamHandler(sys.stdout)
