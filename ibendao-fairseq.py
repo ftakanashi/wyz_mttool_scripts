@@ -232,8 +232,17 @@ def main():
             sys.exit(1)
 
     if 'generate' in steps:
-        if DECODE_LAST_ENSEMBLE == -1:    # use checkpoint_best.pt as trained model
+        try:
+            import fairseq
+        except ImportError as e:
+            has_fairseq = False
+        else:
+            has_fairseq = True
+        if DECODE_LAST_ENSEMBLE == -1 or not has_fairseq:    # use checkpoint_best.pt as trained model
             model = os.path.join(model_output_dir, 'checkpoint_best.pt')
+            if not has_fairseq:
+                logger.warning('fairseq not found in your environment, so cannot ensemble checkpoints by script.\n'
+                               'To fix the error, please run "pip install fairseq"(which will not change your component specified above.)')
         else:
             logger.info('Generating last {} ensembles'.format(DECODE_LAST_ENSEMBLE))
             model = os.path.join(model_output_dir, 'checkpoint.ensemble{}.pt'.format(DECODE_LAST_ENSEMBLE))
@@ -263,7 +272,9 @@ def main():
             logger.error('Generation stopped for error.')
             sys.exit(1)
 
-        os.system('tail -n 1 {} >> {}'.format(gen_log_fn, train_log_fn))
+        if 'train' in steps:
+            # only append generate bleu to train log if the train is done
+            os.system('tail -n 1 {} >> {}'.format(gen_log_fn, train_log_fn))
 
     if 'train' in steps and SEND_MAIL:    # a simple generation will not trigger mail sending.
         time_to_send_mail = time.time()
