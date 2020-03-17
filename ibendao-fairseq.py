@@ -35,6 +35,8 @@ HOST_NAME = 'NOT_SET' # set the hostname of the current machine, which helps to 
 ## training settings
 TRAIN_SETTINGS = {
     # following training parameters are often changed for ablation study, so I put them at the top.
+    '--source-lang': 'de',
+    '--target-lang': 'en',
     '--arch': 'transformer',
     '--share-all-embeddings': True,
     '--lr': 3e-4,
@@ -64,6 +66,8 @@ SOLID_TRAIN_SETTINGS = {
 
 ## generation settings
 GENERATE_SETTINGS = {
+    '--source-lang': 'de',
+    '--target-lang': 'en',
     '--task': 'translation',
     '--batch-size': 32,
     '--beam': 5,

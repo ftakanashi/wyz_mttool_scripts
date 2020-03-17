@@ -13,8 +13,8 @@ import re
 
 from tqdm import tqdm
 
-
-PATTERN_TEMP = '{}\-(\d+).*\t(.+?)$'
+# PATTERN_TEMP = '{}\-(\d+).*\t(.+?)$'
+PATTERN_TEMP = '{}\-(\d+).*\t(.*?)$'
 
 def main():
     parser = argparse.ArgumentParser()
