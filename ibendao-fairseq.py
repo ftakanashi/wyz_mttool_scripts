@@ -61,7 +61,7 @@ SOLID_TRAIN_SETTINGS = {
     '--label-smoothing': 0.1,
     '--no-progress-bar': True,
     '--log-interval': 1000,
-    '--keep-last-epochs': 10
+    # '--keep-last-epochs': 10    # uncomment this option if needed
 }
 
 ## generation settings
@@ -254,9 +254,10 @@ def main():
             model = os.path.join(model_output_dir, 'checkpoint.ensemble{}.pt'.format(DECODE_LAST_ENSEMBLE))
             ensemble_cmd = 'python -u {}/scripts/average_checkpoints.py --inputs {} --output {} --num-epoch-checkpoints {}'\
                 .format(FAIRSEQ_NAME, model_output_dir, model, DECODE_LAST_ENSEMBLE)
+            logger.info(ensemble_cmd)
             rtn_code = os.system(ensemble_cmd)
             if rtn_code != 0:
-                logger.info('Failed to ensemble.')
+                logger.info('Failed to ensemble. Probably you didn\'t install fairseq into python but only used its code?')
                 sys.exit(1)
 
         # prepare for generating
