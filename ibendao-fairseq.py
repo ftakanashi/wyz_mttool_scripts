@@ -294,7 +294,8 @@ def main():
             else:
                 p = subprocess.Popen('tail -n 1 {}'.format(train_log_fn), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 out, err = p.communicate()
-                final_res_row = 'Unknown' if err else out.strip()
+                final_res_row = 'Final Test Result Unknown' if err else out.strip()
+                logger.info(final_res_row)
 
             send_mail(final_res_row)
 

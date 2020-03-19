@@ -19,7 +19,7 @@ def main():
     fw = open(opt.output, 'w')
     line = fr.readline()
     while line:
-        for _ in range(opt.n):
+        for _ in range(int(opt.n)):
             fw.write('{}\n'.format(line.strip()))
         line = fr.readline()
 
