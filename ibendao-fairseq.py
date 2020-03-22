@@ -35,6 +35,7 @@ HOST_NAME = 'NOT_SET' # set the hostname of the current machine, which helps to 
 ## training settings
 TRAIN_SETTINGS = {
     # following training parameters are often changed for ablation study, so I put them at the top.
+    '--seed': 1,
     '--source-lang': 'de',
     '--target-lang': 'en',
     '--arch': 'transformer',
@@ -66,6 +67,7 @@ SOLID_TRAIN_SETTINGS = {
 
 ## generation settings
 GENERATE_SETTINGS = {
+    '--gen-subset': 'test',    # change subset if needed
     '--source-lang': 'de',
     '--target-lang': 'en',
     '--task': 'translation',
@@ -212,9 +214,21 @@ def main():
     the_script = os.path.abspath(__file__)
     os.system('cp {} {}'.format(the_script, os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR)))    # copy the script to target dir
 
-    data_bin_dir = os.path.join(BASE_DIR, 'data-bin') if 'data-bin' in os.listdir(BASE_DIR) else \
-        os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR, 'data-bin')
-    warnings.warn('Using data-bin @ [{}]'.format(data_bin_dir))
+    data_bin_dir = None
+    if 'data-bin' in os.listdir(BASE_DIR):
+        if TASK_NAME in os.listdir(os.path.join(BASE_DIR, 'data-bin')):
+            if MODEL_VAR in os.listdir(os.path.join(BASE_DIR, 'data-bin', TASK_NAME)):
+                data_bin_dir = os.path.join(BASE_DIR, 'data-bin', TASK_NAME, MODEL_VAR)
+            else:
+                data_bin_dir = os.path.join(BASE_DIR, 'data-bin', TASK_NAME)
+        else:
+            data_bin_dir = os.path.join(BASE_DIR, 'data-bin')
+
+    if data_bin_dir is None or not os.path.isdir(data_bin_dir):
+        input('Data-Bin [{}] not valid. Please check if preprocessed data has been put at the right place?\nPress Enter to stop the script.'.format(data_bin_dir))
+        sys.exit(1)
+
+    logger.info('Using preprocessed data @[{}]'.format(data_bin_dir))
 
     if 'train' in steps:
         # prepare for training
