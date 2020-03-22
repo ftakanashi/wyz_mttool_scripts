@@ -1,29 +1,19 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
-import argparse
+import sys
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-i', '--input', required=True,
-                        help='Path to the input file.')
-    parser.add_argument('-o', '--output', required=True,
-                        help='Path to the output file.')
+    lines = sys.stdin.read().split('\n')
 
+    for line in lines:
+        if line.strip() == '': continue
+        valid_chars = []
+        for ch in line.strip():
+            if ch.strip() != '':
+                valid_chars.append(ch)
 
-    opt = parser.parse_args()
-
-    with open(opt.input, 'r') as f:
-        input_lines = f.readlines()
-
-    fw = open(opt.output, 'w')
-    for l in input_lines:
-        new_line = []
-        for ch in list(l.strip()):
-            if ch != ' ': new_line.append(ch)
-
-        new_line = ' '.join(new_line)
-        fw.write('{}\n'.format(new_line))
+        print(' '.join(valid_chars))
 
 if __name__ == '__main__':
     main()

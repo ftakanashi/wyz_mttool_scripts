@@ -17,9 +17,11 @@ def main():
 
     opt = parser.parse_args()
 
+    print('Reading source corpus...')
     with open(opt.src, 'r') as f:
         src_lines = f.readlines()
 
+    print('Reading target corpus...')
     with open(opt.tgt, 'r') as f:
         tgt_lines = f.readlines()
 
