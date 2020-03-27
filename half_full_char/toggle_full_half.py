@@ -11,6 +11,10 @@ HALF_CHAR = range(0x0020, 0x7e+1)
 FULL_CHAR = [0x3000,] + [c+0xfee0 for c in HALF_CHAR[1:]]
 
 def process_ch(ch, opt):
+
+    if ch in opt.exception:
+        return ch
+    
     group = opt.toggle_group
     if opt.mode == 'h2f' and ord(ch) in HALF_CHAR:
         if group == 'all' or \
@@ -38,6 +42,8 @@ def main():
                         help='Toggle only the specified type of characters. \
                         Options are [all, digits, letters, punctuations].\
                          Default option is all.')
+    parser.add_argument('--exception', default='',
+                        help='Specify some characters as exceptions that needs no toggling.')
 
     opt = parser.parse_args()
 
