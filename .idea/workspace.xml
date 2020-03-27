@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/half_full_char/toggle_full_half.py" afterPath="$PROJECT_DIR$/half_full_char/toggle_full_half.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/detokenize.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="wyz_mttool_scripts.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,14 +53,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="toggle_full_half.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="toggle_full_half.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/half_full_char/toggle_full_half.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47361964">
+            <state vertical-scroll-proportion="0.0">
               <caret line="40" column="56" selection-start-line="40" selection-start-column="56" selection-end-line="40" selection-end-column="56" />
               <folding>
                 <element signature="e#46#61#0" expanded="true" />
+                <marker date="1585273328515" expanded="true" signature="292:1159" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detokenize.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/detokenize.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.48588958">
+              <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -125,6 +137,7 @@
         <option value="$PROJECT_DIR$/split_into_char.py" />
         <option value="$PROJECT_DIR$/half_full_char/view_half_full_ratio.py" />
         <option value="$PROJECT_DIR$/half_full_char/toggle_full_half.py" />
+        <option value="$PROJECT_DIR$/detokenize.py" />
       </list>
     </option>
   </component>
@@ -582,13 +595,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/split_text_abs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="96" column="101" selection-start-line="96" selection-start-column="101" selection-end-line="96" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/extract_hyp_wei.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -937,11 +943,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/half_full_char/toggle_full_half.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47361964">
+        <state vertical-scroll-proportion="0.0">
           <caret line="40" column="56" selection-start-line="40" selection-start-column="56" selection-end-line="40" selection-end-column="56" />
           <folding>
             <element signature="e#46#61#0" expanded="true" />
+            <marker date="1585273328515" expanded="true" signature="292:1159" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/detokenize.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48588958">
+          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
