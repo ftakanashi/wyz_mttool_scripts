@@ -55,8 +55,8 @@
       <file leaf-file-name="toggle_full_half.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/half_full_char/toggle_full_half.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.9840491">
-              <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.47361964">
+              <caret line="40" column="56" selection-start-line="40" selection-start-column="56" selection-end-line="40" selection-end-column="56" />
               <folding>
                 <element signature="e#46#61#0" expanded="true" />
               </folding>
@@ -937,8 +937,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/half_full_char/toggle_full_half.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.9840491">
-          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.47361964">
+          <caret line="40" column="56" selection-start-line="40" selection-start-column="56" selection-end-line="40" selection-end-column="56" />
           <folding>
             <element signature="e#46#61#0" expanded="true" />
           </folding>

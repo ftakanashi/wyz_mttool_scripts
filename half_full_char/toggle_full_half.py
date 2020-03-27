@@ -14,7 +14,7 @@ def process_ch(ch, opt):
 
     if ch in opt.exception:
         return ch
-    
+
     group = opt.toggle_group
     if opt.mode == 'h2f' and ord(ch) in HALF_CHAR:
         if group == 'all' or \
@@ -36,7 +36,7 @@ def main():
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--mode', requied=True,
+    parser.add_argument('--mode', required=True,
                         help='Specify the mode of toggling. Valid options are h2f(half to full) and f2h(full to half)')
     parser.add_argument('--toggle-group', default='all',
                         help='Toggle only the specified type of characters. \
