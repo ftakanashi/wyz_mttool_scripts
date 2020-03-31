@@ -4,7 +4,7 @@
 import sys
 
 def main():
-    lines = sys.stdin.read().split('\n')
+    lines = sys.stdin.read().split('\n')[:-1]
 
     for line in lines:
         print(''.join(line.strip().split()))

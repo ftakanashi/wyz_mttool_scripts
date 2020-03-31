@@ -11,11 +11,10 @@ import re
 import sys
 
 def main():
-    lines = sys.stdin.read().split('\n')
+    lines = sys.stdin.read().split('\n')[:-1]
     ptn = re.compile('(@@ )|(@@ ?$)')
     for line in lines:
-        if line.strip() == '': continue
-        print(ptn.sub('', line))
+        print(ptn.sub('', line.strip()))
 
 if __name__ == '__main__':
     main()
