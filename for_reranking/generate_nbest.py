@@ -32,7 +32,7 @@ def generate(opt):
             opt.batch_size, beam, best, log_fn
         ))
         hyp_fn = 'hyp.{}.{}'.format(best, TGT)
-        run('python {}/extract_hyp_wei.py -i {} -o {}'.format(log_fn, hyp_fn))
+        run('python {}/extract_hyp_wei.py -i {} -o {}'.format(SCRIPT_TOOL, log_fn, hyp_fn))
         run('rm -f {}'.format(log_fn))
 
 

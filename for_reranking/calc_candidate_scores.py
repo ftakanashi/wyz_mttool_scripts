@@ -97,7 +97,8 @@ def calc_score(opt):
         if opt.std_ratio < 0:
             raise Exception('Specify the standard ratio.')
         run('python {}/for_reranking/calc_word_ratio.py --src {} --tgt {} --std-ratio {} --output {}'.format(
-            SCRIPT_TOOL, opt.source_ref, opt.hyp, opt.std_ratio, os.path.join(result_dir, 'word_ratio.score')
+            SCRIPT_TOOL, os.path.join(opt.data_dir, '{}-{}'.format(SRC, TGT), 'test.{}.{}'.format(N, SRC)),
+            opt.hyp, opt.std_ratio, os.path.join(result_dir, 'word_ratio.score')
         ))
 
     # concat scores

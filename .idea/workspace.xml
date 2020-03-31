@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/for_reranking/calc_candidate_scores.py" afterPath="$PROJECT_DIR$/for_reranking/calc_candidate_scores.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/for_reranking/generate_nbest.py" afterPath="$PROJECT_DIR$/for_reranking/generate_nbest.py" />
     </list>
     <ignored path="wyz_mttool_scripts.iws" />
@@ -40,21 +41,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="extract_score.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/for_reranking/extract_score.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="calc_candidate_scores.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="calc_candidate_scores.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/for_reranking/calc_candidate_scores.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.485714">
-              <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="121" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.6666667">
+              <caret line="99" column="107" selection-start-line="99" selection-start-column="107" selection-end-line="99" selection-end-column="107" />
               <folding>
                 <element signature="e#146#175#0" expanded="false" />
                 <element signature="e#202#3475#0" expanded="false" />
@@ -63,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="generate_nbest.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="generate_nbest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/for_reranking/generate_nbest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6783555">
-              <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="34" column="75" selection-start-line="34" selection-start-column="75" selection-end-line="34" selection-end-column="75" />
               <folding>
                 <element signature="e#46#61#0" expanded="true" />
               </folding>
@@ -83,16 +74,6 @@
               <folding>
                 <element signature="e#46#61#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="calc_word_ratio.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/for_reranking/calc_word_ratio.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -170,8 +151,8 @@
         <option value="$PROJECT_DIR$/detokenize.py" />
         <option value="$PROJECT_DIR$/extract_hyp_wei.py" />
         <option value="$PROJECT_DIR$/for_reranking/train_reranking_weight.py" />
-        <option value="$PROJECT_DIR$/for_reranking/calc_candidate_scores.py" />
         <option value="$PROJECT_DIR$/for_reranking/generate_nbest.py" />
+        <option value="$PROJECT_DIR$/for_reranking/calc_candidate_scores.py" />
       </list>
     </option>
   </component>
@@ -940,26 +921,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/for_reranking/extract_score.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Python36/Lib/os.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33251533">
           <caret line="194" column="37" selection-start-line="194" selection-start-column="37" selection-end-line="194" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/for_reranking/calc_word_ratio.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -980,6 +945,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/for_reranking/extract_score.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7605804">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/for_reranking/generate_nbest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="75" selection-start-line="34" selection-start-column="75" selection-end-line="34" selection-end-column="75" />
+          <folding>
+            <element signature="e#46#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/for_reranking/calc_word_ratio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12212817">
+          <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/for_reranking/train_reranking_weight.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.428572">
@@ -992,21 +983,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/for_reranking/calc_candidate_scores.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.485714">
-          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="121" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.6666667">
+          <caret line="99" column="107" selection-start-line="99" selection-start-column="107" selection-end-line="99" selection-end-column="107" />
           <folding>
             <element signature="e#146#175#0" expanded="false" />
             <element signature="e#202#3475#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/for_reranking/generate_nbest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6783555">
-          <caret line="35" column="36" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
-          <folding>
-            <element signature="e#46#61#0" expanded="true" />
           </folding>
         </state>
       </provider>
