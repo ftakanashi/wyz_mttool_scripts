@@ -50,6 +50,10 @@ def train_and_decode(opt):
     # remove tmp dir
     run('rm -rf {}'.format(TMP))
 
+def calc_bleu(opt):
+    TMP = os.path.join(BASE_DIR, 'calc-bleu')
+
+
 
 def main():
     parser = argparse.ArgumentParser()

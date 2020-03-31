@@ -29,8 +29,8 @@ def main():
 
     parser.add_argument('--remain-id', action='store_true',
                         help='Specify to remain row ids and output rows in order of ids.')
-    parser.add_argument('--order-by-id', action='store_true',
-                        help='Order the output by id.')
+    parser.add_argument('--remain-log-order', action='store_true',
+                        help='Remaining the order in log file rather than order by id.')
     parser.add_argument('--no-progressbar', action='store_true',
                         help='Hide Progress Bar')
     parser.add_argument('--clear-space', action='store_true',
@@ -59,10 +59,10 @@ def main():
             )
 
     fo = codecs.open(opt.output, 'w', encoding='utf-8')
-    if opt.order_by_id:
-        ite = sorted(output_content, key=lambda x:x['id'])
-    else:
+    if opt.remain_log_order:
         ite = output_content
+    else:
+        ite = sorted(output_content, key=lambda x:x['id'])
 
     for item in tqdm(ite, mininterval=0.5, ncols=50, desc='Writing Data'):
         content = item['content']
