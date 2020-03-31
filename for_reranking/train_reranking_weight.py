@@ -39,9 +39,8 @@ def train_and_decode(opt):
     # rescore with-features
     rescored_with_features_fn = os.path.join(TMP, 'hyp.with-features.{}.rescored.{}'.format(N, TGT))
     run('python {}/rescore.py {} < {} > {}'.format(
-        MOSES, os.path.join(working_dir, 'rescore.{}.ini'.format(N), with_features_fn,
-                            rescored_with_features_fn)
-    ))
+        MOSES, os.path.join(working_dir, 'rescore.{}.ini'.format(N)),
+            with_features_fn, rescored_with_features_fn))
 
     # decode
     run('python {}/topbest.py < {} > {}'.format(
