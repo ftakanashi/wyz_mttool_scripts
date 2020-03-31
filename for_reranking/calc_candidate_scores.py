@@ -72,7 +72,7 @@ def calc_score(opt):
     TGT = opt.tgt
     SCRIPT_TOOL = opt.tool_script_dir
     N = opt.repeat_number
-    result_dir = os.path.join(BASE_DIR, 'score_log.{}best'.format(N))
+    result_dir = os.path.join(BASE_DIR, 'score_log.{}'.format(N))
 
     categories = []
     for lang_pair in ('{}2{}'.format(SRC, TGT), '{}2{}'.format(TGT, SRC)):

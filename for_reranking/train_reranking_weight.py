@@ -57,7 +57,7 @@ def calc_bleu(opt):
     TMP = os.path.join(BASE_DIR, 'calc-bleu')
     os.makedirs(TMP, exist_ok=True)
 
-    MOSES = os.path.dirname(opt.moses_dir)
+    MOSES = os.path.dirname(opt.moses_script_dir)
     MOSES = os.path.join(MOSES, 'generic', 'multi-bleu.perl')
 
     hyp_fn = os.path.join(TMP, 'hyp.{}'.format(TGT))
@@ -99,6 +99,8 @@ def main():
     opt = parser.parse_args()
 
     train_and_decode(opt)
+
+    calc_bleu(opt)
 
 if __name__ == '__main__':
     main()
