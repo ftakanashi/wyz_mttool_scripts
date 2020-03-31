@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/for_reranking/calc_candidate_scores.py" afterPath="$PROJECT_DIR$/for_reranking/calc_candidate_scores.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/for_reranking/train_reranking_weight.py" afterPath="$PROJECT_DIR$/for_reranking/train_reranking_weight.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/for_reranking/generate_nbest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="wyz_mttool_scripts.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,15 +51,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calc_candidate_scores.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="calc_candidate_scores.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/for_reranking/calc_candidate_scores.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33333334">
-              <caret line="74" column="65" selection-start-line="74" selection-start-column="65" selection-end-line="74" selection-end-column="65" />
+            <state vertical-scroll-proportion="-8.485714">
+              <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="121" selection-end-column="47" />
               <folding>
                 <element signature="e#146#175#0" expanded="false" />
                 <element signature="e#202#3475#0" expanded="false" />
-                <element signature="e#4018#4148#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="generate_nbest.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/for_reranking/generate_nbest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.8778719">
+              <caret line="53" column="10" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
+              <folding>
+                <element signature="e#46#61#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -161,6 +172,7 @@
         <option value="$PROJECT_DIR$/extract_hyp_wei.py" />
         <option value="$PROJECT_DIR$/for_reranking/train_reranking_weight.py" />
         <option value="$PROJECT_DIR$/for_reranking/calc_candidate_scores.py" />
+        <option value="$PROJECT_DIR$/for_reranking/generate_nbest.py" />
       </list>
     </option>
   </component>
@@ -618,13 +630,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/make_word2vec.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/extract_hyp_wei.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -988,12 +993,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/for_reranking/calc_candidate_scores.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="74" column="65" selection-start-line="74" selection-start-column="65" selection-end-line="74" selection-end-column="65" />
+        <state vertical-scroll-proportion="-8.485714">
+          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="121" selection-end-column="47" />
           <folding>
             <element signature="e#146#175#0" expanded="false" />
             <element signature="e#202#3475#0" expanded="false" />
-            <element signature="e#4018#4148#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/for_reranking/generate_nbest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.8778719">
+          <caret line="53" column="10" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
+          <folding>
+            <element signature="e#46#61#0" expanded="true" />
           </folding>
         </state>
       </provider>
