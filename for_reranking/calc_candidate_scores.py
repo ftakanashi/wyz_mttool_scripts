@@ -26,7 +26,7 @@ def preprocess(opt):
         os.path.join(data_subdirs[0], 'test.{}.{}'.format(N, SRC))))
     run('python {}/expand_data_in_row_direction.py -n {} -i {} -o {}'.format(SCRIPT_TOOL, N, opt.source_ref,
         os.path.join(data_subdirs[2], 'test.{}.{}'.format(N, SRC))))
-    run('python {}/reverse_every_row.py < {} > {}'.format(SCRIPT_TOOL, opt.source_ref,
+    run('python {}/reverse_every_row.py < {} > {}'.format(SCRIPT_TOOL, os.path.join(data_subdirs[0], 'test.{}.{}'.format(N, SRC)),
         os.path.join(data_subdirs[1], 'test.{}.{}'.format(N, SRC))))
 
     run('cp {} {}'.format(opt.hyp, os.path.join(data_subdirs[0], 'test.{}.{}'.format(N, TGT))))
@@ -99,11 +99,11 @@ def main():
                         help='Source Language')
     parser.add_argument('-t', '--tgt', required=True,
                         help='Target Language')
-    parser.add_argument('-n', '--repeat-number', requied=True, type=int,
+    parser.add_argument('-n', '--repeat-number', required=True, type=int,
                         help='Repeat Number')
     parser.add_argument('-r', '--source-ref', required=True,
                         help='Path to the source reference file.')
-    parser.add_argument('-h', '--hyp', required=True,
+    parser.add_argument('-p', '--hyp', required=True,
                         help='Path to the hypothesis file.')
 
     parser.add_argument('--model-dir', default=os.path.join(BASE_DIR, 'model'),
@@ -120,3 +120,5 @@ def main():
     preprocess(opt)
 
 
+if __name__ == '__main__':
+    main()
