@@ -77,20 +77,37 @@ def calc_score(opt):
 
     proto_cmd = 'python fairseq/generate.py {} --path {} --max-sentences 64 --score-reference | tee {}'
 
-    def ensemble_model_str(cate):
+    def ensemble_model_str(model_dir, cate):
         models = os.listdir(os.path.join(opt.model_dir, cate))
-        return ':'.join(models)
+        return ':'.join([os.path.join(model_dir, cate, m) for m in models])
 
     for category in categories:
         run(proto_cmd.format(os.path.join(opt.data_bin_dir, category),
-                             ensemble_model_str(category),
+                             ensemble_model_str(opt.model_dir, category),
                              os.path.join(result_dir, category+'.generate.log')))
         run('python {}/for_reranking/extract_score.py < {} > {}'.format(SCRIPT_TOOL,
                                                                         os.path.join(result_dir, category+'.generate.log'),
                                                                         os.path.join(result_dir, category+'.score')))
 
     if opt.add_word_ratio:
-        pass
+        if opt.std_ratio < 0:
+            raise Exception('Specify the standard ratio.')
+        run('python {}/for_reranking/calc_word_ratio.py --src {} --tgt {} --std-ratio {} --output {}'.format(
+            SCRIPT_TOOL, opt.source_ref, opt.hyp, opt.std_ratio, os.path.join(result_dir, 'word_ratio.score')
+        ))
+
+    # concat scores
+    concat_cmd = 'paste ' + ' '.join([os.path.join(result_dir, c+'.score') for c in categories])
+    if opt.add_word_ratio:
+        concat_cmd += ' {}'.format(os.path.join(result_dir, 'word_ratio.score'))
+    concat_cmd += ' | awk -F \' \' \'{print'
+    for i,c in enumerate(categories):
+        concat_cmd += ' "{}= "${}'.format(c, i+1)
+    if opt.add_word_ratio:
+        concat_cmd += ' "word_ratio= "$5'
+    concat_cmd += '}}\' > {}'.format(os.path.join(result_dir, 'total.score'))
+
+    run(concat_cmd)
 
 def main():
     parser = argparse.ArgumentParser()
@@ -114,10 +131,12 @@ def main():
     parser.add_argument('--data-bin-dir', default=os.path.join(BASE_DIR, 'data-bin'))
 
     parser.add_argument('--add-word-ratio', action='store_true', default=False)
+    parser.add_argument('--std-ratio', default=-1, type=float)
 
     opt = parser.parse_args()
 
     preprocess(opt)
+    calc_score(opt)
 
 
 if __name__ == '__main__':
