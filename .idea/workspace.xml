@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/for_reranking/train_reranking_weight.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/for_reranking/calc_candidate_scores.py" afterPath="$PROJECT_DIR$/for_reranking/calc_candidate_scores.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/for_reranking/train_reranking_weight.py" afterPath="$PROJECT_DIR$/for_reranking/train_reranking_weight.py" />
     </list>
     <ignored path="wyz_mttool_scripts.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,7 +55,7 @@
         <entry file="file://$PROJECT_DIR$/for_reranking/calc_candidate_scores.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="108" column="25" selection-start-line="108" selection-start-column="25" selection-end-line="108" selection-end-column="25" />
+              <caret line="110" column="42" selection-start-line="110" selection-start-column="42" selection-end-line="110" selection-end-column="42" />
               <folding>
                 <element signature="e#146#175#0" expanded="false" />
                 <element signature="e#202#3475#0" expanded="false" />
@@ -69,8 +68,8 @@
       <file leaf-file-name="train_reranking_weight.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/for_reranking/train_reranking_weight.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.20193471">
-              <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+            <state vertical-scroll-proportion="2.9153566">
+              <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
               <folding>
                 <element signature="e#46#61#0" expanded="true" />
               </folding>
@@ -979,7 +978,7 @@
     <entry file="file://$PROJECT_DIR$/for_reranking/calc_candidate_scores.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="108" column="25" selection-start-line="108" selection-start-column="25" selection-end-line="108" selection-end-column="25" />
+          <caret line="110" column="42" selection-start-line="110" selection-start-column="42" selection-end-line="110" selection-end-column="42" />
           <folding>
             <element signature="e#146#175#0" expanded="false" />
             <element signature="e#202#3475#0" expanded="false" />
@@ -990,8 +989,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/for_reranking/train_reranking_weight.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20193471">
-          <caret line="12" column="3" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
+        <state vertical-scroll-proportion="2.9153566">
+          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
           <folding>
             <element signature="e#46#61#0" expanded="true" />
           </folding>

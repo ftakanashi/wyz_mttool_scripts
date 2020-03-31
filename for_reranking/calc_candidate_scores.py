@@ -108,7 +108,7 @@ def calc_score(opt):
     for i,c in enumerate(categories):
         concat_cmd += ' " {}= "${}'.format(c, i+1)
     if opt.add_word_ratio:
-        concat_cmd += ' "word_ratio= "$5'
+        concat_cmd += ' " word_ratio= "$5'
     concat_cmd += '}}\' > {}'.format(os.path.join(result_dir, 'total.score'))
 
     run(concat_cmd)
