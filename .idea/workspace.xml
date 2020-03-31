@@ -67,8 +67,8 @@
       <file leaf-file-name="train_reranking_weight.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/for_reranking/train_reranking_weight.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.0416667">
-              <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+            <state vertical-scroll-proportion="-1.1666666">
+              <caret line="58" column="34" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="34" />
               <folding>
                 <element signature="e#46#61#0" expanded="true" />
               </folding>
@@ -989,8 +989,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/for_reranking/train_reranking_weight.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0416667">
-          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+        <state vertical-scroll-proportion="-1.1666666">
+          <caret line="58" column="34" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="34" />
           <folding>
             <element signature="e#46#61#0" expanded="true" />
           </folding>

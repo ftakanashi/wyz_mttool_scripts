@@ -19,6 +19,7 @@ def train_and_decode(opt):
     MOSES = opt.moses_script_dir
 
     TMP = os.path.join(BASE_DIR, 'tmp')
+    os.makedirs(TMP, exist_ok=True)
 
     # generate nbest training file
     with_features_fn = os.path.join(TMP, 'hyp.with-features.{}.{}'.format(N, TGT))
@@ -55,6 +56,7 @@ def calc_bleu(opt):
     N = opt.repeat_number
     SCRIPT_TOOL = opt.tool_script_dir
     TMP = os.path.join(BASE_DIR, 'calc-bleu')
+    os.makedirs(TMP, exist_ok=True)
 
     MOSES = os.path.dirname(opt.moses_dir)
     MOSES = os.path.join(MOSES, 'generic', 'multi-bleu.perl')
