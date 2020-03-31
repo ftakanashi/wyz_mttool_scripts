@@ -43,6 +43,10 @@ def preprocess(opt):
     for d in data_bin_subdirs:
         os.makedirs(d, exist_ok=True)
 
+    if not os.path.isfile(os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC))) or \
+        not os.path.isfile(os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT))):
+        raise Exception('You need to prepare a dict file in advance.')
+
     proto_cmd = 'python fairseq/preprocess.py ' \
                 '--source-lang {} --target-lang {} --destdir {} ' \
                 '--workers 64 --testpref {} --srcdict {} --tgtdict {}'
@@ -102,7 +106,7 @@ def calc_score(opt):
         concat_cmd += ' {}'.format(os.path.join(result_dir, 'word_ratio.score'))
     concat_cmd += ' | awk -F \' \' \'{print'
     for i,c in enumerate(categories):
-        concat_cmd += ' "{}= "${}'.format(c, i+1)
+        concat_cmd += ' " {}= "${}'.format(c, i+1)
     if opt.add_word_ratio:
         concat_cmd += ' "word_ratio= "$5'
     concat_cmd += '}}\' > {}'.format(os.path.join(result_dir, 'total.score'))
