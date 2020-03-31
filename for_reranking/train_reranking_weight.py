@@ -51,9 +51,29 @@ def train_and_decode(opt):
     run('rm -rf {}'.format(TMP))
 
 def calc_bleu(opt):
+    TGT = opt.tgt
+    N = opt.repeat_number
+    SCRIPT_TOOL = opt.tool_script_dir
     TMP = os.path.join(BASE_DIR, 'calc-bleu')
 
+    MOSES = os.path.dirname(opt.moses_dir)
+    MOSES = os.path.join(MOSES, 'generic', 'multi-bleu.perl')
 
+    hyp_fn = os.path.join(TMP, 'hyp.{}'.format(TGT))
+    hyp_ch_fn = os.path.join(TMP, 'hyp.ch.{}'.format(TGT))
+    run('python {}/remove_bpe.py < {} > {}'.format(
+        SCRIPT_TOOL, 'hyp.rescored.{}.{}'.format(N, TGT), hyp_fn))
+    run('python {}/split_into_char.py < {} > {}'.format(
+        SCRIPT_TOOL, hyp_fn, hyp_ch_fn))
+
+    ref_fn = os.path.join(TMP, 'ref.{}'.format(TGT))
+    ref_ch_fn = os.path.join(TMP, 'ref.ch.{}'.format(TGT))
+    run('python {}/remove_bpe.py < {} > {}'.format(
+        SCRIPT_TOOL, opt.ref, ref_fn))
+    run('python {}/split_into_char.py < {} > {}'.format(
+        SCRIPT_TOOL, ref_fn, ref_ch_fn))
+
+    run('perl {} {} < {}'.format(MOSES, ref_ch_fn, hyp_ch_fn))
 
 def main():
     parser = argparse.ArgumentParser()
