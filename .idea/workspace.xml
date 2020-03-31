@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/for_reranking/generate_nbest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/for_reranking/generate_nbest.py" afterPath="$PROJECT_DIR$/for_reranking/generate_nbest.py" />
     </list>
     <ignored path="wyz_mttool_scripts.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,8 +66,8 @@
       <file leaf-file-name="generate_nbest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/for_reranking/generate_nbest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.8778719">
-              <caret line="53" column="10" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.4413543">
+              <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
               <folding>
                 <element signature="e#46#61#0" expanded="true" />
               </folding>
@@ -1004,8 +1003,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/for_reranking/generate_nbest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.8778719">
-          <caret line="53" column="10" selection-start-line="53" selection-start-column="10" selection-end-line="53" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.4413543">
+          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
           <folding>
             <element signature="e#46#61#0" expanded="true" />
           </folding>

@@ -22,9 +22,9 @@ def generate(opt):
         return ':'.join([os.path.join(model_dir, cate, m) for m in models])
 
     for beam,best in zip(beam_len, best_len):
-        run('python fairseq/generate.py {} --path {} --max-sentences {} | tee generate.{}.log'.format(
+        run('python fairseq/generate.py {} --path {} --max-sentences {} --beam {} --nbest {} | tee generate.{}.log'.format(
             opt.data_bin_dir, ensemble_model_str(opt.model_dir, '{}2{}.l2r'.format(SRC, TGT)),
-            opt.batch_size, best
+            opt.batch_size, beam, best, best
         ))
 
 def main():
