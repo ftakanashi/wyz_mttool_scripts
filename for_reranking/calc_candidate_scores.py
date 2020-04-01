@@ -73,13 +73,14 @@ def calc_score(opt):
     SCRIPT_TOOL = opt.tool_script_dir
     N = opt.repeat_number
     result_dir = os.path.join(BASE_DIR, 'score_log.{}'.format(N))
+    os.makedirs(result_dir, exist_ok=True)
 
     categories = []
     for lang_pair in ('{}2{}'.format(SRC, TGT), '{}2{}'.format(TGT, SRC)):
         for dirc in ('l2r', 'r2l'):
             categories.append('{}.{}'.format(lang_pair, dirc))
 
-    proto_cmd = 'python fairseq/generate.py {} --path {} --max-sentences 64 --score-reference | tee {}'
+    proto_cmd = 'python fairseq/generate.py {} --path {} --max-sentences 128 --score-reference | tee {}'
 
     def ensemble_model_str(model_dir, cate):
         models = os.listdir(os.path.join(opt.model_dir, cate))
@@ -124,7 +125,7 @@ def main():
     parser.add_argument('-n', '--repeat-number', required=True, type=int,
                         help='Repeat Number')
     parser.add_argument('-r', '--source-ref', required=True,
-                        help='Path to the source reference file.')
+                        help='Path to the source corpus file.(Used to expand data in row if n>1)')
     parser.add_argument('-p', '--hyp', required=True,
                         help='Path to the hypothesis file.')
 
