@@ -20,10 +20,10 @@ def make_feature_file_and_rescore(opt):
     # make with-feature file
     with_feature_fn = os.path.join(opt.score_log_dir, 'hyp.with-features.{}.{}'.format(N, TGT))
     run('python {}/for_reranking/generate_nbest_train_file.py -n {} --hyp {} --total-score {} --origin-score {}'
-        '--output {}'.format(
+        ' --output {}'.format(
         SCRIPT_TOOL, N, opt.hyp,
         os.path.join(opt.score_log_dir, 'total.score'),
-        os.path.join('{}2{}.l2r.score'.format(SRC, TGT)),
+        os.path.join(opt.score_log_dir, '{}2{}.l2r.score'.format(SRC, TGT)),
         with_feature_fn
     ))
 
@@ -36,7 +36,7 @@ def make_feature_file_and_rescore(opt):
     # decode rescored with-feature file
     reranked_hyp_fn = 'hyp.reranked.{}.{}'.format(N, TGT)
     run('python {}/topbest.py < {} > {}'.format(
-        rescored_with_feature_fn, reranked_hyp_fn
+        MOSES, rescored_with_feature_fn, reranked_hyp_fn
     ))
 
     # post edit
