@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/for_reranking/post_edit.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/for_reranking/final_test.py" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/for_reranking/select_from_nbest.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/for_reranking/reverse_every_row.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="wyz_mttool_scripts.iws" />
@@ -45,8 +45,8 @@
       <file leaf-file-name="calc_candidate_scores.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/for_reranking/calc_candidate_scores.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.94285715">
-              <caret line="120" column="4" selection-start-line="120" selection-start-column="4" selection-end-line="123" selection-end-column="47" />
+            <state vertical-scroll-proportion="-4.714286">
+              <caret line="124" column="4" selection-start-line="124" selection-start-column="4" selection-end-line="125" selection-end-column="45" />
               <folding>
                 <element signature="e#146#175#0" expanded="false" />
                 <element signature="e#202#3475#0" expanded="false" />
@@ -57,11 +57,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="post_edit.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/for_reranking/post_edit.py">
+      <file leaf-file-name="train_reranking_weight.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/for_reranking/train_reranking_weight.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.274486">
-              <caret line="57" column="10" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="62" column="44" selection-start-line="62" selection-start-column="43" selection-end-line="62" selection-end-column="44" />
+              <folding>
+                <element signature="e#146#175#0" expanded="false" />
+                <element signature="e#208#1710#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="select_from_nbest.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/for_reranking/select_from_nbest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.2793229">
+              <caret line="71" column="10" selection-start-line="71" selection-start-column="10" selection-end-line="71" selection-end-column="10" />
               <folding>
                 <element signature="e#46#61#0" expanded="true" />
               </folding>
@@ -69,12 +82,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="generate_nbest_train_file.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/for_reranking/generate_nbest_train_file.py">
+      <file leaf-file-name="post_edit.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/for_reranking/post_edit.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="10" selection-start-line="43" selection-start-column="10" selection-end-line="43" selection-end-column="10" />
-              <folding />
+              <caret line="57" column="10" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
+              <folding>
+                <element signature="e#46#61#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -94,7 +109,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/cut_long_sents.py" />
         <option value="$PROJECT_DIR$/split_text.py" />
         <option value="F:/tmp/clean.py" />
         <option value="$PROJECT_DIR$/analyze_gen_prob.py" />
@@ -140,11 +154,12 @@
         <option value="$PROJECT_DIR$/remove_bpe.py" />
         <option value="$PROJECT_DIR$/detokenize.py" />
         <option value="$PROJECT_DIR$/extract_hyp_wei.py" />
-        <option value="$PROJECT_DIR$/for_reranking/train_reranking_weight.py" />
         <option value="$PROJECT_DIR$/for_reranking/generate_nbest.py" />
         <option value="$PROJECT_DIR$/for_reranking/final_test.py" />
         <option value="$PROJECT_DIR$/for_reranking/calc_candidate_scores.py" />
         <option value="$PROJECT_DIR$/for_reranking/post_edit.py" />
+        <option value="$PROJECT_DIR$/for_reranking/train_reranking_weight.py" />
+        <option value="$PROJECT_DIR$/for_reranking/select_from_nbest.py" />
       </list>
     </option>
   </component>
@@ -875,13 +890,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/for_reranking/reverse_every_row.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/for_reranking/train.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -925,13 +933,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/for_reranking/train_reranking_weight.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="62" column="44" selection-start-line="62" selection-start-column="43" selection-end-line="62" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/for_reranking/generate_nbest_train_file.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -950,8 +951,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/for_reranking/calc_candidate_scores.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.94285715">
-          <caret line="120" column="4" selection-start-line="120" selection-start-column="4" selection-end-line="123" selection-end-column="47" />
+        <state vertical-scroll-proportion="-4.714286">
+          <caret line="124" column="4" selection-start-line="124" selection-start-column="4" selection-end-line="125" selection-end-column="45" />
           <folding>
             <element signature="e#146#175#0" expanded="false" />
             <element signature="e#202#3475#0" expanded="false" />
@@ -961,10 +962,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/for_reranking/train_reranking_weight.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="62" column="44" selection-start-line="62" selection-start-column="43" selection-end-line="62" selection-end-column="44" />
+          <folding>
+            <element signature="e#146#175#0" expanded="false" />
+            <element signature="e#208#1710#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/for_reranking/post_edit.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.274486">
+        <state vertical-scroll-proportion="0.0">
           <caret line="57" column="10" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
+          <folding>
+            <element signature="e#46#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/for_reranking/select_from_nbest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2793229">
+          <caret line="71" column="10" selection-start-line="71" selection-start-column="10" selection-end-line="71" selection-end-column="10" />
           <folding>
             <element signature="e#46#61#0" expanded="true" />
           </folding>
