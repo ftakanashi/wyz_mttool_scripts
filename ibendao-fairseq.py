@@ -19,18 +19,18 @@ import os, sys, warnings, datetime, time, subprocess, traceback
 ## extra environment variables
 # set extra environment in the dictionary as key-value pairs if your program need them.
 EXTRA_EV = {}
-for k,v in EXTRA_EV.items():
+for k, v in EXTRA_EV.items():
     os.environ.setdefault(k, v)
 
 ## basic settings
 CUDA_VISIBLE_DEVICES = '0,1'
-TASK_NAME = 'iwslt14-de2en'    # logs and checkpoints are saved at ./$TASK_NAME/$MODEL_VAR
+TASK_NAME = 'iwslt14-de2en'  # logs and checkpoints are saved at ./$TASK_NAME/$MODEL_VAR
 MODEL_VAR = 'baseline'
-FAIRSEQ_NAME = 'fairseq'    # decide which fairseq component to use to do all the work
+FAIRSEQ_NAME = 'fairseq'  # decide which fairseq component to use to do all the work
 DECODE_LAST_ENSEMBLE = -1
-SEND_MAIL = False    # determine whether to send an e-mail when training (and generating) finish.
+SEND_MAIL = False  # determine whether to send an e-mail when training (and generating) finish.
 SEND_MAIL_TO = 'wyzypa@gmail.com'
-HOST_NAME = 'NOT_SET' # set the hostname of the current machine, which helps to identify the task.
+HOST_NAME = 'NOT_SET'  # set the hostname of the current machine, which helps to identify the task.
 
 ## training settings
 TRAIN_SETTINGS = {
@@ -44,7 +44,7 @@ TRAIN_SETTINGS = {
     '--weight-decay': 0.001,
     '--max-tokens': 4096,
     '--update-freq': 1,
-    '--max-epoch': 20,    # todo change to max-updates if necessary
+    '--max-epoch': 20,  # to change to max-updates if necessary
     '--fp16': True
 }
 SOLID_TRAIN_SETTINGS = {
@@ -67,7 +67,7 @@ SOLID_TRAIN_SETTINGS = {
 
 ## generation settings
 GENERATE_SETTINGS = {
-    '--gen-subset': 'test',    # change subset if needed
+    '--gen-subset': 'test',  # change subset if needed
     '--source-lang': 'de',
     '--target-lang': 'en',
     '--task': 'translation',
@@ -116,9 +116,10 @@ else:
 
 start_of_main = time.time()
 
+
 def concat_cmd(root, **kwargs):
     params = []
-    for k,v in kwargs.items():
+    for k, v in kwargs.items():
         if type(v) is bool:
             if v:
                 params.append(k)
@@ -126,6 +127,7 @@ def concat_cmd(root, **kwargs):
             params.append('{} {}'.format(k, v))
     cmd = '{} {}'.format(root.strip(), ' '.join(params))
     return cmd
+
 
 def get_container_id():
     p = subprocess.Popen('hostname', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -137,6 +139,7 @@ def get_container_id():
         cid = str(out.strip(), encoding='utf-8')
 
     return cid
+
 
 def send_mail(final_res=None):
     import smtplib
@@ -169,6 +172,7 @@ def send_mail(final_res=None):
     except Exception as e:
         logger.error('Failed to send email:\n{}'.format(traceback.format_exc(e)))
 
+
 def main():
     steps = []
     try:
@@ -191,12 +195,38 @@ def main():
             if _hostname.strip() != '':
                 HOST_NAME = _hostname.strip()
 
-        input('You will train a [{}] for task [{}] with GPU [{}:{}].\nThe fairseq components are [{}].\n'
-              'Logs and checkpoints are saved at [{}].\nPress enter/Ctrl+C to continue/stop...\n'
-              .format(MODEL_VAR, TASK_NAME, HOST_NAME, CUDA_VISIBLE_DEVICES, FAIRSEQ_NAME,
-                      os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR)))
+        try:
+            import torch
+        except ImportError as e:
+            logger.error('Your environment does not have torch...')
+            sys.exit(1)
+        else:
+            torch_version = torch.__version__
+
+        try:
+            import fairseq
+        except ImportError as e:
+            logger.error('Your environment does not have fairseq.(Remember to install it if you cloned it from github)')
+            sys.exit(1)
+        else:
+            fairseq_version = fairseq.__version__
+
+        try:
+            from apex.multi_tensor_apply import multi_tensor_applier as mta
+            if not mta.available:
+                raise ImportError('APEX multi_tensor_applier not available.')
+        except ImportError as e:
+            input('Your environment does not have valid apex so the training process might be slower.\ '
+                  'Press enter/Ctrl+C to continue/stop...')
+
+        input(f'Basic Env Information: fairseq[{fairseq_version}] pytorch[{torch_version}]\n'
+        f'You will train a [{MODEL_VAR}] for task [{TASK_NAME}] with GPU [{HOST_NAME}:{CUDA_VISIBLE_DEVICES}]\n'
+        f'The fairseq components are [{FAIRSEQ_NAME}]\n'
+        f'Logs and checkpoints are saved at[{os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR)}]\n'
+        f'Press enter/Ctrl+C to continue/stop ...')
+        
     except KeyboardInterrupt as e:
-        logger.error('User stopped process.')
+        logger.info('User stopped process.')
         sys.exit(1)
 
     if not os.path.isdir(os.path.join(BASE_DIR, FAIRSEQ_NAME)):
@@ -212,7 +242,8 @@ def main():
             os.system('mkdir -p \'{}\''.format(d))
 
     the_script = os.path.abspath(__file__)
-    os.system('cp {} {}'.format(the_script, os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR)))    # copy the script to target dir
+    os.system(
+        'cp {} {}'.format(the_script, os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR)))  # copy the script to target dir
 
     data_bin_dir = None
     if 'data-bin' in os.listdir(BASE_DIR):
@@ -225,7 +256,9 @@ def main():
             data_bin_dir = os.path.join(BASE_DIR, 'data-bin')
 
     if data_bin_dir is None or not os.path.isdir(data_bin_dir):
-        input('Data-Bin [{}] not valid. Please check if preprocessed data has been put at the right place?\nPress Enter to stop the script.'.format(data_bin_dir))
+        input(
+            'Data-Bin [{}] not valid. Please check if preprocessed data has been put at the right place?\nPress Enter to stop the script.'.format(
+                data_bin_dir))
         sys.exit(1)
 
     logger.info('Using preprocessed data @[{}]'.format(data_bin_dir))
@@ -236,7 +269,8 @@ def main():
         TRAIN_SETTINGS.update(SOLID_TRAIN_SETTINGS)
         TRAIN_SETTINGS['--save-dir'] = model_output_dir
         train_cmd = concat_cmd(train_cmd, **TRAIN_SETTINGS)
-        train_log_fn = os.path.join(log_output_dir, 'train.log.{}'.format(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
+        train_log_fn = os.path.join(log_output_dir,
+                                    'train.log.{}'.format(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
         train_cmd = '{} 2>&1 | tee {}'.format(train_cmd, train_log_fn)
         logger.info(train_cmd)
 
@@ -258,7 +292,7 @@ def main():
             has_fairseq = False
         else:
             has_fairseq = True
-        if DECODE_LAST_ENSEMBLE == -1 or not has_fairseq:    # use checkpoint_best.pt as trained model
+        if DECODE_LAST_ENSEMBLE == -1 or not has_fairseq:  # use checkpoint_best.pt as trained model
             model = os.path.join(model_output_dir, 'checkpoint_best.pt')
             if not has_fairseq:
                 logger.warning('fairseq not found in your environment, so cannot ensemble checkpoints by script.\n'
@@ -266,19 +300,21 @@ def main():
         else:
             logger.info('Generating last {} ensembles'.format(DECODE_LAST_ENSEMBLE))
             model = os.path.join(model_output_dir, 'checkpoint.ensemble{}.pt'.format(DECODE_LAST_ENSEMBLE))
-            ensemble_cmd = 'python -u {}/scripts/average_checkpoints.py --inputs {} --output {} --num-epoch-checkpoints {}'\
+            ensemble_cmd = 'python -u {}/scripts/average_checkpoints.py --inputs {} --output {} --num-epoch-checkpoints {}' \
                 .format(FAIRSEQ_NAME, model_output_dir, model, DECODE_LAST_ENSEMBLE)
             logger.info(ensemble_cmd)
             rtn_code = os.system(ensemble_cmd)
             if rtn_code != 0:
-                logger.info('Failed to ensemble. Probably you didn\'t install fairseq into python but only used its code?')
+                logger.info(
+                    'Failed to ensemble. Probably you didn\'t install fairseq into python but only used its code?')
                 sys.exit(1)
 
         # prepare for generating
         generate_cmd = 'python -u {}/generate.py {}'.format(FAIRSEQ_NAME, data_bin_dir)
         GENERATE_SETTINGS['--path'] = model
         generate_cmd = concat_cmd(generate_cmd, **GENERATE_SETTINGS)
-        gen_log_fn = os.path.join(log_output_dir, 'generate.log.{}'.format(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
+        gen_log_fn = os.path.join(log_output_dir,
+                                  'generate.log.{}'.format(datetime.datetime.now().strftime('%Y%m%d%H%M%S')))
         generate_cmd = '{} 2>&1 | tee {}'.format(generate_cmd, gen_log_fn)
         logger.info(generate_cmd)
 
@@ -297,7 +333,7 @@ def main():
             # only append generate bleu to train log if the train is done
             os.system('tail -n 1 {} >> {}'.format(gen_log_fn, train_log_fn))
 
-    if 'train' in steps and SEND_MAIL:    # a simple generation will not trigger mail sending.
+    if 'train' in steps and SEND_MAIL:  # a simple generation will not trigger mail sending.
         time_to_send_mail = time.time()
         if time_to_send_mail - start_of_main < 60:
             # if the whole process ends within one minute, there probably are some errors.
@@ -306,12 +342,14 @@ def main():
             if 'generate' not in steps:
                 final_res_row = 'Generate not in commands so there is no result...'
             else:
-                p = subprocess.Popen('tail -n 1 {}'.format(train_log_fn), shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                p = subprocess.Popen('tail -n 1 {}'.format(train_log_fn), shell=True, stdout=subprocess.PIPE,
+                                     stderr=subprocess.PIPE)
                 out, err = p.communicate()
                 final_res_row = 'Final Test Result Unknown' if err else out.strip()
                 logger.info(final_res_row)
 
             send_mail(final_res_row)
+
 
 if __name__ == '__main__':
     main()
