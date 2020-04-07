@@ -4,7 +4,6 @@
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/extract_hyp_wei.py" beforeDir="false" afterPath="$PROJECT_DIR$/extract_hyp_wei.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/for_reranking/generate_nbest.py" beforeDir="false" afterPath="$PROJECT_DIR$/for_reranking/generate_nbest.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +66,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.make_komagiri_dataset">
+  <component name="RunManager" selected="Python.extract_hyp_wei">
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="C:\Program Files\Git\bin\bash.exe" />
@@ -121,7 +120,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ibendao" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="extract_hyp_wei" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wyz_mttool_scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -134,8 +133,8 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ibendao.py" />
-      <option name="PARAMETERS" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extract_hyp_wei.py" />
+      <option name="PARAMETERS" value="-i generate.20.log -o test.zh -n 20" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -219,19 +218,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.ibendao" />
       <item itemvalue="Python.convert" />
       <item itemvalue="Python.test" />
       <item itemvalue="Python.reverse_sents" />
       <item itemvalue="Python.make_komagiri_dataset" />
+      <item itemvalue="Python.extract_hyp_wei" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.extract_hyp_wei" />
         <item itemvalue="Python.make_komagiri_dataset" />
         <item itemvalue="Python.reverse_sents" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.convert" />
-        <item itemvalue="Python.ibendao" />
       </list>
     </recent_temporary>
   </component>
@@ -249,7 +248,7 @@
       <workItem from="1586001235078" duration="6880000" />
       <workItem from="1586051757535" duration="893000" />
       <workItem from="1586224957933" duration="4568000" />
-      <workItem from="1586246225986" duration="6291000" />
+      <workItem from="1586246225986" duration="7643000" />
     </task>
     <servers />
   </component>
@@ -276,5 +275,8 @@
     <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
       <collection />
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$extract_hyp_wei.coverage" NAME="extract_hyp_wei Coverage Results" MODIFIED="1586270490882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

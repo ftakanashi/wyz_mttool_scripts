@@ -70,10 +70,13 @@ def main():
 
 
     fo = codecs.open(opt.output, 'w', encoding='utf-8')
-    ite = output_content if opt.remain_log_order else sorted(output_content)
+    if opt.remain_log_order:
+        ite = output_content
+    else:
+        ite = sorted(output_content)
 
     for id in tqdm(ite, mininterval=0.5, ncols=50, desc='Writing Data'):
-        content_list = ite[id]
+        content_list = output_content[id]
         for content in content_list:
             if opt.clear_space:
                 if opt.remain_id:
