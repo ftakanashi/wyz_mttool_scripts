@@ -14,7 +14,7 @@ def process_line(opt, src_line, tgt_line):
         return False
 
     st_ratio = len(src_tokens) / (float(len(tgt_tokens)) + EPS)
-    ts_ratio = 1 / st_ratio
+    ts_ratio = 1 / (st_ratio + EPS)
 
     if st_ratio > opt.ratio or ts_ratio > opt.ratio:
         return False
