@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/clean_corpus_n_wei.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ibendao-fairseq.py" beforeDir="false" afterPath="$PROJECT_DIR$/ibendao-fairseq.py" afterDir="false" />
     </list>
@@ -245,7 +245,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1566958564022</updated>
-      <workItem from="1585971034041" duration="2605000" />
+      <workItem from="1585971034041" duration="3220000" />
+      <workItem from="1586001235078" duration="6880000" />
+      <workItem from="1586051757535" duration="893000" />
+      <workItem from="1586224957933" duration="3685000" />
     </task>
     <servers />
   </component>
@@ -257,7 +260,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

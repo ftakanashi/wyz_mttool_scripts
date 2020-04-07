@@ -224,7 +224,7 @@ def main():
         f'The fairseq components are [{FAIRSEQ_NAME}]\n'
         f'Logs and checkpoints are saved at[{os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR)}]\n'
         f'Press enter/Ctrl+C to continue/stop ...')
-        
+
     except KeyboardInterrupt as e:
         logger.info('User stopped process.')
         sys.exit(1)
