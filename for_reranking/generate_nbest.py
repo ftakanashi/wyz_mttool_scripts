@@ -42,7 +42,7 @@ def generate(opt):
         run(cmd)
 
         hyp_fn = 'hyp.{}.{}'.format(best, TGT)
-        run('python {}/extract_hyp_wei.py -i {} -o {}'.format(SCRIPT_TOOL, log_fn, hyp_fn))
+        run('python {}/extract_hyp_wei.py -i {} -o {} -n {}'.format(SCRIPT_TOOL, log_fn, hyp_fn, best))
         if not opt.retain_log:
             run('rm -f {}'.format(log_fn))
 

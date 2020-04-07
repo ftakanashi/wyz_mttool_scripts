@@ -9,12 +9,14 @@ if you need to calculate BLEU score later.
 
 import argparse
 import codecs
+import collections
 import re
 
 from tqdm import tqdm
 
 # PATTERN_TEMP = '{}\-(\d+).*\t(.+?)$'
 PATTERN_TEMP = '{}\-(\d+).*\t(.*?)$'
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -26,6 +28,9 @@ def main():
                         help='Path to the input file.')
     parser.add_argument('-o', '--output', required=True,
                         help='Path to the output file.')
+
+    parser.add_argument('-n', '--repeat-number', type=int, default=1,
+                        help='N-best adaption.')
 
     parser.add_argument('--remain-id', action='store_true',
                         help='Specify to remain row ids and output rows in order of ids.')
@@ -50,36 +55,38 @@ def main():
 
     fr = codecs.open(opt.input, 'r', encoding='utf-8')
 
-    output_content = []
+    output_content = collections.defaultdict(list)
     for line in tqdm(fr, mininterval=0.5, ncols=50, desc='Reading Data'):
         m = re.search(PATTERN, line)
         if m is not None:
-            output_content.append(
-                    {'id': int(m.group(1)), 'content': m.group(2)}
-            )
+            output_content[int(m.group(1))].append(m.group(2))
+
+    # check if every id has enough records
+    N = opt.repeat_number
+    for id,content_list in output_content.items():
+        if len(content_list) < N:
+            while len(content_list) < N:
+                content_list.append(content_list[-1])
+
 
     fo = codecs.open(opt.output, 'w', encoding='utf-8')
-    if opt.remain_log_order:
-        ite = output_content
-    else:
-        ite = sorted(output_content, key=lambda x:x['id'])
+    ite = output_content if opt.remain_log_order else sorted(output_content)
 
-    for item in tqdm(ite, mininterval=0.5, ncols=50, desc='Writing Data'):
-        content = item['content']
-        if opt.clear_space:
-            if opt.remain_id:
-                fo.write('{}\t'.format(item['id']))
-            fo.write(''.join(content.strip().split(' ')) + '\n')
-        else:
-            if opt.remain_id:
-                fo.write('{}\t'.format(item['id']))
-            fo.write(content.strip() + '\n')
+    for id in tqdm(ite, mininterval=0.5, ncols=50, desc='Writing Data'):
+        content_list = ite[id]
+        for content in content_list:
+            if opt.clear_space:
+                if opt.remain_id:
+                    fo.write('{}\t'.format(id))
+                fo.write(''.join(content.strip().split(' ')) + '\n')
+            else:
+                if opt.remain_id:
+                    fo.write('{}\t'.format(id))
+                fo.write(content.strip() + '\n')
 
     fr.close()
     fo.close()
 
+
 if __name__ == '__main__':
     main()
-
-
-
