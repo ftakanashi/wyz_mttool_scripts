@@ -71,7 +71,7 @@ GENERATE_SETTINGS = {
     '--source-lang': 'de',
     '--target-lang': 'en',
     '--task': 'translation',
-    '--batch-size': 32,
+    '--max-tokens': 1024,
     '--beam': 5,
     '--lenpen': 1.0,
     '--remove-bpe': True

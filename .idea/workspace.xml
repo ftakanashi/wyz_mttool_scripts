@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/clean_corpus_n_wei.py" beforeDir="false" afterPath="$PROJECT_DIR$/clean_corpus_n_wei.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/for_reranking/generate_nbest.py" beforeDir="false" afterPath="$PROJECT_DIR$/for_reranking/generate_nbest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ibendao-fairseq.py" beforeDir="false" afterPath="$PROJECT_DIR$/ibendao-fairseq.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -247,7 +249,7 @@
       <workItem from="1586001235078" duration="6880000" />
       <workItem from="1586051757535" duration="893000" />
       <workItem from="1586224957933" duration="4568000" />
-      <workItem from="1586246225986" duration="241000" />
+      <workItem from="1586246225986" duration="2766000" />
     </task>
     <servers />
   </component>
