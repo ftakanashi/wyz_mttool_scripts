@@ -31,9 +31,9 @@ def generate(opt):
             opt.data_bin_dir, ensemble_model_str(opt.model_dir, '{}2{}.l2r'.format(SRC, TGT)),
             beam, best
         )
-        if opt.max_tokens > 0:
+        if opt.max_tokens is not None and opt.max_tokens > 0:
             cmd += ' --max-tokens {}'.format(opt.max_tokens)
-        elif opt.max_sentences > 0:
+        elif opt.max_sentences is not None and opt.max_sentences > 0:
             cmd += ' --max-sentences {}'.format(opt.max_sentences)
         else:
             raise Exception('Invalid mini-batch size.')
