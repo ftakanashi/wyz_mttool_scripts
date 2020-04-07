@@ -4,6 +4,8 @@
 import argparse
 from tqdm import tqdm
 
+EPS = 1e-6
+
 def process_line(opt, src_line, tgt_line):
     src_tokens = src_line.strip().split()
     tgt_tokens = tgt_line.strip().split()
@@ -11,7 +13,7 @@ def process_line(opt, src_line, tgt_line):
     if len(src_tokens) > opt.max_length or len(tgt_tokens) > opt.max_length:
         return False
 
-    st_ratio = len(src_tokens) / float(len(tgt_tokens))
+    st_ratio = len(src_tokens) / (float(len(tgt_tokens)) + EPS)
     ts_ratio = 1 / st_ratio
 
     if st_ratio > opt.ratio or ts_ratio > opt.ratio:
