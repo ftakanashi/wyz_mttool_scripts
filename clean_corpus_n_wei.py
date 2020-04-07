@@ -20,8 +20,8 @@ def process_line(opt, src_line, tgt_line):
     return True
 
 def filter_main(opt):
-    src_fn = opt.prefix + opt.src
-    tgt_fn = opt.prefix + opt.tgt
+    src_fn = f'{opt.prefix}.{opt.src}'
+    tgt_fn = f'{opt.prefix}.{opt.tgt}'
 
     with open(src_fn, 'r') as f:
         src_lines = f.readlines()
