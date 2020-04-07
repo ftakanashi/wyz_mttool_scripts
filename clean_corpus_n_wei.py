@@ -31,13 +31,16 @@ def filter_main(opt):
     res_container = []
     trash_container = []
 
-    for i, src_line in tqdm(enumerate(src_lines), mininterval=0.5, ncols=50):
+    i = 0
+    for src_line in tqdm(src_lines, mininterval=0.5, ncols=50):
         tgt_line = tgt_lines[i]
         if process_line(opt, src_line, tgt_line):
             res_container.append((src_line, tgt_line))
         else:
             if opt.collect_trash:
                 trash_container.append((src_line, tgt_line))
+
+        i += 1
 
     return res_container, trash_container
 
@@ -69,6 +72,7 @@ def main():
     tgt_fw = open(cleaned_tgt_fn, 'w')
 
     for s,t in res:
+        print('Writing in cleaned files...')
         src_fw.write(f'{s.strip()}\n')
         tgt_fw.write(f'{t.strip()}\n')
 
@@ -78,6 +82,7 @@ def main():
         src_fw = open(f'{opt.prefix}.trash.{opt.src}', 'w')
         tgt_fw = open(f'{opt.prefix}.trash.{opt.tgt}', 'w')
         for s,t in trash:
+            print('Writing in trash files...')
             src_fw.write(f'{s.strip()}\n')
             tgt_fw.write(f'{t.strip()}\n')
 
