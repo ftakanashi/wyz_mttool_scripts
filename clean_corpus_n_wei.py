@@ -73,20 +73,23 @@ def main():
     src_fw = open(cleaned_src_fn, 'w')
     tgt_fw = open(cleaned_tgt_fn, 'w')
 
+    print('Writing in cleaned files...')
     for s,t in res:
-        print('Writing in cleaned files...')
         src_fw.write(f'{s.strip()}\n')
         tgt_fw.write(f'{t.strip()}\n')
 
+    print(f'{len(res)} rows are written.')
     src_fw.close(), tgt_fw.close()
 
     if opt.collect_trash:
         src_fw = open(f'{opt.prefix}.trash.{opt.src}', 'w')
         tgt_fw = open(f'{opt.prefix}.trash.{opt.tgt}', 'w')
+        print('Writing in trash files...')
         for s,t in trash:
-            print('Writing in trash files...')
             src_fw.write(f'{s.strip()}\n')
             tgt_fw.write(f'{t.strip()}\n')
+
+        print(f'{len(trash)} rows are written.')
 
         src_fw.close(),tgt_fw.close()
 
