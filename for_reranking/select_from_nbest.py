@@ -40,9 +40,10 @@ def make_feature_file_and_rescore(opt):
     ))
 
     # post edit
-    run('python {}/for_reranking/post_edit.py -t {} -i {} -o {} --tool-script-dir {}'.format(
-        SCRIPT_TOOL, TGT, reranked_hyp_fn, 'hyp.final.{}'.format(TGT), SCRIPT_TOOL
-    ))
+    if opt.post_edit:
+        run('python {}/for_reranking/post_edit.py -t {} -i {} -o {} --tool-script-dir {}'.format(
+            SCRIPT_TOOL, TGT, reranked_hyp_fn, 'hyp.final.{}'.format(TGT), SCRIPT_TOOL
+        ))
 
 
 def main():
