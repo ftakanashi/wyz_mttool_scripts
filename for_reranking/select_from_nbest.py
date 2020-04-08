@@ -64,6 +64,8 @@ def main():
     parser.add_argument('--moses-script-dir', default='/root/work/smt/mosesdecoder/scripts/nbest-rescore')
     parser.add_argument('--tool-script-dir', default=os.path.join(BASE_DIR, 'wyz_mttool_scripts'))
 
+    parser.add_argument('--post-edit', type='store_true', default=False, help='Whether to do postedit.')
+
     opt = parser.parse_args()
 
     make_feature_file_and_rescore(opt)

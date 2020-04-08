@@ -141,6 +141,9 @@ def main():
 
     opt = parser.parse_args()
 
+    if opt.add_word_ratio and opt.std_ratio == -1:
+        raise Exception('standard ratio should be specified.')
+
     preprocess(opt)
     calc_score(opt)
 
