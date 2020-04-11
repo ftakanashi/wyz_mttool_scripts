@@ -31,6 +31,7 @@ DECODE_LAST_ENSEMBLE = -1
 SEND_MAIL = False  # determine whether to send an e-mail when training (and generating) finish.
 SEND_MAIL_TO = 'wyzypa@gmail.com'
 HOST_NAME = 'NOT_SET'  # set the hostname of the current machine, which helps to identify the task.
+DATA_BIN_DIR = None    # basically script can detect correct data-bin by name of task. But also can be specified manually.
 
 ## training settings
 TRAIN_SETTINGS = {
@@ -245,8 +246,10 @@ def main():
     os.system(
         'cp {} {}'.format(the_script, os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR)))  # copy the script to target dir
 
-    data_bin_dir = None
-    if 'data-bin' in os.listdir(BASE_DIR):
+    data_bin_dir = DATA_BIN_DIR
+    if DATA_BIN_DIR is not None and DATA_BIN_DIR != '':
+        data_bin_dir = DATA_BIN_DIR
+    elif 'data-bin' in os.listdir(BASE_DIR):
         if TASK_NAME in os.listdir(os.path.join(BASE_DIR, 'data-bin')):
             if MODEL_VAR in os.listdir(os.path.join(BASE_DIR, 'data-bin', TASK_NAME)):
                 data_bin_dir = os.path.join(BASE_DIR, 'data-bin', TASK_NAME, MODEL_VAR)
