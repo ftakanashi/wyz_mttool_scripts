@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ibendao-fairseq.py" beforeDir="false" afterPath="$PROJECT_DIR$/ibendao-fairseq.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/for_reranking/generate_nbest.py" beforeDir="false" afterPath="$PROJECT_DIR$/for_reranking/generate_nbest.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +46,7 @@
   <component name="ProjectId" id="1a3jAq1TytizxtiY0QjCPpEo9qk" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/iwslt20/acl20.tool-master" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RecentsManager">
@@ -254,6 +254,7 @@
       <workItem from="1586479174010" duration="689000" />
       <workItem from="1586566983116" duration="31000" />
       <workItem from="1586570136902" duration="876000" />
+      <workItem from="1586607943993" duration="3590000" />
     </task>
     <servers />
   </component>

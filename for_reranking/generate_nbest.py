@@ -21,7 +21,7 @@ def generate(opt):
     best_len = [l.split('-')[1] for l in lengths]
 
     def ensemble_model_str(model_dir, cate):
-        models = os.listdir(os.path.join(opt.model_dir, cate))
+        models = [f for f in os.listdir(os.path.join(opt.model_dir, cate)) if os.path.splitext(f)[1] == '.pt']
         return ':'.join([os.path.join(model_dir, cate, m) for m in models])
 
     # generate and clean the log
