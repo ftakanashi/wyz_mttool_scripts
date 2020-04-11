@@ -46,7 +46,7 @@
   <component name="ProjectId" id="1a3jAq1TytizxtiY0QjCPpEo9qk" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/iwslt20/acl20.tool-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RecentsManager">
@@ -253,6 +253,7 @@
       <workItem from="1586315912656" duration="634000" />
       <workItem from="1586479174010" duration="689000" />
       <workItem from="1586566983116" duration="31000" />
+      <workItem from="1586570136902" duration="876000" />
     </task>
     <servers />
   </component>

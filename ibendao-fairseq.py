@@ -220,11 +220,29 @@ def main():
             input('Your environment does not have valid apex so the training process might be slower.\ '
                   'Press enter/Ctrl+C to continue/stop...')
 
-        input(f'Basic Env Information: fairseq[{fairseq_version}] pytorch[{torch_version}]\n'
-        f'You will train a [{MODEL_VAR}] for task [{TASK_NAME}] with GPU [{HOST_NAME}:{CUDA_VISIBLE_DEVICES}]\n'
-        f'The fairseq components are [{FAIRSEQ_NAME}]\n'
-        f'Logs and checkpoints are saved at[{os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR)}]\n'
-        f'Press enter/Ctrl+C to continue/stop ...')
+        data_bin_dir = DATA_BIN_DIR
+        if DATA_BIN_DIR is not None and DATA_BIN_DIR != '':
+            data_bin_dir = DATA_BIN_DIR
+        elif 'data-bin' in os.listdir(BASE_DIR):
+            if TASK_NAME in os.listdir(os.path.join(BASE_DIR, 'data-bin')):
+                if MODEL_VAR in os.listdir(os.path.join(BASE_DIR, 'data-bin', TASK_NAME)):
+                    data_bin_dir = os.path.join(BASE_DIR, 'data-bin', TASK_NAME, MODEL_VAR)
+                else:
+                    data_bin_dir = os.path.join(BASE_DIR, 'data-bin', TASK_NAME)
+            else:
+                data_bin_dir = os.path.join(BASE_DIR, 'data-bin')
+
+        if data_bin_dir is None or not os.path.isdir(data_bin_dir):
+            input(
+                'Data-Bin [{}] not valid. Please check if preprocessed data has been put at the right place?\nPress Enter to stop the script.'.format(
+                    data_bin_dir))
+            sys.exit(1)
+
+        input(f'FAIRSEQ VERSION: [{fairseq_version}]\nPYTORCH VERSION: [{torch_version}]\n'
+              f'MODEL VARIANT: [{MODEL_VAR}]\nTASK NAME: [{TASK_NAME}]\nGPU: [{HOST_NAME}:{CUDA_VISIBLE_DEVICES}]\n'
+              f'FAIRSEQ COMPONENT NAME: [{FAIRSEQ_NAME}]\nLOG & CHECKPIONT IN: [{os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR)}]\n'
+              f'DATA-BIN DIR: [{data_bin_dir}]\n'
+              f'Press enter/Ctrl+C to continue/stop...')
 
     except KeyboardInterrupt as e:
         logger.info('User stopped process.')
@@ -245,26 +263,6 @@ def main():
     the_script = os.path.abspath(__file__)
     os.system(
         'cp {} {}'.format(the_script, os.path.join(BASE_DIR, TASK_NAME, MODEL_VAR)))  # copy the script to target dir
-
-    data_bin_dir = DATA_BIN_DIR
-    if DATA_BIN_DIR is not None and DATA_BIN_DIR != '':
-        data_bin_dir = DATA_BIN_DIR
-    elif 'data-bin' in os.listdir(BASE_DIR):
-        if TASK_NAME in os.listdir(os.path.join(BASE_DIR, 'data-bin')):
-            if MODEL_VAR in os.listdir(os.path.join(BASE_DIR, 'data-bin', TASK_NAME)):
-                data_bin_dir = os.path.join(BASE_DIR, 'data-bin', TASK_NAME, MODEL_VAR)
-            else:
-                data_bin_dir = os.path.join(BASE_DIR, 'data-bin', TASK_NAME)
-        else:
-            data_bin_dir = os.path.join(BASE_DIR, 'data-bin')
-
-    if data_bin_dir is None or not os.path.isdir(data_bin_dir):
-        input(
-            'Data-Bin [{}] not valid. Please check if preprocessed data has been put at the right place?\nPress Enter to stop the script.'.format(
-                data_bin_dir))
-        sys.exit(1)
-
-    logger.info('Using preprocessed data @[{}]'.format(data_bin_dir))
 
     if 'train' in steps:
         # prepare for training
