@@ -6,9 +6,11 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+
 def run(cmd):
     print(cmd)
     os.system(cmd)
+
 
 def preprocess(opt):
     SRC = opt.src
@@ -17,7 +19,7 @@ def preprocess(opt):
     # N = opt.repeat_number
     beams = [int(p.split('-')[0]) for p in opt.len_opt.split(',')]
     bests = [int(p.split('-')[1]) for p in opt.len_opt.split(',')]
-    lenpens = [float(l) for l in opt.lenpen_opt.spilt(',')]
+    lenpens = [float(l) for l in opt.lenpen_opt.split(',')]
 
     data_subdirs = ['{}-{}'.format(SRC, TGT), '{}.rev-{}'.format(SRC, TGT), '{}-{}.rev'.format(SRC, TGT)]
     data_subdirs = [os.path.join(opt.data_dir, d) for d in data_subdirs]
@@ -30,22 +32,32 @@ def preprocess(opt):
             print(f'Arranging {best}-lp{lp}')
             hyp_fn = os.path.join(opt.hyps_dir, f'hyp.{best}.lp{lp}.{TGT}')
             run('python {}/expand_data_in_row_direction.py -n {} -i {} -o {}'.format(SCRIPT_TOOL, best, opt.source_ref,
-                os.path.join(data_subdirs[0], 'test.{}.lp{}.{}'.format(best, lp, SRC))))
+                                                                                     os.path.join(data_subdirs[0],
+                                                                                                  'test.{}.lp{}.{}'.format(
+                                                                                                      best, lp, SRC))))
 
             run('python {}/expand_data_in_row_direction.py -n {} -i {} -o {}'.format(SCRIPT_TOOL, best, opt.source_ref,
-                os.path.join(data_subdirs[2], 'test.{}.lp{}.{}'.format(best, lp, SRC))))
+                                                                                     os.path.join(data_subdirs[2],
+                                                                                                  'test.{}.lp{}.{}'.format(
+                                                                                                      best, lp, SRC))))
 
-            run('python {}/reverse_every_row.py < {} > {}'.format(SCRIPT_TOOL, os.path.join(data_subdirs[0], 'test.{}.lp{}.{}'.format(best, lp, SRC)),
-                os.path.join(data_subdirs[1], 'test.{}.lp{}.{}'.format(best, lp, SRC))))
+            run('python {}/reverse_every_row.py < {} > {}'.format(SCRIPT_TOOL, os.path.join(data_subdirs[0],
+                                                                                            'test.{}.lp{}.{}'.format(
+                                                                                                best, lp, SRC)),
+                                                                  os.path.join(data_subdirs[1],
+                                                                               'test.{}.lp{}.{}'.format(best, lp,
+                                                                                                        SRC))))
 
             run('cp {} {}'.format(hyp_fn, os.path.join(data_subdirs[0], 'test.{}.lp{}.{}'.format(best, lp, TGT))))
             run('cp {} {}'.format(hyp_fn, os.path.join(data_subdirs[1], 'test.{}.lp{}.{}'.format(best, lp, TGT))))
-            run('python {}/reverse_every_row.py < {} > {}'.format(SCRIPT_TOOL, opt.hyp,
-                os.path.join(data_subdirs[2], 'test.{}.lp{}.{}'.format(best, lp, TGT))))
+            run('python {}/reverse_every_row.py < {} > {}'.format(SCRIPT_TOOL, hyp_fn,
+                                                                  os.path.join(data_subdirs[2],
+                                                                               'test.{}.lp{}.{}'.format(best, lp,
+                                                                                                        TGT))))
 
     # preprocess
     if not os.path.isfile(os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC))) or \
-        not os.path.isfile(os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT))):
+            not os.path.isfile(os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT))):
         raise Exception('You need to prepare a dict file in advance.')
 
     for best in bests:
@@ -79,6 +91,7 @@ def preprocess(opt):
                                  os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT)),
                                  os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC))))
 
+
 def calc_score(opt):
     SRC = opt.src
     TGT = opt.tgt
@@ -101,10 +114,11 @@ def calc_score(opt):
     for category in categories:
         run(proto_cmd.format(os.path.join(opt.data_bin_dir, category),
                              ensemble_model_str(opt.model_dir, category),
-                             os.path.join(result_dir, category+'.generate.log')))
+                             os.path.join(result_dir, category + '.generate.log')))
         run('python {}/for_reranking/extract_score.py < {} > {}'.format(SCRIPT_TOOL,
-                                                                        os.path.join(result_dir, category+'.generate.log'),
-                                                                        os.path.join(result_dir, category+'.score')))
+                                                                        os.path.join(result_dir,
+                                                                                     category + '.generate.log'),
+                                                                        os.path.join(result_dir, category + '.score')))
 
     if opt.add_word_ratio:
         if opt.std_ratio < 0:
@@ -115,17 +129,18 @@ def calc_score(opt):
         ))
 
     # concat scores
-    concat_cmd = 'paste ' + ' '.join([os.path.join(result_dir, c+'.score') for c in categories])
+    concat_cmd = 'paste ' + ' '.join([os.path.join(result_dir, c + '.score') for c in categories])
     if opt.add_word_ratio:
         concat_cmd += ' {}'.format(os.path.join(result_dir, 'word_ratio.score'))
     concat_cmd += ' | awk -F \' \' \'{print'
-    for i,c in enumerate(categories):
-        concat_cmd += ' " {}= "${}'.format(c, i+1)
+    for i, c in enumerate(categories):
+        concat_cmd += ' " {}= "${}'.format(c, i + 1)
     if opt.add_word_ratio:
         concat_cmd += ' " word_ratio= "$5'
     concat_cmd += '}}\' > {}'.format(os.path.join(result_dir, 'total.score'))
 
     run(concat_cmd)
+
 
 def main():
     parser = argparse.ArgumentParser()
