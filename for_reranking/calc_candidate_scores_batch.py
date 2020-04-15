@@ -15,6 +15,7 @@ def run(cmd):
 def preprocess(opt):
     SRC = opt.src
     TGT = opt.tgt
+    FAIRSEQ = opt.fairseq_dir
     SCRIPT_TOOL = opt.tool_script_dir
     # N = opt.repeat_number
     beams = [int(p.split('-')[0]) for p in opt.len_opt.split(',')]
@@ -71,22 +72,22 @@ def preprocess(opt):
             for d in data_bin_subdirs:
                 os.makedirs(d, exist_ok=True)
 
-            proto_cmd = 'python fairseq/preprocess.py ' \
+            proto_cmd = 'python {}/preprocess.py ' \
                         '--source-lang {} --target-lang {} --destdir {} ' \
                         '--workers 64 --testpref {} --srcdict {} --tgtdict {}'
-            run(proto_cmd.format(SRC, TGT, data_bin_subdirs[0],
+            run(proto_cmd.format(FAIRSEQ, SRC, TGT, data_bin_subdirs[0],
                                  os.path.join(data_subdirs[0], f'test.{best}.lp{lp}'),
                                  os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC)),
                                  os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT))))
-            run(proto_cmd.format(SRC, TGT, data_bin_subdirs[1],
+            run(proto_cmd.format(FAIRSEQ, SRC, TGT, data_bin_subdirs[1],
                                  os.path.join(data_subdirs[2], f'test.{best}.lp{lp}'),
                                  os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC)),
                                  os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT))))
-            run(proto_cmd.format(TGT, SRC, data_bin_subdirs[2],
+            run(proto_cmd.format(FAIRSEQ, TGT, SRC, data_bin_subdirs[2],
                                  os.path.join(data_subdirs[0], f'test.{best}.lp{lp}'),
                                  os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT)),
                                  os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC))))
-            run(proto_cmd.format(TGT, SRC, data_bin_subdirs[3],
+            run(proto_cmd.format(FAIRSEQ, TGT, SRC, data_bin_subdirs[3],
                                  os.path.join(data_subdirs[1], f'test.{best}.lp{lp}'),
                                  os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT)),
                                  os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC))))
