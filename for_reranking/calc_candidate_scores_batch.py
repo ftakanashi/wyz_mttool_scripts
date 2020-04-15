@@ -97,50 +97,67 @@ def calc_score(opt):
     SRC = opt.src
     TGT = opt.tgt
     SCRIPT_TOOL = opt.tool_script_dir
-    N = opt.repeat_number
-    result_dir = os.path.join(BASE_DIR, 'score_log.{}'.format(N))
-    os.makedirs(result_dir, exist_ok=True)
+    # N = opt.repeat_number
+    bests = [int(p.split('-')[1]) for p in opt.len_opt.split(',')]
+    lenpens = [float(l) for l in opt.lenpen_opt.split(',')]
+    res_dir = os.path.join(BASE_DIR, 'res')
+    if not os.path.isdir(res_dir):
+        os.makedirs(res_dir, exist_ok=True)
 
     categories = []
     for lang_pair in ('{}2{}'.format(SRC, TGT), '{}2{}'.format(TGT, SRC)):
         for dirc in ('l2r', 'r2l'):
             categories.append('{}.{}'.format(lang_pair, dirc))
 
-    proto_cmd = 'python fairseq/generate.py {} --path {} --max-sentences 128 --score-reference | tee {}'
-
     def ensemble_model_str(model_dir, cate):
         models = os.listdir(os.path.join(opt.model_dir, cate))
         return ':'.join([os.path.join(model_dir, cate, m) for m in models])
 
-    for category in categories:
-        run(proto_cmd.format(os.path.join(opt.data_bin_dir, category),
-                             ensemble_model_str(opt.model_dir, category),
-                             os.path.join(result_dir, category + '.generate.log')))
-        run('python {}/for_reranking/extract_score.py < {} > {}'.format(SCRIPT_TOOL,
-                                                                        os.path.join(result_dir,
-                                                                                     category + '.generate.log'),
-                                                                        os.path.join(result_dir, category + '.score')))
+    # calculate reference score
+    proto_cmd = 'python fairseq/generate.py {} --path {} --max-sentences 128 --score-reference | tee {}'
+    for best in bests:
+        for lp in lenpens:
+            for category in categories:
+                lang, dirc = category.split('.')
+                data_bin_dir = os.path.join(opt.data_bin_dir, f'{lang}.{best}.lp{lp}.{dirc}')
+                generate_log_fn = os.path.join(res_dir, f'{lang}.{best}.lp{lp}.{dirc}.generate.log')
+                score_fn = os.path.join(res_dir, f'{lang}.{best}.lp{lp}.{dirc}.score')
+                run(proto_cmd.format(data_bin_dir, ensemble_model_str(opt.model_dir, category), generate_log_fn))
+                run('python {}/for_reranking/extract_score.py < {} > {}'.format(SCRIPT_TOOL, generate_log_fn, score_fn))
 
-    if opt.add_word_ratio:
-        if opt.std_ratio < 0:
-            raise Exception('Specify the standard ratio.')
-        run('python {}/for_reranking/calc_word_ratio.py --src {} --tgt {} --std-ratio {} --output {}'.format(
-            SCRIPT_TOOL, os.path.join(opt.data_dir, '{}-{}'.format(SRC, TGT), 'test.{}.{}'.format(N, SRC)),
-            opt.hyp, opt.std_ratio, os.path.join(result_dir, 'word_ratio.score')
-        ))
+            if opt.add_word_ratio:
+                if opt.std_ratio < 0:
+                    raise Exception('Specify the standard ratio.')
 
-    # concat scores
-    concat_cmd = 'paste ' + ' '.join([os.path.join(result_dir, c + '.score') for c in categories])
-    if opt.add_word_ratio:
-        concat_cmd += ' {}'.format(os.path.join(result_dir, 'word_ratio.score'))
-    concat_cmd += ' | awk -F \' \' \'{print'
-    for i, c in enumerate(categories):
-        concat_cmd += ' " {}= "${}'.format(c, i + 1)
-    if opt.add_word_ratio:
-        concat_cmd += ' " word_ratio= "$5'
-    concat_cmd += '}}\' > {}'.format(os.path.join(result_dir, 'total.score'))
+                # unbpe
+                src_fn = os.path.join(opt.data_dir, f'{SRC}-{TGT}', f'test.{best}.lp{lp}.{SRC}')
+                hyp_fn = os.path.join(opt.data_dir, f'{SRC}-{TGT}', f'test.{best}.lp{lp}.{TGT}')
+                run(f'python {SCRIPT_TOOL}/remove_bpe.py < {src_fn} > .src.unbpe.tmp')
+                run(f'python {SCRIPT_TOOL}/remove_bpe.py < {hyp_fn} > .hyp.unbpe.tmp')
 
-    run(concat_cmd)
+                # calc word_ratio
+                output_fn = os.path.join(res_dir, f'word_ratio.{best}.lp{lp}.score')
+                run(f'python {SCRIPT_TOOL}/for_reranking/calc_word_ratio.py --src .src.unbpe.tmp --tgt .hyp.unbpe.tmp'
+                    f' --std-ratio {opt.std_ratio} --output {output_fn}')
+
+            # concat scores
+            score_fns = []
+            for category in categories:
+                lang, dirc = category.split('.')
+                score_fns.append(os.path.join(res_dir, f'{lang}.{best}.lp{lp}.{dirc}.score'))
+            concat_cmd = 'paste ' + ' '.join(score_fns)
+
+            if opt.add_word_ratio:
+                concat_cmd += ' {}'.format(os.path.join(res_dir, f'word_ratio.{best}.lp{lp}.score'))
+            concat_cmd += ' | awk -F \' \' \'{print'
+            for i, c in enumerate(categories):
+                concat_cmd += ' " {}= "${}'.format(c, i + 1)
+            if opt.add_word_ratio:
+                concat_cmd += ' " word_ratio= "$5'
+            total_score_fn = os.path.join(res_dir, f'total.{best}.lp{lp}.score')
+            concat_cmd += '}}\' > {}'.format(total_score_fn)
+
+            run(concat_cmd)
 
 
 def main():
@@ -180,7 +197,7 @@ def main():
         raise Exception('standard ratio should be specified.')
 
     preprocess(opt)
-    # calc_score(opt)
+    calc_score(opt)
 
 
 if __name__ == '__main__':
