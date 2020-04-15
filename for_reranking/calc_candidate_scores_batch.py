@@ -160,6 +160,8 @@ def main():
 
     parser.add_argument('--model-dir', default=os.path.join(BASE_DIR, 'model'),
                         help='Path to the model dir')
+    parser.add_argument('--fairseq-dir', default=os.path.join(BASE_DIR, 'fairseq'),
+                        help='Path to the fairseq dir.')
     parser.add_argument('--tool-script-dir', default=os.path.join(BASE_DIR, 'wyz_mttool_scripts'),
                         help='Path to the tool script dir')
     parser.add_argument('--data-dir', default=os.path.join(BASE_DIR, 'data'))
