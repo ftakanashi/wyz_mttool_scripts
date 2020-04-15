@@ -82,8 +82,8 @@ def main():
 
     opt = parser.parse_args()
 
-    if opt.max_tokens is None and opt.max_sentences is None:
-        raise Exception('You must select max-tokens or max-sentences to limit the size of mini-batches.')
+    # if opt.max_tokens is None and opt.max_sentences is None:
+    #     raise Exception('You must select max-tokens or max-sentences to limit the size of mini-batches.')
 
     generate(opt)
 
