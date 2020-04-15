@@ -19,6 +19,7 @@ def generate(opt):
 
     beam_len = [l.split('-')[0] for l in lengths]
     best_len = [l.split('-')[1] for l in lengths]
+    lenpen_opts = [float(l) for l in opt.lenpen_opt.split(',')]
 
     def ensemble_model_str(model_dir, cate):
         models = [f for f in os.listdir(os.path.join(opt.model_dir, cate)) if os.path.splitext(f)[1] == '.pt']
@@ -26,25 +27,28 @@ def generate(opt):
 
     # generate and clean the log
     for beam,best in zip(beam_len, best_len):
-        log_fn = 'generate.{}.log'.format(best)
-        cmd = 'python fairseq/generate.py {} --path {} --beam {} --nbest {}'.format(
-            opt.data_bin_dir, ensemble_model_str(opt.model_dir, '{}2{}.l2r'.format(SRC, TGT)),
-            beam, best
-        )
-        if opt.max_tokens is not None and opt.max_tokens > 0:
-            cmd += ' --max-tokens {}'.format(opt.max_tokens)
-        elif opt.max_sentences is not None and opt.max_sentences > 0:
-            cmd += ' --max-sentences {}'.format(opt.max_sentences)
-        else:
-            raise Exception('Invalid mini-batch size.')
+        for lenpen in lenpen_opts:
+            log_fn = 'generate.{}.lp{}.log'.format(best, lenpen)
+            log_fn = os.path.join(opt.output_dir, log_fn)
+            cmd = 'python fairseq/generate.py {} --path {} --beam {} --nbest {} --lenpen {}'.format(
+                opt.data_bin_dir, ensemble_model_str(opt.model_dir, '{}2{}.l2r'.format(SRC, TGT)),
+                beam, best, lenpen
+            )
+            if opt.max_tokens is not None and opt.max_tokens > 0:
+                cmd += ' --max-tokens {}'.format(opt.max_tokens)
+            elif opt.max_sentences is not None and opt.max_sentences > 0:
+                cmd += ' --max-sentences {}'.format(opt.max_sentences)
+            else:
+                raise Exception('Invalid mini-batch size.')
 
-        cmd += ' | tee {}'.format(log_fn)
-        run(cmd)
+            cmd += ' | tee {}'.format(log_fn)
+            run(cmd)
 
-        hyp_fn = 'hyp.{}.{}'.format(best, TGT)
-        run('python {}/extract_hyp_wei.py -i {} -o {} -n {}'.format(SCRIPT_TOOL, log_fn, hyp_fn, best))
-        if not opt.retain_log:
-            run('rm -f {}'.format(log_fn))
+            hyp_fn = 'hyp.{}.lp{}.{}'.format(best, lenpen, TGT)
+            hyp_fn = os.path.join(opt.output_dir, hyp_fn)
+            run('python {}/extract_hyp_wei.py -i {} -o {} -n {}'.format(SCRIPT_TOOL, log_fn, hyp_fn, best))
+            if not opt.retain_log:
+                run('rm -f {}'.format(log_fn))
 
 
 def main():
@@ -57,11 +61,15 @@ def main():
 
     parser.add_argument('--len-opt', required=True,
                         help='Length options. Like: 5-5,10-10,25-20')
+    parser.add_argument('--lenpen-opt', default='1.0',
+                        help='Lenpen options. Ex. 0.6,0.8,1.0,1.2')
     parser.add_argument('--model-dir', required=True,
                         help='Path to the model dir.')
 
     parser.add_argument('--data-bin-dir', default='data-bin',
                         help='Path to the data-bin.')
+    parser.add_argument('--output-dir', default='.',
+                        help='Path to the output dir where hyp files are saved.')
     parser.add_argument('--max-tokens', type=int,
                         help='Specify max tokens in a mini-batch.')
     parser.add_argument('--max-sentences', type=int,
