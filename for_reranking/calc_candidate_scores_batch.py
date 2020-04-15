@@ -14,7 +14,10 @@ def preprocess(opt):
     SRC = opt.src
     TGT = opt.tgt
     SCRIPT_TOOL = opt.tool_script_dir
-    N = opt.repeat_number
+    # N = opt.repeat_number
+    beams = [int(p.split('-')[0]) for p in opt.len_opt.split(',')]
+    bests = [int(p.split('-')[1]) for p in opt.len_opt.split(',')]
+    lenpens = [float(l) for l in opt.lenpen_opt.spilt(',')]
 
     data_subdirs = ['{}-{}'.format(SRC, TGT), '{}.rev-{}'.format(SRC, TGT), '{}-{}.rev'.format(SRC, TGT)]
     data_subdirs = [os.path.join(opt.data_dir, d) for d in data_subdirs]
@@ -22,50 +25,59 @@ def preprocess(opt):
         os.makedirs(d, exist_ok=True)
 
     # arrange data
-    run('python {}/expand_data_in_row_direction.py -n {} -i {} -o {}'.format(SCRIPT_TOOL, N, opt.source_ref,
-        os.path.join(data_subdirs[0], 'test.{}.{}'.format(N, SRC))))
-    run('python {}/expand_data_in_row_direction.py -n {} -i {} -o {}'.format(SCRIPT_TOOL, N, opt.source_ref,
-        os.path.join(data_subdirs[2], 'test.{}.{}'.format(N, SRC))))
-    run('python {}/reverse_every_row.py < {} > {}'.format(SCRIPT_TOOL, os.path.join(data_subdirs[0], 'test.{}.{}'.format(N, SRC)),
-        os.path.join(data_subdirs[1], 'test.{}.{}'.format(N, SRC))))
+    for best in bests:
+        for lp in lenpens:
+            print(f'Arranging {best}-lp{lp}')
+            hyp_fn = os.path.join(opt.hyps_dir, f'hyp.{best}.lp{lp}.{TGT}')
+            run('python {}/expand_data_in_row_direction.py -n {} -i {} -o {}'.format(SCRIPT_TOOL, best, opt.source_ref,
+                os.path.join(data_subdirs[0], 'test.{}.lp{}.{}'.format(best, lp, SRC))))
 
-    run('cp {} {}'.format(opt.hyp, os.path.join(data_subdirs[0], 'test.{}.{}'.format(N, TGT))))
-    run('cp {} {}'.format(opt.hyp, os.path.join(data_subdirs[1], 'test.{}.{}'.format(N, TGT))))
-    run('python {}/reverse_every_row.py < {} > {}'.format(SCRIPT_TOOL, opt.hyp,
-        os.path.join(data_subdirs[2], 'test.{}.{}'.format(N, TGT))))
+            run('python {}/expand_data_in_row_direction.py -n {} -i {} -o {}'.format(SCRIPT_TOOL, best, opt.source_ref,
+                os.path.join(data_subdirs[2], 'test.{}.lp{}.{}'.format(best, lp, SRC))))
+
+            run('python {}/reverse_every_row.py < {} > {}'.format(SCRIPT_TOOL, os.path.join(data_subdirs[0], 'test.{}.lp{}.{}'.format(best, lp, SRC)),
+                os.path.join(data_subdirs[1], 'test.{}.lp{}.{}'.format(best, lp, SRC))))
+
+            run('cp {} {}'.format(hyp_fn, os.path.join(data_subdirs[0], 'test.{}.lp{}.{}'.format(best, lp, TGT))))
+            run('cp {} {}'.format(hyp_fn, os.path.join(data_subdirs[1], 'test.{}.lp{}.{}'.format(best, lp, TGT))))
+            run('python {}/reverse_every_row.py < {} > {}'.format(SCRIPT_TOOL, opt.hyp,
+                os.path.join(data_subdirs[2], 'test.{}.lp{}.{}'.format(best, lp, TGT))))
 
     # preprocess
-    data_bin_subdirs = []
-    for lang in ('{}2{}'.format(SRC, TGT), '{}2{}'.format(TGT, SRC)):
-        for dirc in ('l2r', 'r2l'):
-            data_bin_subdirs.append('{}.{}'.format(lang, dirc))
-    data_bin_subdirs = [os.path.join(opt.data_bin_dir, d) for d in data_bin_subdirs]
-    for d in data_bin_subdirs:
-        os.makedirs(d, exist_ok=True)
-
     if not os.path.isfile(os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC))) or \
         not os.path.isfile(os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT))):
         raise Exception('You need to prepare a dict file in advance.')
 
-    proto_cmd = 'python fairseq/preprocess.py ' \
-                '--source-lang {} --target-lang {} --destdir {} ' \
-                '--workers 64 --testpref {} --srcdict {} --tgtdict {}'
-    run(proto_cmd.format(SRC, TGT, data_bin_subdirs[0],
-                         os.path.join(data_subdirs[0], 'test.{}'.format(N)),
-                         os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC)),
-                         os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT))))
-    run(proto_cmd.format(SRC, TGT, data_bin_subdirs[1],
-                         os.path.join(data_subdirs[2], 'test.{}'.format(N)),
-                         os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC)),
-                         os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT))))
-    run(proto_cmd.format(TGT, SRC, data_bin_subdirs[2],
-                         os.path.join(data_subdirs[0], 'test.{}'.format(N)),
-                         os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT)),
-                         os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC))))
-    run(proto_cmd.format(TGT, SRC, data_bin_subdirs[3],
-                         os.path.join(data_subdirs[1], 'test.{}'.format(N)),
-                         os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT)),
-                         os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC))))
+    for best in bests:
+        for lp in lenpens:
+            data_bin_subdirs = []
+            for lang in ('{}2{}'.format(SRC, TGT), '{}2{}'.format(TGT, SRC)):
+                for dirc in ('l2r', 'r2l'):
+                    data_bin_subdirs.append(f'{lang}.{best}.lp{lp}.{dirc}')
+
+            data_bin_subdirs = [os.path.join(opt.data_bin_dir, d) for d in data_bin_subdirs]
+            for d in data_bin_subdirs:
+                os.makedirs(d, exist_ok=True)
+
+            proto_cmd = 'python fairseq/preprocess.py ' \
+                        '--source-lang {} --target-lang {} --destdir {} ' \
+                        '--workers 64 --testpref {} --srcdict {} --tgtdict {}'
+            run(proto_cmd.format(SRC, TGT, data_bin_subdirs[0],
+                                 os.path.join(data_subdirs[0], f'test.{best}.lp{lp}'),
+                                 os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC)),
+                                 os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT))))
+            run(proto_cmd.format(SRC, TGT, data_bin_subdirs[1],
+                                 os.path.join(data_subdirs[2], f'test.{best}.lp{lp}'),
+                                 os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC)),
+                                 os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT))))
+            run(proto_cmd.format(TGT, SRC, data_bin_subdirs[2],
+                                 os.path.join(data_subdirs[0], f'test.{best}.lp{lp}'),
+                                 os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT)),
+                                 os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC))))
+            run(proto_cmd.format(TGT, SRC, data_bin_subdirs[3],
+                                 os.path.join(data_subdirs[1], f'test.{best}.lp{lp}'),
+                                 os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(TGT)),
+                                 os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC))))
 
 def calc_score(opt):
     SRC = opt.src
@@ -150,7 +162,7 @@ def main():
         raise Exception('standard ratio should be specified.')
 
     preprocess(opt)
-    calc_score(opt)
+    # calc_score(opt)
 
 
 if __name__ == '__main__':
