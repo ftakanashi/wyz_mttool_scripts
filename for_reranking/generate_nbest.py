@@ -38,7 +38,7 @@ def generate(opt):
                 cmd += ' --max-tokens {}'.format(opt.max_tokens)
             elif opt.max_sentences is not None and opt.max_sentences > 0:
                 cmd += ' --max-sentences {}'.format(opt.max_sentences)
-            elif best > 1:
+            elif int(best) > 1:
                 cmd += ' --max-sentences {}'.format(best)    # 不知道为什么但是真实输出的hypothesis的个数除了beam和nbest还和max-sentences有关
             else:
                 raise Exception('Invalid mini-batch size.')
@@ -48,7 +48,7 @@ def generate(opt):
 
             hyp_fn = 'hyp.{}.lp{}.{}'.format(best, lenpen, TGT)
             hyp_fn = os.path.join(opt.output_dir, hyp_fn)
-            run('python {}/extract_hyp_wei.py -i {} -o {} -n {}'.format(SCRIPT_TOOL, log_fn, hyp_fn, best))
+            run('python {}/extract_hyp_wei.py -i {} -o {}'.format(SCRIPT_TOOL, log_fn, hyp_fn))
             if not opt.retain_log:
                 run('rm -f {}'.format(log_fn))
 
