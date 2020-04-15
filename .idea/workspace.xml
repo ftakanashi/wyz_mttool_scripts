@@ -46,7 +46,7 @@
   <component name="ProjectId" id="1a3jAq1TytizxtiY0QjCPpEo9qk" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../fairseq_source/fairseq-0.6.2" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RecentsManager">
@@ -256,7 +256,7 @@
       <workItem from="1586570136902" duration="876000" />
       <workItem from="1586607943993" duration="4099000" />
       <workItem from="1586876565140" duration="234000" />
-      <workItem from="1586922739280" duration="274000" />
+      <workItem from="1586922739280" duration="2807000" />
     </task>
     <servers />
   </component>
