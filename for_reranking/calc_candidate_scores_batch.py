@@ -97,6 +97,7 @@ def calc_score(opt):
     SRC = opt.src
     TGT = opt.tgt
     SCRIPT_TOOL = opt.tool_script_dir
+    FAIRSEQ = opt.fairseq_dir
     # N = opt.repeat_number
     bests = [int(p.split('-')[1]) for p in opt.len_opt.split(',')]
     lenpens = [float(l) for l in opt.lenpen_opt.split(',')]
@@ -114,7 +115,7 @@ def calc_score(opt):
         return ':'.join([os.path.join(model_dir, cate, m) for m in models])
 
     # calculate reference score
-    proto_cmd = 'python fairseq/generate.py {} --path {} --max-sentences 128 --score-reference | tee {}'
+    proto_cmd = 'python {}/generate.py {} --path {} --max-sentences 128 --score-reference | tee {}'
     for best in bests:
         for lp in lenpens:
             for category in categories:
@@ -122,7 +123,7 @@ def calc_score(opt):
                 data_bin_dir = os.path.join(opt.data_bin_dir, f'{lang}.{best}.lp{lp}.{dirc}')
                 generate_log_fn = os.path.join(res_dir, f'{lang}.{best}.lp{lp}.{dirc}.generate.log')
                 score_fn = os.path.join(res_dir, f'{lang}.{best}.lp{lp}.{dirc}.score')
-                run(proto_cmd.format(data_bin_dir, ensemble_model_str(opt.model_dir, category), generate_log_fn))
+                run(proto_cmd.format(FAIRSEQ, data_bin_dir, ensemble_model_str(opt.model_dir, category), generate_log_fn))
                 run('python {}/for_reranking/extract_score.py < {} > {}'.format(SCRIPT_TOOL, generate_log_fn, score_fn))
 
             if opt.add_word_ratio:
