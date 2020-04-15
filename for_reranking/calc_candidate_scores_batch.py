@@ -115,7 +115,7 @@ def calc_score(opt):
         return ':'.join([os.path.join(model_dir, cate, m) for m in models])
 
     # calculate reference score
-    proto_cmd = 'python {}/generate.py {} --path {} --max-sentences 128 --score-reference | tee {}'
+    proto_cmd = 'python {}/generate.py {} --path {} --max-tokens 2048 --score-reference | tee {}'
     for best in bests:
         for lp in lenpens:
             for category in categories:
