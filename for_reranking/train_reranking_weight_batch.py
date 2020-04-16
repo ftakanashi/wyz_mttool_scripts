@@ -109,8 +109,8 @@ def main():
     parser.add_argument('--score-log-dir', required=True,
                         help='Path to the score log dir where total.score and other scores are saved.')
 
-    parser.add_argument('--moses-script-dir', default='/root/work/smt/mosesdecoder/scripts/nbest-rescore')
-    parser.add_argument('--tool-script-dir', default=os.path.join(BASE_DIR, 'wyz_mttool_scripts'))
+    parser.add_argument('--moses-script-dir', default='../../mosesdecoder/scripts/nbest-rescore')
+    parser.add_argument('--tool-script-dir', default='../wyz_mttool_scripts')
 
     parser.add_argument('--len-opt', required=True, help='Length options used when running generate_nbest.py')
     parser.add_argument('--lenpen-opt', required=True, help='Lenpen options used when running generate_nbest.py')

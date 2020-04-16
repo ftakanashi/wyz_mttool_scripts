@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/for_reranking/train_reranking_weight_batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/for_reranking/train_reranking_weight_batch.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -256,7 +256,7 @@
       <workItem from="1586607943993" duration="4099000" />
       <workItem from="1586876565140" duration="234000" />
       <workItem from="1586922739280" duration="10743000" />
-      <workItem from="1587020557048" duration="3624000" />
+      <workItem from="1587020557048" duration="4025000" />
     </task>
     <servers />
   </component>
