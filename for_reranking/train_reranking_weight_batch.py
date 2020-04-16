@@ -40,6 +40,7 @@ def train_and_decode(opt):
 
             # train
             working_dir = os.path.join(BASE_DIR,'rescore-work', f'rescore-work.{best}.lp{lp}')
+            os.makedirs(working_dir, exist_ok=True)
             run('python {}/train.py --nbest {} --ref {} --working-dir {}'.format(
                 MOSES, with_features_fn, opt.ref, working_dir))
 
