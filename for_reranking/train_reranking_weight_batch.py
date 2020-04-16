@@ -21,7 +21,7 @@ def train_and_decode(opt):
     TMP = os.path.join(BASE_DIR, 'tmp')
     os.makedirs(TMP, exist_ok=True)
 
-    RESCORED_HYP_DIR = os.path.join(BASE_DIR, 'rescore-hyps')
+    RESCORED_HYP_DIR = os.path.join(BASE_DIR, 'rescored-hyps')
     os.makedirs(RESCORED_HYP_DIR, exist_ok=True)
 
     bests = [int(p.split('-')[1]) for p in opt.len_opt.split(',')]
