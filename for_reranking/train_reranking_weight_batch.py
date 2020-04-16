@@ -21,7 +21,7 @@ def train_and_decode(opt):
     TMP = os.path.join(BASE_DIR, 'tmp')
     os.makedirs(TMP, exist_ok=True)
 
-    RESCORED_HYP_DIR = os.path.join(BASE_DIR, 'rescored_hyps')
+    RESCORED_HYP_DIR = os.path.join(BASE_DIR, 'rescore-hyps')
     os.makedirs(RESCORED_HYP_DIR, exist_ok=True)
 
     bests = [int(p.split('-')[1]) for p in opt.len_opt.split(',')]
@@ -67,11 +67,11 @@ def calc_bleu(opt):
     # N = opt.repeat_number
     SCRIPT_TOOL = opt.tool_script_dir
 
-    RESCORED_HYP_DIR = os.path.join(BASE_DIR, 'rescored_hyps')
+    RESCORED_HYP_DIR = os.path.join(BASE_DIR, 'rescored-hyps')
     os.makedirs(RESCORED_HYP_DIR, exist_ok=True)
-    CALC_BLEU_DIR = os.path.join(BASE_DIR, 'rescored_hyps', 'calc_bleu')
+    CALC_BLEU_DIR = os.path.join(BASE_DIR, 'rescored-hyps', 'calc-bleu')
     os.makedirs(CALC_BLEU_DIR, exist_ok=True)
-    BLEU_RES_DIR = os.path.join(BASE_DIR, 'rescored_hyps', 'bleu_res')
+    BLEU_RES_DIR = os.path.join(BASE_DIR, 'rescored-hyps', 'bleu-res')
     os.makedirs(BLEU_RES_DIR, exist_ok=True)
 
     MOSES = os.path.dirname(opt.moses_script_dir)
@@ -87,7 +87,7 @@ def calc_bleu(opt):
             run(f'python {SCRIPT_TOOL}/remove_bpe.py < {hyp_fn} | python {SCRIPT_TOOL}/split_into_char.py > {hyp_ch_fn}')
 
             ref_ch_fn = os.path.join(CALC_BLEU_DIR, 'ref.ch.{}'.format(TGT))
-            run(f'python {SCRIPT_TOOL}/remove_bpe.py < opt.ref | python {SCRIPT_TOOL}/split_into_char.py > {ref_ch_fn}')
+            run(f'python {SCRIPT_TOOL}/remove_bpe.py < {opt.ref} | python {SCRIPT_TOOL}/split_into_char.py > {ref_ch_fn}')
 
             run(f'perl {MOSES} {ref_ch_fn} < {hyp_ch_fn} > {BLEU_RES_DIR}/bleu.{best}.lp{lp}')
 
