@@ -74,7 +74,7 @@ def preprocess(opt):
 
             proto_cmd = 'python {}/preprocess.py ' \
                         '--source-lang {} --target-lang {} --destdir {} ' \
-                        '--workers 64 --testpref {} --srcdict {} --tgtdict {}'
+                        '--workers 16 --testpref {} --srcdict {} --tgtdict {}'
             run(proto_cmd.format(FAIRSEQ, SRC, TGT, data_bin_subdirs[0],
                                  os.path.join(data_subdirs[0], f'test.{best}.lp{lp}'),
                                  os.path.join(opt.data_bin_dir, 'dict.{}.txt'.format(SRC)),
