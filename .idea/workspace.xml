@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/extract_hyp_wei.py" beforeDir="false" afterPath="$PROJECT_DIR$/extract_hyp_wei.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/for_reranking/calc_candidate_scores_batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/for_reranking/calc_candidate_scores_batch.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -260,7 +258,7 @@
       <workItem from="1586922739280" duration="10743000" />
       <workItem from="1587020557048" duration="6847000" />
       <workItem from="1587125414165" duration="2893000" />
-      <workItem from="1587181930233" duration="312000" />
+      <workItem from="1587181930233" duration="973000" />
     </task>
     <servers />
   </component>

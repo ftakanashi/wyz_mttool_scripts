@@ -26,8 +26,8 @@ def main():
 
     parser.add_argument('-i', '--input', required=True,
                         help='Path to the input file.')
-    # parser.add_argument('-o', '--output', required=True,
-    #                     help='Path to the output file.')
+    parser.add_argument('-o', '--output', required=True,
+                        help='Path to the output file.')
 
     parser.add_argument('-n', '--repeat-number', type=int, default=1,
                         help='N-best adaption.')
@@ -69,7 +69,7 @@ def main():
                 content_list.append(content_list[-1])
 
 
-    # fo = codecs.open(opt.output, 'w', encoding='utf-8')
+    fo = codecs.open(opt.output, 'w', encoding='utf-8')
     if opt.remain_log_order:
         ite = output_content
     else:
@@ -80,19 +80,19 @@ def main():
         for content in content_list:
             if opt.clear_space:
                 if opt.remain_id:
-                    # fo.write('{}\t'.format(id))
-                    print(f'{id}\t', end='')
-                # fo.write(''.join(content.strip().split(' ')) + '\n')
-                print(''.join(content.strip().split(' ')) + '\n', end='')
+                    fo.write('{}\t'.format(id))
+                    # print(f'{id}\t', end='')
+                fo.write(''.join(content.strip().split(' ')) + '\n')
+                # print(''.join(content.strip().split(' ')) + '\n', end='')
             else:
                 if opt.remain_id:
-                    # fo.write('{}\t'.format(id))
-                    print(f'{id}\t', end='')
-                # fo.write(content.strip() + '\n')
-                print(content.strip() + '\n', end='')
+                    fo.write('{}\t'.format(id))
+                    # print(f'{id}\t', end='')
+                fo.write(content.strip() + '\n')
+                # print(content.strip() + '\n', end='')
 
     fr.close()
-    # fo.close()
+    fo.close()
 
 
 if __name__ == '__main__':
