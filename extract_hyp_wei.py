@@ -26,8 +26,8 @@ def main():
 
     parser.add_argument('-i', '--input', required=True,
                         help='Path to the input file.')
-    parser.add_argument('-o', '--output', required=True,
-                        help='Path to the output file.')
+    # parser.add_argument('-o', '--output', required=True,
+    #                     help='Path to the output file.')
 
     parser.add_argument('-n', '--repeat-number', type=int, default=1,
                         help='N-best adaption.')
