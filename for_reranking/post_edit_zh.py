@@ -4,6 +4,7 @@
 import argparse
 import sys
 import os
+import re
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -34,9 +35,10 @@ def main():
 
     if opt.region_comma:
         for ptn in '省市区县郡':
-            content = content.replace(f'{ptn},', f'{ptn}、')
+            re.sub(f'{ptn}( *)[,，]', f'{ptn}\1、', content)
+            # content = content.replace(f'{ptn},', f'{ptn}、')
 
-    print(content)
+    print(content.strip())
 
 if __name__ == '__main__':
     main()

@@ -31,7 +31,7 @@ def main():
     if opt.slash:
         content = content.replace('/', '／')
 
-    print(content)
+    print(content.strip())
 
 if __name__ == '__main__':
     main()
