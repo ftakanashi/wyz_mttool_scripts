@@ -35,7 +35,7 @@ def main():
 
     if opt.region_comma:
         for ptn in '省市区县郡':
-            re.sub(f'{ptn}( *?)[,，]', f'{ptn}\g<1>、', content)
+            content = re.sub(f'{ptn}( *?)[,，]', f'{ptn}\g<1>、', content)
             # content = content.replace(f'{ptn},', f'{ptn}、')
 
     print(content.strip())

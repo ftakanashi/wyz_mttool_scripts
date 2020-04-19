@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/for_reranking/post_edit_ja.py" beforeDir="false" afterPath="$PROJECT_DIR$/for_reranking/post_edit_ja.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/for_reranking/post_edit_zh.py" beforeDir="false" afterPath="$PROJECT_DIR$/for_reranking/post_edit_zh.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -262,7 +260,7 @@
       <workItem from="1587125414165" duration="2893000" />
       <workItem from="1587181930233" duration="973000" />
       <workItem from="1587208157693" duration="627000" />
-      <workItem from="1587269828575" duration="2397000" />
+      <workItem from="1587269828575" duration="2670000" />
     </task>
     <servers />
   </component>
