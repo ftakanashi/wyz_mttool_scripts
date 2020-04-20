@@ -16,6 +16,7 @@ def main():
     parser.add_argument('--colon', action='store_true')
     parser.add_argument('--question-mark', action='store_true')
     parser.add_argument('--quotation-mark', action='store_true')
+    parser.add_argument('--title-mark', action='store_true')
     parser.add_argument('--region-comma', action='store_true')
 
     opt = parser.parse_args()
@@ -32,6 +33,8 @@ def main():
         content = content.replace('?', '？')
     if opt.quotation_mark:
         content = content.replace('「', '“').replace('」', '”')
+    if opt.title_mark:
+        content = content.replace('『', '《').replace('』', '》')
 
     if opt.region_comma:
         for ptn in '省市区县郡':
