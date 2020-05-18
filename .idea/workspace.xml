@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/NFR/backoff-aug.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/build_nfr_dataset.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/build_nfr_dataset_mt.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/decoding_xml.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/nfr_or_backoff.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/remove_blank.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/remove_non_match.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/find_max_len.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/remove_duplicate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/build_nfr_dataset_sbert.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -292,6 +284,7 @@
       <workItem from="1589554473716" duration="1150000" />
       <workItem from="1589593841550" duration="1059000" />
       <workItem from="1589684368439" duration="2110000" />
+      <workItem from="1589766000707" duration="11790000" />
     </task>
     <servers />
   </component>
