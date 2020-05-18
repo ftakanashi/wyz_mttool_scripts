@@ -2,6 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
+      <change afterPath="$PROJECT_DIR$/NFR/backoff-aug.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/build_nfr_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/build_nfr_dataset_mt.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/decoding_xml.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/nfr_or_backoff.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/remove_blank.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/remove_non_match.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/find_max_len.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/remove_duplicate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,11 +53,15 @@
   </component>
   <component name="ProjectId" id="1a3jAq1TytizxtiY0QjCPpEo9qk" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../fairseq_source/fairseq-0.6.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../LIB_SOURCE_CODE/sentence-transformers" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PythonProjects\wyz_mttool_scripts\NFR" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\PythonProjects\wyz_mttool_scripts\for_interpretor" />
     </key>
@@ -65,7 +78,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.extract_hyp_wei">
+  <component name="RunManager" selected="Python.tmp">
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="C:\Program Files\Git\bin\bash.exe" />
@@ -97,7 +110,7 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <configuration name="convert" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="decoding_xml" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wyz_mttool_scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -105,13 +118,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tmp" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/NFR" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tmp/convert.py" />
-      <option name="PARAMETERS" value="-i valid.ja" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NFR/decoding_xml.py" />
+      <option name="PARAMETERS" value="sample" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -185,7 +198,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="tmp" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wyz_mttool_scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -193,13 +206,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tmp" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/NFR" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tmp/test.py" />
-      <option name="PARAMETERS" value="dev.raw.zh" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NFR/tmp.py" />
+      <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -217,19 +230,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.convert" />
-      <item itemvalue="Python.test" />
       <item itemvalue="Python.reverse_sents" />
       <item itemvalue="Python.make_komagiri_dataset" />
       <item itemvalue="Python.extract_hyp_wei" />
+      <item itemvalue="Python.decoding_xml" />
+      <item itemvalue="Python.tmp" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.tmp" />
+        <item itemvalue="Python.decoding_xml" />
         <item itemvalue="Python.extract_hyp_wei" />
         <item itemvalue="Python.make_komagiri_dataset" />
         <item itemvalue="Python.reverse_sents" />
-        <item itemvalue="Python.test" />
-        <item itemvalue="Python.convert" />
       </list>
     </recent_temporary>
   </component>
@@ -261,7 +274,24 @@
       <workItem from="1587181930233" duration="973000" />
       <workItem from="1587208157693" duration="627000" />
       <workItem from="1587269828575" duration="4462000" />
-      <workItem from="1587370887312" duration="599000" />
+      <workItem from="1587370887312" duration="4163000" />
+      <workItem from="1587452567827" duration="653000" />
+      <workItem from="1587542144243" duration="2731000" />
+      <workItem from="1587614000233" duration="819000" />
+      <workItem from="1588040107191" duration="1274000" />
+      <workItem from="1588125116448" duration="41000" />
+      <workItem from="1588491005045" duration="1237000" />
+      <workItem from="1588732589067" duration="8532000" />
+      <workItem from="1588828330347" duration="16269000" />
+      <workItem from="1589073881854" duration="7113000" />
+      <workItem from="1589176288852" duration="1616000" />
+      <workItem from="1589278950363" duration="608000" />
+      <workItem from="1589331495805" duration="16541000" />
+      <workItem from="1589418386538" duration="1200000" />
+      <workItem from="1589509410314" duration="10693000" />
+      <workItem from="1589554473716" duration="1150000" />
+      <workItem from="1589593841550" duration="1059000" />
+      <workItem from="1589684368439" duration="2110000" />
     </task>
     <servers />
   </component>
@@ -291,5 +321,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/wyz_mttool_scripts$extract_hyp_wei.coverage" NAME="extract_hyp_wei Coverage Results" MODIFIED="1586270490882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$decoding_xml.coverage" NAME="decoding_xml Coverage Results" MODIFIED="1588733049498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$tmp.coverage" NAME="tmp Coverage Results" MODIFIED="1588829950271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR" />
   </component>
 </project>
