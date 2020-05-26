@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/NFR/build_nfr_dataset_sbert.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/by_shards/2.prebuild_embedding.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/by_shards/3.build_sbert_dataset_splited.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/by_shards/analyze_match.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/by_shards/build_sbert_dataset_split.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/by_shards/run_splited.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/backoff-aug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/build_nfr_dataset_sbert.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/nfr_or_backoff.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/remove_blank.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,15 +55,16 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../LIB_SOURCE_CODE/sentence-transformers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../LIB_SOURCE_CODE/fairseq-0.6.2" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PythonProjects\wyz_mttool_scripts\NFR\by_shards" />
+      <recent name="D:\PythonProjects\wyz_mttool_scripts\for_interpretor" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\PythonProjects\wyz_mttool_scripts\NFR" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\PythonProjects\wyz_mttool_scripts\for_interpretor" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -284,7 +293,14 @@
       <workItem from="1589554473716" duration="1150000" />
       <workItem from="1589593841550" duration="1059000" />
       <workItem from="1589684368439" duration="2110000" />
-      <workItem from="1589766000707" duration="11790000" />
+      <workItem from="1589766000707" duration="20121000" />
+      <workItem from="1589852362523" duration="2317000" />
+      <workItem from="1589950163839" duration="18313000" />
+      <workItem from="1590027538576" duration="6625000" />
+      <workItem from="1590198293780" duration="11951000" />
+      <workItem from="1590286730853" duration="9573000" />
+      <workItem from="1590372319071" duration="15244000" />
+      <workItem from="1590455839794" duration="2519000" />
     </task>
     <servers />
   </component>
