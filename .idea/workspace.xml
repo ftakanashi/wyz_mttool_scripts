@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="">
-      <change afterPath="$PROJECT_DIR$/NFR/by_shards/2.prebuild_embedding.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/by_shards/3.build_sbert_dataset_splited.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/by_shards/analyze_match.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/by_shards/build_sbert_dataset_split.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/by_shards/run_splited.sh" afterDir="false" />
+    <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="默认的">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/data_building/by_bert_score/1.prepare_idf_dict.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/data_building/by_edit_distance/2.merge.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/data_building/by_laser/2.calc_by_laser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nto1_parallel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/merge_match.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/remove_non_match.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/reorganize_match.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/show_match_count.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/backoff-aug.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/build_nfr_dataset_sbert.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/nfr_or_backoff.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/remove_blank.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/build_nfr_dataset.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/build_sbert_dataset.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/by_shards/1.split_corpus.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/by_shards/2.prebuild_embedding.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/by_shards/3.build_sbert_dataset_splited.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/by_shards/3.build_sbert_dataset_splited_gpu.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/by_shards/4.analyze_match.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/by_shards/build_sbert_dataset_split.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/by_shards/run_splited.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/remove_non_match.py" beforeDir="false" afterPath="$PROJECT_DIR$/NFR/remove_non_match.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,10 +63,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1a3jAq1TytizxtiY0QjCPpEo9qk" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../LIB_SOURCE_CODE/fairseq-0.6.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
   </component>
   <component name="RecentsManager">
@@ -64,6 +77,7 @@
       <recent name="D:\PythonProjects\wyz_mttool_scripts\for_interpretor" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PythonProjects\wyz_mttool_scripts\NFR\data_building\s2t_manner" />
       <recent name="D:\PythonProjects\wyz_mttool_scripts\NFR" />
     </key>
   </component>
@@ -79,7 +93,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.tmp">
+  <component name="RunManager" selected="Python.build_bs_dataset">
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="C:\Program Files\Git\bin\bash.exe" />
@@ -110,6 +124,28 @@
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
       <method />
+    </configuration>
+    <configuration name="build_bs_dataset" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="wyz_mttool_scripts" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/NFR/data_building/by_bert_score" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NFR/data_building/by_bert_score/build_bs_dataset.py" />
+      <option name="PARAMETERS" value="-s test.en -tms test.en -o test.match" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="decoding_xml" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wyz_mttool_scripts" />
@@ -177,28 +213,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="reverse_sents" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="wyz_mttool_scripts" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reverse_sents.py" />
-      <option name="PARAMETERS" value="-i tmp.txt -o tmp.rev.txt" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="tmp" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wyz_mttool_scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -231,19 +245,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.reverse_sents" />
       <item itemvalue="Python.make_komagiri_dataset" />
       <item itemvalue="Python.extract_hyp_wei" />
       <item itemvalue="Python.decoding_xml" />
       <item itemvalue="Python.tmp" />
+      <item itemvalue="Python.build_bs_dataset" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.build_bs_dataset" />
         <item itemvalue="Python.tmp" />
         <item itemvalue="Python.decoding_xml" />
         <item itemvalue="Python.extract_hyp_wei" />
         <item itemvalue="Python.make_komagiri_dataset" />
-        <item itemvalue="Python.reverse_sents" />
       </list>
     </recent_temporary>
   </component>
@@ -300,8 +314,38 @@
       <workItem from="1590198293780" duration="11951000" />
       <workItem from="1590286730853" duration="9573000" />
       <workItem from="1590372319071" duration="15244000" />
-      <workItem from="1590455839794" duration="2519000" />
+      <workItem from="1590455839794" duration="7057000" />
+      <workItem from="1590579224546" duration="199000" />
+      <workItem from="1590590119284" duration="1486000" />
+      <workItem from="1590715765897" duration="35000" />
+      <workItem from="1590822650253" duration="4194000" />
+      <workItem from="1590883277019" duration="756000" />
+      <workItem from="1590895691253" duration="9904000" />
+      <workItem from="1590973713080" duration="1701000" />
+      <workItem from="1591067461050" duration="3146000" />
+      <workItem from="1591182708734" duration="2125000" />
+      <workItem from="1591321943972" duration="979000" />
+      <workItem from="1591439234707" duration="10529000" />
+      <workItem from="1591499009392" duration="9671000" />
+      <workItem from="1591752401274" duration="32000" />
+      <workItem from="1591955714254" duration="1876000" />
+      <workItem from="1592008425226" duration="17569000" />
+      <workItem from="1592102303288" duration="2780000" />
+      <workItem from="1592221906873" duration="30000" />
+      <workItem from="1592356751624" duration="8564000" />
+      <workItem from="1592476319806" duration="2614000" />
+      <workItem from="1592529224059" duration="589000" />
+      <workItem from="1592531216935" duration="1302000" />
+      <workItem from="1592809119694" duration="1811000" />
     </task>
+    <task id="LOCAL-00001" summary="默认的">
+      <created>1590458480231</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1590458480231</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,7 +372,12 @@
       <collection />
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="默认的" />
+    <option name="LAST_COMMIT_MESSAGE" value="默认的" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$build_bs_dataset.coverage" NAME="build_bs_dataset Coverage Results" MODIFIED="1591507965946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/by_bert_score" />
     <SUITE FILE_PATH="coverage/wyz_mttool_scripts$extract_hyp_wei.coverage" NAME="extract_hyp_wei Coverage Results" MODIFIED="1586270490882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/wyz_mttool_scripts$decoding_xml.coverage" NAME="decoding_xml Coverage Results" MODIFIED="1588733049498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR" />
     <SUITE FILE_PATH="coverage/wyz_mttool_scripts$tmp.coverage" NAME="tmp Coverage Results" MODIFIED="1588829950271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR" />

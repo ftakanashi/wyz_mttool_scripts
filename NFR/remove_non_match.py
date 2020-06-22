@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 
 import argparse
+import os
 
 def main():
     parser = argparse.ArgumentParser()
@@ -38,7 +39,12 @@ def main():
     for fw in (fw_1,fw_2,fw_3,fw_4):
         fw.close()
 
-    print('ATTENTION: Do you need to manually remove the blank symbols?')
+    flag = input('ATTENTION: Do you need to manually remove the blank symbols?(y/n)')
+    if flag == 'y':
+        cmd = 'sed -i \'s/@@@ \\[BLANK\\] *//g\' ' + f'{opt.prefix}.with_match.{opt.src}'
+        os.system(cmd)
+        cmd = 'sed -i \'s/@@@ \\[BLANK\\] @@@ \\[BLANK\\] @@@ \\[BLANK\\]//g\' ' + f'{opt.prefix}.non_match.{opt.src}'
+        os.system(cmd)
 
 if __name__ == '__main__':
     main()

@@ -8,7 +8,7 @@ import collections
 def process(opt):
 
     container = collections.defaultdict(list)
-    for shard_i in range(opt.max_shard_i):
+    for shard_i in range(opt.max_shard_i + 1):
         fn = f'{opt.match_prefix}.{shard_i}'
         print(f'Processing {fn}...')
         with open(fn, 'r') as f:
@@ -25,6 +25,11 @@ def process(opt):
         src_lines = f.readlines()
     with open(tgt_fn, 'r') as f:
         tgt_lines = f.readlines()
+    with open(opt.tmt, 'r') as f:
+        tmt_lines = f.readlines()
+
+    assert len(src_lines) == len(tgt_lines)
+    assert len(container) == len(src_lines)
 
     src_wf = open(f'{opt.prefix}.{opt.output_flag}.{opt.src}', 'w')
     tgt_wf = open(f'{opt.prefix}.{opt.output_flag}.{opt.tgt}', 'w')
@@ -32,9 +37,14 @@ def process(opt):
         candidates_info = container[row_i]
         candidates_info.sort(key=lambda x:x[0], reverse=True)
         tmp = [src_lines[row_i].strip(), ]
-        for top_i in range(opt.topk):
-            cand_v, cand_i = candidates_info[top_i]
-            tmp.append(tgt_lines[cand_i].strip())
+        for cand_v, cand_i in candidates_info:
+            cand_str = tmt_lines[cand_i].strip()
+            if cand_v > opt.match_prob_threshold and cand_str not in tmp:
+                tmp.append(cand_str)
+                if len(tmp) == opt.topk + 1:
+                    break
+        while len(tmp) < opt.topk + 1:
+            tmp.append(opt.blank_symbol)
 
         aug_src = opt.concat_symbol.join(tmp)
         src_wf.write(aug_src + '\n')
@@ -49,6 +59,7 @@ def main():
     parser.add_argument('-p', '--prefix', required=True)
     parser.add_argument('-s', '--src', required=True)
     parser.add_argument('-t', '--tgt', required=True)
+    parser.add_argument('-tmt', required=True)
 
     parser.add_argument('--output-flag', default='sbert',
                         help='DEFAULT: sbert')
@@ -58,9 +69,16 @@ def main():
                         help='DEFAULT: 9')
     parser.add_argument('--topk', default=3, type=int,
                         help='DEFAULT: 3')
+    parser.add_argument('--match-prob-threshold', default=0.5, type=float,
+                        help='DEFAULT: 0.5')
     parser.add_argument('--concat-symbol', default=' @@@ ',
                         help='DEFAULT: " @@@ "')
+    parser.add_argument('--blank-symbol', default='[BLANK]',
+                        help='DEFAULT: [BLANK]')
 
     opt = parser.parse_args()
 
     process(opt)
+
+if __name__ == '__main__':
+    main()
