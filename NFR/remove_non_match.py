@@ -39,7 +39,7 @@ def main():
     for fw in (fw_1,fw_2,fw_3,fw_4):
         fw.close()
 
-    flag = input('ATTENTION: Do you need to manually remove the blank symbols?(y/n)')
+    flag = input('ATTENTION: Do you want to remove all the blank symbols?(y/n)')
     if flag == 'y':
         cmd = 'sed -i \'s/@@@ \\[BLANK\\] *//g\' ' + f'{opt.prefix}.with_match.{opt.src}'
         os.system(cmd)

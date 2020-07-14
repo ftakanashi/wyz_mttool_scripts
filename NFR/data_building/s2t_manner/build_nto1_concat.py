@@ -3,11 +3,15 @@
 
 import argparse
 from tqdm import tqdm
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def new_fn(fn, flag):
+    fn = os.path.basename(fn)
     e = fn.split('.')
     n = '.'.join(e[:-1])
-    return f'{n}.{flag}.{e[-1]}'
+    return os.path.join(BASE_DIR, f'{n}.{flag}.{e[-1]}')
 
 def process(opt):
     print('Reading Source File...')
@@ -73,6 +77,12 @@ def process(opt):
     wf = open(new_fn(opt.src, opt.output_flag), 'w')
     for aug_src_line in aug_src_lines:
         wf.write(f'{aug_src_line.strip()}\n')
+
+    print('Writing a copy of target lines(for consistency only)...')
+    wf = open(new_fn(opt.tgt, opt.output_flag), 'w')
+    for tgt_line in tgt_lines:
+        wf.write(f'{tgt_line.strip()}\n')
+
 
 def main():
     parser = argparse.ArgumentParser()

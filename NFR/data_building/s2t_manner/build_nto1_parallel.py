@@ -3,10 +3,14 @@
 
 import argparse
 from tqdm import tqdm
+import os
 
-def get_fn(fn, suf):
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+def new_fn(fn, flag):
+    fn = os.path.basename(fn)
     e = fn.split('.')
-    return '.'.join(e[:-1]) + f'.{suf}.{e[-1]}'
+    n = '.'.join(e[:-1])
+    return os.path.join(BASE_DIR, f'{n}.{flag}.{e[-1]}')
 
 def process(opt):
     print('Reading Source File...')
@@ -64,15 +68,21 @@ def process(opt):
             for match_src_line in match_src_lines:
                 aug_src_lines.append(f'{match_src_line}{opt.concat_symbol}{src_line}')
                 aug_tgt_lines.append(f'{tgt_line.strip()}\n')
+                if opt.include_perfect_match and opt.only_best_match:    # which means augmenting test data
+                    break    # only get the candidate with highest score
+        else:
+            aug_src_lines.append(src_line)
+            aug_tgt_lines.append(tgt_line)
+
         i += 1
 
     print('Writing augmented source lines...')
-    wf = open(get_fn(opt.src, opt.output_flag), 'w')
+    wf = open(new_fn(opt.src, opt.output_flag), 'w')
     for aug_src_line in aug_src_lines:
         wf.write(f'{aug_src_line.strip()}\n')
 
     print('Writing augmented target lines...')
-    wf = open(get_fn(opt.tgt, opt.output_flag), 'w')
+    wf = open(new_fn(opt.tgt, opt.output_flag), 'w')
     for aug_tgt_line in aug_tgt_lines:
         wf.write(f'{aug_tgt_line.strip()}\n')
 
@@ -97,6 +107,7 @@ def main():
 
     parser.add_argument('--permit-duplicate-match', action='store_true', default=False)
     parser.add_argument('--include-perfect-match', action='store_true', default=False)
+    parser.add_argument('--only-best-match', action='store_true', default=False)
 
     opt = parser.parse_args()
 

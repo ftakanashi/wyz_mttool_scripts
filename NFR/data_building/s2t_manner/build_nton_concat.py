@@ -3,11 +3,15 @@
 
 import argparse
 from tqdm import tqdm
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def new_fn(fn, flag):
+    fn = os.path.basename(fn)
     e = fn.split('.')
     n = '.'.join(e[:-1])
-    return f'{n}.{flag}.{e[-1]}'
+    return os.path.join(BASE_DIR, f'{n}.{flag}.{e[-1]}')
 
 def process(opt):
     print('Reading Source File...')
@@ -47,48 +51,35 @@ def process(opt):
     print('Processing source lines...')
     i = 0
     aug_src_lines = []
+    aug_tgt_lines = []
     for src_line in tqdm(src_lines, mininterval=1, ncols=50):
+        tgt_line = tgt_lines[i]
         match_line_info = match_info[i]
         match_src_lines = []
+        match_tgt_lines = []
         for match_i, match_v in sorted(match_line_info, key=lambda x:x[1], reverse=True):
             if len(match_src_lines) >= opt.topk or match_v <= opt.threshold:
                 break
-            cand = tms_lines[match_i]
-            if src_line == cand and not opt.include_perfect_match:
+            src_cand = tms_lines[match_i]
+            tgt_cand = tmt_lines[match_i]
+            if src_line == src_cand and not opt.include_perfect_match:
                 continue
-            if opt.permit_duplicate_match or cand not in match_src_lines:
-                match_src_lines.append(cand)
+            if opt.permit_duplicate_match or src_cand not in match_src_lines:
+                match_src_lines.append(src_cand)
+                match_tgt_lines.append(tgt_cand)
 
         if len(match_src_lines) > 0:
             aug_match_src_line = opt.concat_symbol.join(match_src_lines)
-            aug_src_line = f'{aug_match_src_line}{opt.concat_symbol}{src_line}'
-        else:
-            aug_src_line = src_line
-        aug_src_lines.append(aug_src_line)
-        i += 1
-
-    print('Processing target lines...')
-    i = 0
-    aug_tgt_lines = []
-    for tgt_line in tqdm(tgt_lines, mininterval=1, ncols=50):
-        match_line_info = match_info[i]
-        match_tgt_lines = []
-        for match_i, match_v in sorted(match_line_info, key=lambda x:x[1], reverse=True):
-            if len(match_tgt_lines) >= opt.topk or match_v <= opt.threshold:
-                break
-            if tms_lines[match_i] == src_lines[i] and not opt.include_perfect_match:
-                continue
-            cand = tmt_lines[match_i]
-            if opt.permit_duplicate_match or cand not in match_tgt_lines:
-                match_tgt_lines.append(cand)
-
-        if len(match_tgt_lines) > 0:
             aug_match_tgt_line = opt.concat_symbol.join(match_tgt_lines)
+            aug_src_line = f'{aug_match_src_line}{opt.concat_symbol}{src_line}'
             aug_tgt_line = f'{aug_match_tgt_line}{opt.concat_symbol}{tgt_line}'
         else:
+            aug_src_line = src_line
             aug_tgt_line = tgt_line
+        aug_src_lines.append(aug_src_line)
         aug_tgt_lines.append(aug_tgt_line)
         i += 1
+
 
     print('Writing augmented source lines...')
     wf = open(new_fn(opt.src, opt.output_flag), 'w')

@@ -21,6 +21,9 @@ def process(opt):
     with open(opt.src, 'r') as f:
         src_lines = [l.strip() for l in f]
 
+    with open(opt.tgt, 'r') as f:
+        tgt_lines = [l.strip() for l in f]
+
     with open(opt.tmt, 'r') as f:
         tmt_lines = [l.strip() for l in f]
 
@@ -31,9 +34,11 @@ def process(opt):
 
     merged_match_lines = merge_match_lines(opt.match_line_concat_symbol, *match_lines_set)
 
-    fw = open(opt.output, 'w')
+    fw_src = open(opt.src_output, 'w')
+    fw_tgt = open(opt.tgt_output, 'w')
 
     for i, src_line in enumerate(src_lines):
+        tgt_line = tgt_lines[i]
         match_info_line = merged_match_lines[i]
         if match_info_line.strip() == '':
             match_info = []
@@ -56,12 +61,15 @@ def process(opt):
         while len(aug_query) < opt.topk and len(match_info) > 0:
             aug_query.append(opt.blank_symbol)
 
-        aug_query.insert(0, src_line)
-        aug_query = opt.concat_symbol.join(aug_query)
+        # aug_query.insert(0, src_line)
+        # aug_query = opt.concat_symbol.join(aug_query)
+        aug_src_line = opt.concat_symbol.join([src_line] + aug_query)
+        aug_tgt_line = opt.concat_symbol.join(aug_query + [tgt_line])
 
-        fw.write(f'{aug_query}\n')
+        fw_src.write(f'{aug_src_line}\n')
+        fw_tgt.write(f'{aug_tgt_line}\n')
 
-    fw.close()
+    fw_src.close(), fw_tgt.close()
 
 
 def main():
@@ -69,7 +77,10 @@ def main():
 
     parser.add_argument('-s', '--src', required=True,
                         help='Original corpus.')
-    parser.add_argument('-o', '--output', required=True)
+    parser.add_argument('-t', '--tgt', required=True,
+                        help='Original target corpus.')
+    parser.add_argument('-so', '--src-output', required=True)
+    parser.add_argument('-to', '--tgt-output', required=True)
     parser.add_argument('--match-file', nargs='+', required=True,
                         help='Specify the match files which take records of laser matching. Multiple inputs are supported.')
     parser.add_argument('-tmt', required=True,

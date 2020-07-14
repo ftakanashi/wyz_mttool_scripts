@@ -2,26 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="默认的">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/data_building/by_bert_score/1.prepare_idf_dict.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/data_building/by_edit_distance/2.merge.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/data_building/by_laser/2.calc_by_laser.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nto1_parallel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/merge_match.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/remove_non_match.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/reorganize_match.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/show_match_count.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/data_building/divide_with_non_match.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/data_building/nfr_force/2.merge.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/extract_fuzzy_matches.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/keep_last_translation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/select_nton_parallel_cand.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/build_nfr_dataset.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/build_sbert_dataset.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/by_shards/1.split_corpus.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/by_shards/2.prebuild_embedding.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/by_shards/3.build_sbert_dataset_splited.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/by_shards/3.build_sbert_dataset_splited_gpu.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/by_shards/4.analyze_match.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/by_shards/build_sbert_dataset_split.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/by_shards/run_splited.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/wyz_mttool_scripts.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/wyz_mttool_scripts.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/data_building/by_edit_distance/2.merge.py" beforeDir="false" afterPath="$PROJECT_DIR$/NFR/data_building/by_edit_distance/2.merge.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nto1_concat.py" beforeDir="false" afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nto1_concat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nto1_parallel.py" beforeDir="false" afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nto1_parallel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nton_concat.py" beforeDir="false" afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nton_concat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nton_parallel.py" beforeDir="false" afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nton_parallel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NFR/remove_non_match.py" beforeDir="false" afterPath="$PROJECT_DIR$/NFR/remove_non_match.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -68,17 +61,18 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../LIB_SOURCE_CODE/OpenNMT-py-flat" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PythonProjects\wyz_mttool_scripts\NFR\data_building\nfr_force" />
+      <recent name="D:\PythonProjects\wyz_mttool_scripts\NFR\data_building\s2t_manner" />
+      <recent name="D:\PythonProjects\wyz_mttool_scripts\NFR" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\PythonProjects\wyz_mttool_scripts\NFR\by_shards" />
       <recent name="D:\PythonProjects\wyz_mttool_scripts\for_interpretor" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\PythonProjects\wyz_mttool_scripts\NFR\data_building\s2t_manner" />
-      <recent name="D:\PythonProjects\wyz_mttool_scripts\NFR" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -93,7 +87,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.build_bs_dataset">
+  <component name="RunManager" selected="Python.jp">
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="C:\Program Files\Git\bin\bash.exe" />
@@ -169,7 +163,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="extract_hyp_wei" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="jp" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wyz_mttool_scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -177,13 +171,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Desktop" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extract_hyp_wei.py" />
-      <option name="PARAMETERS" value="-i generate.20.log -o test.zh -n 20" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Desktop/jp.py" />
+      <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -191,7 +185,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="make_komagiri_dataset" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="select_nton_parallel_cand" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wyz_mttool_scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -199,13 +193,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/NFR/data_building/s2t_manner" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/make_komagiri_dataset.py" />
-      <option name="PARAMETERS" value="-src tmp/test.de -tgt tmp/test.en -align tmp/test.align" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NFR/data_building/s2t_manner/select_nton_parallel_cand.py" />
+      <option name="PARAMETERS" value="-i hyp.lstm.ed-parallel.nto1-nfr.raw.du -o test.res -s ori_src.tmp.en" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -245,19 +239,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.make_komagiri_dataset" />
-      <item itemvalue="Python.extract_hyp_wei" />
       <item itemvalue="Python.decoding_xml" />
       <item itemvalue="Python.tmp" />
       <item itemvalue="Python.build_bs_dataset" />
+      <item itemvalue="Python.select_nton_parallel_cand" />
+      <item itemvalue="Python.jp" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.jp" />
+        <item itemvalue="Python.select_nton_parallel_cand" />
         <item itemvalue="Python.build_bs_dataset" />
         <item itemvalue="Python.tmp" />
         <item itemvalue="Python.decoding_xml" />
-        <item itemvalue="Python.extract_hyp_wei" />
-        <item itemvalue="Python.make_komagiri_dataset" />
       </list>
     </recent_temporary>
   </component>
@@ -336,7 +330,19 @@
       <workItem from="1592476319806" duration="2614000" />
       <workItem from="1592529224059" duration="589000" />
       <workItem from="1592531216935" duration="1302000" />
-      <workItem from="1592809119694" duration="1811000" />
+      <workItem from="1592809119694" duration="4525000" />
+      <workItem from="1592870028566" duration="6407000" />
+      <workItem from="1592973160237" duration="1368000" />
+      <workItem from="1593001598694" duration="266000" />
+      <workItem from="1593002123400" duration="1189000" />
+      <workItem from="1593172909515" duration="2967000" />
+      <workItem from="1593216960996" duration="596000" />
+      <workItem from="1593221912753" duration="599000" />
+      <workItem from="1593606789555" duration="74000" />
+      <workItem from="1593825594404" duration="11686000" />
+      <workItem from="1594259419622" duration="2946000" />
+      <workItem from="1594530791045" duration="6322000" />
+      <workItem from="1594600127055" duration="9514000" />
     </task>
     <task id="LOCAL-00001" summary="默认的">
       <created>1590458480231</created>
@@ -376,10 +382,30 @@
     <MESSAGE value="默认的" />
     <option name="LAST_COMMIT_MESSAGE" value="默认的" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/NFR/data_building/s2t_manner/select_nton_parallel_cand.py</url>
+          <line>64</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/wyz_mttool_scripts$build_bs_dataset.coverage" NAME="build_bs_dataset Coverage Results" MODIFIED="1591507965946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/by_bert_score" />
     <SUITE FILE_PATH="coverage/wyz_mttool_scripts$extract_hyp_wei.coverage" NAME="extract_hyp_wei Coverage Results" MODIFIED="1586270490882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/wyz_mttool_scripts$decoding_xml.coverage" NAME="decoding_xml Coverage Results" MODIFIED="1588733049498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$jp.coverage" NAME="jp Coverage Results" MODIFIED="1594623058398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop" />
     <SUITE FILE_PATH="coverage/wyz_mttool_scripts$tmp.coverage" NAME="tmp Coverage Results" MODIFIED="1588829950271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$select_nton_parallel_cand.coverage" NAME="select_nton_parallel_cand Coverage Results" MODIFIED="1593834960055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/s2t_manner" />
   </component>
 </project>
