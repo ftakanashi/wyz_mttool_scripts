@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="默认的">
-      <change afterPath="$PROJECT_DIR$/NFR/data_building/divide_with_non_match.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/data_building/nfr_force/2.merge.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/extract_fuzzy_matches.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/keep_last_translation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/select_nton_parallel_cand.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/data_building/tag_by_align/build_squad.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/data_building/tag_by_align/tag_by_align.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/wyz_mttool_scripts.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/wyz_mttool_scripts.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/data_building/by_edit_distance/2.merge.py" beforeDir="false" afterPath="$PROJECT_DIR$/NFR/data_building/by_edit_distance/2.merge.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nto1_concat.py" beforeDir="false" afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nto1_concat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nto1_parallel.py" beforeDir="false" afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nto1_parallel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nton_concat.py" beforeDir="false" afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nton_concat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nton_parallel.py" beforeDir="false" afterPath="$PROJECT_DIR$/NFR/data_building/s2t_manner/build_nton_parallel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NFR/remove_non_match.py" beforeDir="false" afterPath="$PROJECT_DIR$/NFR/remove_non_match.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +76,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.jp">
+  <component name="RunManager" selected="Python.build_squad">
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="C:\Program Files\Git\bin\bash.exe" />
@@ -141,7 +130,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="decoding_xml" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="build_squad" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wyz_mttool_scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -149,13 +138,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/NFR" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/NFR/data_building/tag_by_align" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NFR/decoding_xml.py" />
-      <option name="PARAMETERS" value="sample" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NFR/data_building/tag_by_align/build_squad.py" />
+      <option name="PARAMETERS" value="-s train.en -t train.fr -a train.align -o train.json" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -239,19 +228,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.decoding_xml" />
       <item itemvalue="Python.tmp" />
       <item itemvalue="Python.build_bs_dataset" />
       <item itemvalue="Python.select_nton_parallel_cand" />
       <item itemvalue="Python.jp" />
+      <item itemvalue="Python.build_squad" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.build_squad" />
         <item itemvalue="Python.jp" />
         <item itemvalue="Python.select_nton_parallel_cand" />
         <item itemvalue="Python.build_bs_dataset" />
         <item itemvalue="Python.tmp" />
-        <item itemvalue="Python.decoding_xml" />
       </list>
     </recent_temporary>
   </component>
@@ -343,6 +332,8 @@
       <workItem from="1594259419622" duration="2946000" />
       <workItem from="1594530791045" duration="6322000" />
       <workItem from="1594600127055" duration="9514000" />
+      <workItem from="1594702821294" duration="1314000" />
+      <workItem from="1594728525851" duration="8218000" />
     </task>
     <task id="LOCAL-00001" summary="默认的">
       <created>1590458480231</created>
@@ -407,5 +398,6 @@
     <SUITE FILE_PATH="coverage/wyz_mttool_scripts$jp.coverage" NAME="jp Coverage Results" MODIFIED="1594623058398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop" />
     <SUITE FILE_PATH="coverage/wyz_mttool_scripts$tmp.coverage" NAME="tmp Coverage Results" MODIFIED="1588829950271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR" />
     <SUITE FILE_PATH="coverage/wyz_mttool_scripts$select_nton_parallel_cand.coverage" NAME="select_nton_parallel_cand Coverage Results" MODIFIED="1593834960055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/s2t_manner" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$build_squad.coverage" NAME="build_squad Coverage Results" MODIFIED="1594740613322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/tag_by_align" />
   </component>
 </project>
