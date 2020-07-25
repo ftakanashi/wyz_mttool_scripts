@@ -6,7 +6,6 @@
       <change afterPath="$PROJECT_DIR$/NFR/data_building/tag_by_align/tag_by_align.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,9 +30,6 @@
     <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="wyz_mttool_scripts" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -44,14 +40,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JupyterTrust" id="740d90dc-7871-47e2-a28e-4267bad23c05" />
   <component name="ProjectId" id="1a3jAq1TytizxtiY0QjCPpEo9qk" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../LIB_SOURCE_CODE/OpenNMT-py-flat" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -64,19 +68,7 @@
       <recent name="D:\PythonProjects\wyz_mttool_scripts\for_interpretor" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Python.build_squad">
+  <component name="RunManager" selected="Python.identify_related_words">
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="C:\Program Files\Git\bin\bash.exe" />
@@ -108,28 +100,6 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <configuration name="build_bs_dataset" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="wyz_mttool_scripts" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/NFR/data_building/by_bert_score" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NFR/data_building/by_bert_score/build_bs_dataset.py" />
-      <option name="PARAMETERS" value="-s test.en -tms test.en -o test.match" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="build_squad" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wyz_mttool_scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -144,7 +114,29 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NFR/data_building/tag_by_align/build_squad.py" />
-      <option name="PARAMETERS" value="-s train.en -t train.fr -a train.align -o train.json" />
+      <option name="PARAMETERS" value="-s train.de -t train.en -a train.align -o train.json --do-t2s --only-sure --split-multiple-answers" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="identify_related_words" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="wyz_mttool_scripts" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/NFR/data_building/tag_by_align" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NFR/data_building/tag_by_align/identify_related_words.py" />
+      <option name="PARAMETERS" value="-s src.en -tms tms.en -tmt tmt.fr --match-file test.match -a train.align -o test.relate" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -174,6 +166,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="prediction2align" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="wyz_mttool_scripts" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/NFR/data_building/tag_by_align" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NFR/data_building/tag_by_align/prediction2align.py" />
+      <option name="PARAMETERS" value="--pred-json predictions.json --output test.align" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="select_nton_parallel_cand" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="wyz_mttool_scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -196,28 +210,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="tmp" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="wyz_mttool_scripts" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/NFR" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NFR/tmp.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -228,19 +220,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.tmp" />
-      <item itemvalue="Python.build_bs_dataset" />
-      <item itemvalue="Python.select_nton_parallel_cand" />
-      <item itemvalue="Python.jp" />
       <item itemvalue="Python.build_squad" />
+      <item itemvalue="Python.identify_related_words" />
+      <item itemvalue="Python.jp" />
+      <item itemvalue="Python.prediction2align" />
+      <item itemvalue="Python.select_nton_parallel_cand" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.identify_related_words" />
+        <item itemvalue="Python.prediction2align" />
         <item itemvalue="Python.build_squad" />
         <item itemvalue="Python.jp" />
         <item itemvalue="Python.select_nton_parallel_cand" />
-        <item itemvalue="Python.build_bs_dataset" />
-        <item itemvalue="Python.tmp" />
       </list>
     </recent_temporary>
   </component>
@@ -334,6 +326,17 @@
       <workItem from="1594600127055" duration="9514000" />
       <workItem from="1594702821294" duration="1314000" />
       <workItem from="1594728525851" duration="8218000" />
+      <workItem from="1594786559149" duration="202000" />
+      <workItem from="1594786777233" duration="1074000" />
+      <workItem from="1594877448807" duration="681000" />
+      <workItem from="1594884892022" duration="1445000" />
+      <workItem from="1594990789062" duration="6087000" />
+      <workItem from="1595032378225" duration="11494000" />
+      <workItem from="1595123958386" duration="11050000" />
+      <workItem from="1595296910330" duration="17000" />
+      <workItem from="1595310465920" duration="1422000" />
+      <workItem from="1595334277287" duration="1039000" />
+      <workItem from="1595375311134" duration="11000" />
     </task>
     <task id="LOCAL-00001" summary="默认的">
       <created>1590458480231</created>
@@ -346,20 +349,19 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -372,6 +374,84 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="默认的" />
     <option name="LAST_COMMIT_MESSAGE" value="默认的" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="410" y="65" key="#build_squad" timestamp="1595048374707">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="410" y="65" key="#build_squad/0.0.1440.900@0.0.1440.900" timestamp="1595048374707" />
+    <state x="552" y="259" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1595242886228">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="552" y="259" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1595242886228" />
+    <state x="671" y="85" key="#identify_related_words" timestamp="1595248320553">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="671" y="85" key="#identify_related_words/0.0.1440.900@0.0.1440.900" timestamp="1595248320553" />
+    <state x="821" y="56" key="#prediction2align" timestamp="1595082733284">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="821" y="56" key="#prediction2align/0.0.1440.900@0.0.1440.900" timestamp="1595082733284" />
+    <state x="245" y="161" key="#xdebugger.evaluate" timestamp="1595234768669">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="245" y="161" key="#xdebugger.evaluate/0.0.1440.900@0.0.1440.900" timestamp="1595234768669" />
+    <state width="1440" height="438" key="DebuggerActiveHint" timestamp="1595083289417">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1440" height="438" key="DebuggerActiveHint/0.0.1440.900@0.0.1440.900" timestamp="1595083289417" />
+    <state width="1398" height="294" key="GridCell.Tab.0.bottom" timestamp="1595262856678">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="294" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1595262856678" />
+    <state width="1398" height="294" key="GridCell.Tab.0.bottom/0.23.1440.797@0.23.1440.797" timestamp="1595087813083" />
+    <state width="1398" height="294" key="GridCell.Tab.0.center" timestamp="1595262856677">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="294" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1595262856677" />
+    <state width="1398" height="294" key="GridCell.Tab.0.center/0.23.1440.797@0.23.1440.797" timestamp="1595087813082" />
+    <state width="1398" height="294" key="GridCell.Tab.0.left" timestamp="1595262856676">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="294" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1595262856676" />
+    <state width="1398" height="294" key="GridCell.Tab.0.left/0.23.1440.797@0.23.1440.797" timestamp="1595087813080" />
+    <state width="1398" height="294" key="GridCell.Tab.0.right" timestamp="1595262856677">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="294" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1595262856677" />
+    <state width="1398" height="294" key="GridCell.Tab.0.right/0.23.1440.797@0.23.1440.797" timestamp="1595087813083" />
+    <state width="1398" height="294" key="GridCell.Tab.1.bottom" timestamp="1595262856680">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="294" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1595262856680" />
+    <state width="1398" height="294" key="GridCell.Tab.1.bottom/0.23.1440.797@0.23.1440.797" timestamp="1595087813085" />
+    <state width="1398" height="294" key="GridCell.Tab.1.center" timestamp="1595262856679">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="294" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1595262856679" />
+    <state width="1398" height="294" key="GridCell.Tab.1.center/0.23.1440.797@0.23.1440.797" timestamp="1595087813084" />
+    <state width="1398" height="294" key="GridCell.Tab.1.left" timestamp="1595262856679">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="294" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1595262856679" />
+    <state width="1398" height="294" key="GridCell.Tab.1.left/0.23.1440.797@0.23.1440.797" timestamp="1595087813083" />
+    <state width="1398" height="294" key="GridCell.Tab.1.right" timestamp="1595262856680">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="294" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1595262856680" />
+    <state width="1398" height="294" key="GridCell.Tab.1.right/0.23.1440.797@0.23.1440.797" timestamp="1595087813084" />
+    <state x="440" y="159" key="RollbackChangesDialog" timestamp="1595047914170">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="440" y="159" key="RollbackChangesDialog/0.0.1440.900@0.0.1440.900" timestamp="1595047914170" />
+    <state x="221" y="60" key="SettingsEditor" timestamp="1594885324158">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="221" y="60" key="SettingsEditor/0.23.1440.797@0.23.1440.797" timestamp="1594885324158" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1595247471851">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1595247471851" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -392,12 +472,14 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$identify_related_words.coverage" NAME="identify_related_words Coverage Results" MODIFIED="1595248320618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/tag_by_align" />
     <SUITE FILE_PATH="coverage/wyz_mttool_scripts$build_bs_dataset.coverage" NAME="build_bs_dataset Coverage Results" MODIFIED="1591507965946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/by_bert_score" />
-    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$extract_hyp_wei.coverage" NAME="extract_hyp_wei Coverage Results" MODIFIED="1586270490882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$decoding_xml.coverage" NAME="decoding_xml Coverage Results" MODIFIED="1588733049498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$select_nton_parallel_cand.coverage" NAME="select_nton_parallel_cand Coverage Results" MODIFIED="1593834960055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/s2t_manner" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$build_squad.coverage" NAME="build_squad Coverage Results" MODIFIED="1595048433517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/tag_by_align" />
     <SUITE FILE_PATH="coverage/wyz_mttool_scripts$jp.coverage" NAME="jp Coverage Results" MODIFIED="1594623058398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop" />
     <SUITE FILE_PATH="coverage/wyz_mttool_scripts$tmp.coverage" NAME="tmp Coverage Results" MODIFIED="1588829950271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR" />
-    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$select_nton_parallel_cand.coverage" NAME="select_nton_parallel_cand Coverage Results" MODIFIED="1593834960055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/s2t_manner" />
-    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$build_squad.coverage" NAME="build_squad Coverage Results" MODIFIED="1594740613322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/tag_by_align" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$decoding_xml.coverage" NAME="decoding_xml Coverage Results" MODIFIED="1588733049498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$prediction2align.coverage" NAME="prediction2align Coverage Results" MODIFIED="1595083553180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/tag_by_align" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$extract_hyp_wei.coverage" NAME="extract_hyp_wei Coverage Results" MODIFIED="1586270490882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
