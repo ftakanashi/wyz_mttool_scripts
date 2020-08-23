@@ -3,6 +3,7 @@
 
 import argparse
 
+
 def parse_args():
     parser = argparse.ArgumentParser(usage='Identify related words in tmt based on the '
                                            '1. LCS between source and tms'
@@ -12,13 +13,25 @@ def parse_args():
                         help='Path to the plain source file.')
     parser.add_argument('-tms', required=True)
     parser.add_argument('-tmt', required=True)
-    parser.add_argument('--match-file', required=True)
-    parser.add_argument('-a', '--alignment', required=True)
+    parser.add_argument('--match-file', required=True,
+                        help='Match file indicating the relationship between source and TMS.')
+    parser.add_argument('-a', '--alignment', required=True,
+                        help='Alignment file indicating the relationship between TMS and TMT.')
     parser.add_argument('-o', '--output', required=True)
+
+    parser.add_argument('--source-tag', default='0',
+                        help='DEFAULT: 0')
+    parser.add_argument('--relate-tag', default='1',
+                        help='DEFAULT: 1')
+    parser.add_argument('--unrelate-tag', default='2',
+                        help='DEFAULT: 2')
+    parser.add_argument('--concat-tag', default=None,
+                        help='DEFAULT: None. If set to None, will use the unrelate_tag.')
 
     args = parser.parse_args()
 
     return args
+
 
 def find_longest_common_subsequences(seq_1, seq_2, sep=' '):
     # Ensure the smaller of the two sequences is used to create the columns for
@@ -42,17 +55,17 @@ def find_longest_common_subsequences(seq_1, seq_2, sep=' '):
 
         for col in range(1, seq_2_len_plus_1):
 
-            if seq_1[row-1] == seq_2[col-1]:
+            if seq_1[row - 1] == seq_2[col - 1]:
                 diagonal_cell_value = subseq_last_row[col - 1]
                 # matched_element = seq_1[row-1]
-                if flag == 'col':    # seq_2 corresponds to tms
+                if flag == 'col':  # seq_2 corresponds to tms
                     rec = col - 1
-                else:    # seq_1 corresponds to tms
+                else:  # seq_1 corresponds to tms
                     rec = row - 1
                 new_cell_value = f'{diagonal_cell_value}{sep}{rec}'
             else:
                 above_set = subseq_last_row[col]
-                left_set = subseq_current_row[col-1]
+                left_set = subseq_current_row[col - 1]
                 if len(above_set) >= len(left_set):
                     new_cell_value = above_set
                 else:
@@ -65,8 +78,7 @@ def find_longest_common_subsequences(seq_1, seq_2, sep=' '):
     return [int(i) for i in subseq_last_row[-1].split()]
 
 
-def process_one_line(src_tokens, tms_tokens, tmt_tokens, aligns):
-
+def process_one_line(src_tokens, tms_tokens, tmt_tokens, aligns, opt):
     # find the LCS of src_line and tms_line
     # record the indices of LCS's tokens in tms_line
     lcs_indices = find_longest_common_subsequences(src_tokens, tms_tokens)
@@ -96,13 +108,14 @@ def process_one_line(src_tokens, tms_tokens, tmt_tokens, aligns):
     final_set = set_pos.intersection(set_neg)
 
     # 1: T  2: R
-    map_table = [1 if t in final_set else 2 for t in range(len(tmt_tokens))]
-    map_table = [0] * len(src_tokens) + [2] + map_table
+    map_table = [opt.relate_tag if t in final_set else opt.unrelate_tag for t in range(len(tmt_tokens))]
+    concat_tag = opt.concat_tag if opt.concat_tag is not None else opt.unrelate_tag
+    map_table = [opt.source_tag] * len(src_tokens) + [concat_tag] + map_table
 
     return map_table
 
-def main():
 
+def main():
     opt = parse_args()
 
     print('Reading source lines...')
@@ -145,11 +158,12 @@ def main():
             tms_tokens = tms_line.strip().split()
             tmt_tokens = tmt_line.strip().split()
             aligns = align_line.strip().split()
-            line_res = process_one_line(src_tokens, tms_tokens, tmt_tokens, aligns)
+            line_res = process_one_line(src_tokens, tms_tokens, tmt_tokens, aligns, opt)
         else:
-            line_res = [0] * len(src_tokens)
+            line_res = [opt.source_tag] * len(src_tokens)
 
         wf.write(' '.join([f'{i}' for i in line_res]) + '\n')
+
 
 if __name__ == '__main__':
     main()

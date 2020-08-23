@@ -17,6 +17,7 @@ import argparse
 import collections
 import copy
 import json
+import random
 
 
 def analyze_alignment(align_lines, opt):
@@ -31,7 +32,10 @@ def analyze_alignment(align_lines, opt):
             else:
                 s, t = align.split('-')
             s, t = int(s), int(t)
-            align_info[s - 1].append(t - 1)
+            if opt.alignment_start_from_one:
+                align_info[s - 1].append(t - 1)
+            else:
+                align_info[s].append(t)
         res.append(align_info)
 
     return res
@@ -83,14 +87,22 @@ def process_one_pair(src_line, tgt_line, s2t_align, t2s_align, pair_id, opt):
     s2t_qas = []
     t2s_qas = []
 
-    def process_line(from_tokens, to_tokens, align, res_container, pair_id, id_flag):
+    possible_count = impossible_count = 0
+
+    def process_line(from_tokens, to_tokens, align, res_container, pair_id, id_flag, null_dropout):
+        impossible_count = possible_count = 0
         for i in range(len(from_tokens)):
             aug = make_aug_src(from_tokens, i)  # insert special tokens to pack a source token
             to_span = align[i]  # a list of target tokens ids which are aligned to the source token. May be an empty
             # one.
             if len(to_span) == 0:
                 # if there is no answer
+                if random.random() < null_dropout:
+                    # randomly drop some null QA cases to control the null ratio at a desirable level
+                    continue
+
                 is_impossible = True
+                impossible_count += 1
                 answers = [{'answer_start': -1, 'text': ''}]
                 res_container.append({
                     'id': f'{pair_id}_{i}_{id_flag}' if id_flag is not None else f'{pair_id}_{i}',
@@ -98,8 +110,10 @@ def process_one_pair(src_line, tgt_line, s2t_align, t2s_align, pair_id, opt):
                     'answers': answers,
                     'is_impossible': is_impossible
                 })
+
             else:
                 is_impossible = False
+                possible_count += 1
                 spans = split_span(to_span)  # cut the non-continuous span into pieces
 
                 if len(spans) > 1 and opt.split_multiple_answers:
@@ -129,10 +143,19 @@ def process_one_pair(src_line, tgt_line, s2t_align, t2s_align, pair_id, opt):
                         'is_impossible': is_impossible
                     })
 
+        return possible_count, impossible_count
+
     s2t_id_flag = 's2t' if opt.do_t2s else None
-    process_line(src_tokens, tgt_tokens, s2t_align, s2t_qas, pair_id, s2t_id_flag)
+    null_dropout = opt.null_dropout
+    p_c, imp_c = process_line(src_tokens, tgt_tokens, s2t_align, s2t_qas, pair_id, s2t_id_flag,
+                              null_dropout)
+    possible_count += p_c
+    impossible_count += imp_c
     if opt.do_t2s:
-        process_line(tgt_tokens, src_tokens, t2s_align, t2s_qas, pair_id, 't2s')
+        p_c, imp_c = process_line(tgt_tokens, src_tokens, t2s_align, t2s_qas, pair_id, 't2s',
+                                  null_dropout)
+        possible_count += p_c
+        impossible_count += imp_c
 
     if opt.do_t2s:
         return {
@@ -141,12 +164,12 @@ def process_one_pair(src_line, tgt_line, s2t_align, t2s_align, pair_id, opt):
                }, {
                    'context': t2s_context,
                    'qas': t2s_qas
-               }
+               }, possible_count, impossible_count
     else:
         return {
             'context': s2t_context,
             'qas': s2t_qas
-        }
+        }, possible_count, impossible_count
 
 
 def reverse_align_lines(align_lines):
@@ -190,19 +213,24 @@ def process(opt):
     s2t_aligns = analyze_alignment(s2t_align_lines, opt)
     t2s_aligns = analyze_alignment(t2s_align_lines, opt)
 
+    possible_count = impossible_count = 0
+
     data = []
     for i, src_line in enumerate(src_lines):
         tgt_line = tgt_lines[i]
         s2t_align = s2t_aligns[i]
         t2s_align = t2s_aligns[i]
         if opt.do_t2s:
-            s2t_one_pair_res_para, t2s_one_pair_res_para = \
+            s2t_one_pair_res_para, t2s_one_pair_res_para, p_c, imp_c = \
                 process_one_pair(src_line, tgt_line, s2t_align, t2s_align, i, opt)
             data.append({'paragraphs': [s2t_one_pair_res_para, ]})
             data.append({'paragraphs': [t2s_one_pair_res_para, ]})
         else:
-            one_pair_res_para = process_one_pair(src_line, tgt_line, s2t_align, t2s_align, i, opt)
+            one_pair_res_para, p_c, imp_c = process_one_pair(src_line, tgt_line, s2t_align, t2s_align, i, opt)
             data.append({'paragraphs': [one_pair_res_para, ]})
+
+        possible_count += p_c
+        impossible_count += imp_c
 
     shard_len = len(data) // opt.shards
     for shard_i in range(opt.shards):
@@ -223,6 +251,10 @@ def process(opt):
 
         print(f'shard[{shard_i}] written')
 
+    print(f'Extracted {possible_count} possible qas and {impossible_count} impossible qas.')
+    with open(f'{opt.output}.readme', 'w') as f:
+        f.write(f'Extracted {possible_count} possible qas and {impossible_count} impossible qas.')
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -240,6 +272,13 @@ def main():
                              'SQuAD format, a question could have multiple answers by adding several elements into '
                              'answers\' list. But train data only requires one particular answer so add this option '
                              'when you are generating json for train set.')
+    parser.add_argument('--alignment-start-from-one', action='store_true', default=False,
+                        help='If the alignment file is presented in the format in which the first token is expressed '
+                             'as 1 rather than 0, add this option.')
+
+    parser.add_argument('--null-dropout', type=float, default=0.0,
+                        help='In order to adjust and get a proper null ratio, simply randomly ignore some null answer'
+                             ' qa cases.')
 
     parser.add_argument('--shards', type=int, default=1,
                         help='When processing huge dataset, split the json into several shards.')

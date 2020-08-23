@@ -11,16 +11,25 @@ the average of p_{a-b} in s2t and p_{b-a} in t2s is greater than the threshold.
 import argparse
 import collections
 import json
+import os
+
+from tqdm import tqdm
 
 def parse_args():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('-p', '--pred-json', required=True,
+    parser.add_argument('-p', '--pred-json', default=None,
                         help='Path to prediction.json')
+    parser.add_argument('-d', '--pred-output-dir', default=None,
+                        help='Path to the output dir where output.N for shard N is saved.')
     parser.add_argument('-o', '--output', required=True)
     parser.add_argument('--prob-threshold', type=float, default=0.4)
 
-    return parser.parse_args()
+    opt = parser.parse_args()
+
+    assert opt.pred_json is not None or opt.pred_output_dir is not None
+
+    return opt
 
 def get_info(data):
     '''
@@ -56,6 +65,9 @@ def process_one_line(sent_align_info, opt):
     :return:
     '''
 
+    if len(sent_align_info) == 0:    # no alignment detected
+        return []
+
     alignments = [(int(k.split('-')[0]), int(k.split('-')[1])) for k in sent_align_info.keys()]
     max_src_length = max([a[0] for a in alignments]) + 1
     max_tgt_length = max([a[1] for a in alignments]) + 1
@@ -74,16 +86,35 @@ def process_one_line(sent_align_info, opt):
 def main():
     opt = parse_args()
 
-    with open(opt.pred_json, 'r') as f:
-        data = json.loads(f.read())
+    info = {}
 
-    info = get_info(data)
+    if opt.pred_json is not None:
+        with open(opt.pred_json, 'r') as f:
+            data = json.loads(f.read())
+
+        info = get_info(data)
+
+    elif opt.pred_output_dir is not None:
+        parent_dir = opt.pred_output_dir
+        sub_dirs = [os.path.join(parent_dir, d) for d in os.listdir(parent_dir)]
+
+        for sub_dir in sub_dirs:
+            assert os.path.isfile(os.path.join(sub_dir, 'predictions.json')), \
+            f'Cannot find prediction.json in {sub_dir}'
+
+            print(f'Reading predictions.json in {sub_dir}...')
+            with open(os.path.join(sub_dir, 'predictions.json'), 'r') as f:
+                data = json.loads(f.read())
+            sub_info = get_info(data)
+
+            info.update(sub_info)
 
     wf = open(opt.output, 'w')
 
-    for sent_id in sorted(info):
+    for sent_id in tqdm(sorted(info), mininterval=1.0, ncols=50):
         aligns = process_one_line(info[sent_id], opt)
         wf.write(' '.join(aligns) + '\n')
+
 
 if __name__ == '__main__':
     main()

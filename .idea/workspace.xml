@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21a788ba-3490-47f1-bb91-b90ae48e95b4" name="默认的" comment="默认的">
-      <change afterPath="$PROJECT_DIR$/NFR/data_building/tag_by_align/build_squad.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NFR/data_building/tag_by_align/tag_by_align.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NFR/data_building/divide_non_with_match.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tmp/tmp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tmp/tmp2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/wyz_mttool_scripts.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/wyz_mttool_scripts.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/data_building/divide_with_non_match.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/data_building/tag_by_align/build_squad.py" beforeDir="false" afterPath="$PROJECT_DIR$/NFR/data_building/tag_by_align/build_squad.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/data_building/tag_by_align/identify_related_words.py" beforeDir="false" afterPath="$PROJECT_DIR$/NFR/data_building/tag_by_align/identify_related_words.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NFR/data_building/tag_by_align/prediction2align.py" beforeDir="false" afterPath="$PROJECT_DIR$/NFR/data_building/tag_by_align/prediction2align.py" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +63,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -67,6 +75,18 @@
       <recent name="D:\PythonProjects\wyz_mttool_scripts\NFR\by_shards" />
       <recent name="D:\PythonProjects\wyz_mttool_scripts\for_interpretor" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Python.identify_related_words">
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
@@ -337,6 +357,19 @@
       <workItem from="1595310465920" duration="1422000" />
       <workItem from="1595334277287" duration="1039000" />
       <workItem from="1595375311134" duration="11000" />
+      <workItem from="1595651958691" duration="947000" />
+      <workItem from="1595654296380" duration="2518000" />
+      <workItem from="1595769246274" duration="4752000" />
+      <workItem from="1595815668720" duration="1554000" />
+      <workItem from="1596422247250" duration="3043000" />
+      <workItem from="1596508601081" duration="3262000" />
+      <workItem from="1596542121211" duration="1113000" />
+      <workItem from="1596935797654" duration="2614000" />
+      <workItem from="1596974633860" duration="23000" />
+      <workItem from="1597144768993" duration="1089000" />
+      <workItem from="1597297774486" duration="52000" />
+      <workItem from="1597321810825" duration="955000" />
+      <workItem from="1597971098929" duration="3238000" />
     </task>
     <task id="LOCAL-00001" summary="默认的">
       <created>1590458480231</created>
@@ -349,19 +382,20 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -472,14 +506,14 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$identify_related_words.coverage" NAME="identify_related_words Coverage Results" MODIFIED="1595248320618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/tag_by_align" />
-    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$build_bs_dataset.coverage" NAME="build_bs_dataset Coverage Results" MODIFIED="1591507965946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/by_bert_score" />
-    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$select_nton_parallel_cand.coverage" NAME="select_nton_parallel_cand Coverage Results" MODIFIED="1593834960055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/s2t_manner" />
-    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$build_squad.coverage" NAME="build_squad Coverage Results" MODIFIED="1595048433517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/tag_by_align" />
-    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$jp.coverage" NAME="jp Coverage Results" MODIFIED="1594623058398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop" />
-    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$tmp.coverage" NAME="tmp Coverage Results" MODIFIED="1588829950271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR" />
-    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$decoding_xml.coverage" NAME="decoding_xml Coverage Results" MODIFIED="1588733049498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR" />
     <SUITE FILE_PATH="coverage/wyz_mttool_scripts$prediction2align.coverage" NAME="prediction2align Coverage Results" MODIFIED="1595083553180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/tag_by_align" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$build_bs_dataset.coverage" NAME="build_bs_dataset Coverage Results" MODIFIED="1591507965946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/by_bert_score" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$jp.coverage" NAME="jp Coverage Results" MODIFIED="1594623058398" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$decoding_xml.coverage" NAME="decoding_xml Coverage Results" MODIFIED="1588733049498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR" />
     <SUITE FILE_PATH="coverage/wyz_mttool_scripts$extract_hyp_wei.coverage" NAME="extract_hyp_wei Coverage Results" MODIFIED="1586270490882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$tmp.coverage" NAME="tmp Coverage Results" MODIFIED="1588829950271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$select_nton_parallel_cand.coverage" NAME="select_nton_parallel_cand Coverage Results" MODIFIED="1593834960055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/s2t_manner" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$identify_related_words.coverage" NAME="identify_related_words Coverage Results" MODIFIED="1595248320618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/tag_by_align" />
+    <SUITE FILE_PATH="coverage/wyz_mttool_scripts$build_squad.coverage" NAME="build_squad Coverage Results" MODIFIED="1595048433517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/NFR/data_building/tag_by_align" />
   </component>
 </project>
